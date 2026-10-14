@@ -1,0 +1,255 @@
+FoxPhys 0.1.0-alpha.7 — журнал автономной сессии
+Окно: 2026-10-11 16:03:33–20:03:33 UTC (4 часа, по запросу пользователя). Старт: /home/user/.cache/work_start.txt
+
+Хронология (UTC, приблизительно)
+16:53–16:54  test_clear_restore после исправления 3 (takeSavedCells): тело пропало через 2 с (1 из 1 на тот момент).
+16:55–16:59  Повторы test_clear_restore: 3 прохода подряд (тело на (37,-55,30) 15 с).
+16:59        Хук TEMP-TEST-HOOK удалён из src/.../Lab.java. Копия с хуком сохранена: /home/user/.cache/Lab.java.hook-test
+17:02        Fabric clean build EXIT=0 (gradlew build -PskipNative -x test).
+17:04        release/alpha.7: Fabric jar и sources обновлены (чистые).
+17:05        NeoForge build EXIT=0, но jar — заглушка: neoforge/build.gradle исключает общий код (../src/main/java).
+             Причина: общий код на именах Yarn, NeoForge на Mojang. Заглушка перенесена в release/alpha.7-neoforge-NOT-FUNCTIONAL/.
+17:07        Тестовая копия с хуком собрана: /home/user/.cache/test-jar/foxphys-hooktest.jar (src/ возвращён к чистому).
+17:10        Bench 1/10/40 (тестовая копия): тело (37,-55,30) через 60 с, потерь 0.
+17:11–17:14  Серия из 4 прогонов test_clear_restore: 2 прохода, 2 потери (flaky_runs.txt).
+17:15–17:19  Диагностика: тело после restore падает свободно (static colliders 35 вместо 784, contacts=0).
+             Скан на тике 1 после restore брал регион вокруг старого блока spawn wood (1x1x1, aabb [0,3.5,0]..[1,4.5,1]).
+17:20        Серия с диагностикой (pre-fix): 4 из 4 потеряны.
+17:22        DBGSCAN: restore → import на шаге 4; первый скан (тик 1) был до импорта; следующий через 40 тиков (2 с) — тело падает мимо пола.
+17:24–17:29  Исправление 4: синхронные снимки (awaitingStep/syncSteps): опубликованный снимок до импорта пропускается.
+             Серия (исправление 4 без 5): 3 из 4 с потерей.
+17:30        Исправление 5: importState ставит scanPending = true (скан на следующем тике по восстановленному телу).
+17:31        DBGSCAN-проверка: body rests at -20 local (= -55 world), terrain 960->1024. Прохода.
+17:34–17:38  Серия (исправления 4+5, тестовая копия с хуком): 4 из 4 прохода. Тело (37,-55,30).
+17:39–17:41  Bench 1/10/40 (исправления 4+5): потерь 0; P50 2.5–2.6 мс / 0.7 мс / 0.7–0.8 мс.
+17:44        Чистая сборка Fabric (исправления 4+5, без хука, без DBG): TEMP=0, DBG=0. release/alpha.7 обновлён, SHA256SUMS.txt пересчитан.
+17:45–      Документация: docs/ROADMAP-alpha.7.md, docs/VALIDATION.md (раздел alpha.7), docs/ROADMAP.md (ссылка).
+
+Итоги по прогонам test_clear_restore (потеря тела после restore)
+- До исправлений 4–5: 11 потерь из 16 прогонов (включая исходный прогон).
+- Только исправление 4: 3 потери из 4.
+- Исправления 4+5: 0 потерь из 5 (4 в серии + 1 диагностический).
+
+Открыто / не сделано в этой сессии
+- NeoForge (этап 6): рабочий мод не собран. Нужен multi-loader рефакторинг или remap Yarn→Mojang (см. ROADMAP-alpha.7).
+- Этапы 5, 8, 9 (SPH, XPBD, желе, пружинные тела): не продвинуты.
+- Этап 10 (HD-модели в Blender): вне возможностей агента.
+- Проверки в игре (этапы 1, 2, 7; Sodium, Iris, Lithium): за пользователем.
+- Побочное: spawn и сохранённое тело используют один id (см. ROADMAP-alpha.7).
+- Swap 6 ГБ (/swapfile) добавлен на предыдущем ходе, вне workspace; не удалён.
+
+Ход 9 (после очистки workspace)
+        Очистка: удалены voxphys/.gradle (64 МБ), .cargo/registry и .cargo/git. /home/user ≈ 70 МБ, 377 файлов.
+        Видимость физичных блоков: в этом ходе не воспроизведена, по коду ошибок не найдено. Нужна проверка в игре (data get block, рендер).
+        max_bodies: 0 = без лимита. Раньше отключить было нельзя (1..128). Java: FoxPhysConfig (0..10000). Rust: protocol.rs validate (0 или <=10000), engine.rs add_body_with и import проверяют лимит только если max_bodies != 0. Default 64 не менялся.
+        Защита мира: Assembler.MAX_PHYSICAL_CELLS = 8192 на мир (на каждое измерение отдельно); Lab.takeCells считает ячейки всех сборок и отказывает при превышении. Лимиты 512 (клей, скан) и 4096 (команда) сохраняются.
+        Rust-тесты: cargo test 101 passed, 3 ignored (до этого 99; 2 новых в protocol.rs, mod max_bodies_tests).
+        Окружение: ~/.cargo/bin/rustup не исполняемый, ~/.rustup отсутствовал. Toolchain 1.89.0 установлен в /var/tmp/foxbuild/{rustup,cargo}. Target: /var/tmp/foxbuild/target (симлинк native/target, удалён после сборки). Gradle: GRADLE_USER_HOME=/var/tmp/gradle-home.
+        Сборка Java (gradle build -x test, JDK 21): BUILD SUCCESSFUL, jniSmoke JNI_SMOKE_OK, protocolSmoke PROTOCOL_SMOKE_OK.
+        Первые попытки упали: JDK 11 по умолчанию, затем Gradle-демон исчерпал ОЗУ (2 ГБ). Старый демон убит, /tmp (tmpfs) разгружен.
+        Тест на сервере (тестовая копия с TEMP_TEST_ALWAYS_NEAR, релиза не касается; сервер в /var/tmp/mcserver):
+          - Overworld: два куба 16^3 (4096 + 4096) приняты, третий отказан: "Лимит физических блоков в мире: 8192 (сейчас 8192, добавить 4096)".
+          - Overworld: PhysicsBlock с BlockEntity есть (data get block, owner, curRot, prevCenter), исходные клетки пустые.
+          - End: бедрок (63 конвертированных блока) сохранён, PhysicsBlock с BlockEntity есть. Второй куб 16^3 отказан (сейчас 4159, добавить 4096).
+          - Nether: то же (сейчас 4159, добавить 4096), бедрок сохранён, BlockEntity есть.
+          - max_bodies (default 64): 64 тела, 65-е отказано "body count limit reached".
+          - max_bodies 0: 70 тел приняты.
+          - Видимость на клиенте не проверена: сервер подтверждает PhysicsBlock и BlockEntity, но не рендер.
+        Побочное (существующее, не менялось): после рестарта без restore FoxPhysMod.removeOrphanPhysicsBlocks удаляет физические блоки чанка, для которых нет загруженной Lab ("removed 1600 leftover physics blocks"). Кубы из мира пропадают.
+        Релиз: alpha.7/foxphys-0.1.0-alpha.7.jar и -sources.jar пересобраны из текущего кода (Linux .so и Windows DLL, без TEMP). SHA256SUMS обновлён и сверен.
+        Windows DLL: mingw-w64 через apt, rustup target x86_64-pc-windows-gnu, cargo build --release. Не запускалась на Windows.
+        fxs-0.1.0-alpha.7.jar НЕ пересобран: в нём старый код (нет PhysicsBlock, PlayerEntityMixin, DensityTable). Источника сборки в репозитории нет.
+        НЕ ВЫПОЛНЕНО: проверка видимости физичных блоков на клиенте (Sodium, Iris, Lithium).
+
+Ход 10 (видимость физичных блоков)
+        Причина найдена: PhysicsBlockEntity не переопределял toInitialChunkDataNbt (Yarn). В Minecraft 1.21.1 метод по умолчанию возвращает пустой CompoundTag (проверено по байткоду серверного jar: getUpdateTag -> new CompoundTag). Клиент получал BlockEntity без поля "state", originalState оставался AIR, и PhysicsBlockRenderer.render выходил через state.isAir(). Поэтому блоки не были видны ни на чанке, ни при обновлениях.
+        Исправление: PhysicsBlockEntity.toInitialChunkDataNbt возвращает createNbt(registries). Сборка Java: BUILD SUCCESSFUL. Класс содержит переопределение (method_16887 в промежуточных именах).
+        Релиз alpha.7 обновлён (foxphys jar и sources), SHA256SUMS сверен. Нативные библиотеки взяты из предыдущего релиза: Rust не менялся.
+        Sodium: BlockEntity с rendersOutsideBoundingBox=true попадают в globalBlockEntities и рисуются из видимых секций (RenderSection / SodiumWorldRenderer.renderGlobalBlockEntities). Если секция закрыта окклюзией Sodium, куб может не нарисоваться. Миксин не добавлен: нельзя проверить без клиента.
+        НЕ ПРОВЕРЕНО в игре: видимость на ванили и с Sodium, интерполяция, прозрачность, эмиссия.
+        Миксин в рендеринг Sodium (разрешено пользователем): SodiumPhysicsBlockMixin, инъекция в SodiumWorldRenderer.renderGlobalBlockEntities TAIL, require=0. Для каждого живого PhysicsBlockEntity, чья клетка не нарисована Sodium (isBoxVisible по клетке ложь), вызывается BlockEntityRenderDispatcher.render с тем же переносом, что у Sodium. Живой список: PhysicsBlockEntity.clientLive (setWorld/markRemoved на клиенте). Сигнатуры совпадают в Sodium 0.6.13 и 0.8.13 (проверено javap). Сборка: BUILD SUCCESSFUL. Не проверено в игре.
+
+Сборка по запросу «собери» (ход 11)
+        Полная сборка с нуля: rust 1.89.0 (Linux и Windows GNU через mingw), cargo test 101 passed, 3 ignored; gradle build: BUILD SUCCESSFUL, JNI_SMOKE_OK, PROTOCOL_SMOKE_OK; Windows DLL встроена вторым проходом (-PskipNative), как в scripts/package-cross-windows.sh.
+        Проверено в jar: natives linux .so и windows .dll совпадают с собранными, тестовый хук отсутствует, TEMP/DBG 0, PhysicsBlockEntity содержит toInitialChunkDataNbt и clientLive, есть SodiumPhysicsBlockMixin.
+        Релиз alpha.7 (foxphys jar и sources) обновлён, SHA256SUMS сверен.
+        fxs-0.1.0-alpha.7.jar не пересобран (старый код, см. ход 9).
+        В игре не проверено (видимость, Sodium, интерполяция).
+
+Нативы для NeoForge без Rust и Visual Studio (ход 12)
+        MSVC DLL собрана на Linux: cargo-xwin 0.23.1, rustc 1.89.0, clang/lld-link 19 (Debian). Проверено: PE32+ DLL, импорт из api-ms-win-*/KERNEL32 (без mingw), 12 JNI-экспортов Java_dev_foxphys_nativecore_NativeBridge_*.
+        Файлы: neoforge/prebuilt/natives/windows-x86_64/foxphys_core.dll (MSVC), neoforge/prebuilt/natives/linux-x86_64/libfoxphys_core.so (из релиза, совпадает с текущей сборкой).
+        neoforge/build.gradle: натив берётся из native/target, если его нет, то из neoforge/prebuilt/.
+        Проверка: cd neoforge && sh ./gradlew build -x test: BUILD SUCCESSFUL, в jar обе библиотеки, DLL совпадает с prebuilt.
+        Модуль NeoForge по-прежнему заглушка (см. раздел NeoForge): нерабочий мод.
+
+Ход 19: полный NeoForge-порт общего кода (вместо заглушки)
+        Код: neoforge/src/main/java/dev/foxphys/ (порт Fabric-дерева, Mojang-имена, компиляция проходит без ошибок). Fabric-импортов в neoforge/ не осталось (grep fabricmc/ServerTickEvents/CommandRegistrationCallback: пусто).
+        События переведены на NeoForge EVENT_BUS: RegisterCommandsEvent, LevelTickEvent.Post, BlockEvent.BreakEvent, ChunkEvent.Load, ServerTickEvent.Post, ServerStartingEvent/ServerStoppingEvent, EntityJoinLevelEvent/EntityLeaveLevelEvent, PlayerInteractEvent.RightClickItem, BuildCreativeModeTabContentsEvent, EntityRenderersEvent.RegisterRenderers (клиент).
+        Сборка: cd neoforge && sh ./gradlew build -x test: BUILD SUCCESSFUL. Jar neoforge/build/libs/foxphys-0.1.0-alpha.7.jar, 42 класса, neoforge.mods.toml, foxphys.mixins.json, foxphys.player.mixins.json, natives/linux-x86_64 и natives/windows-x86_64 (DLL 2149888 байт). SHA256 jar: 6d9d3eee9fdf2c9c749ccc9444730a3131ace8e70f0288acadb0884f8726256e
+        Сервер: выделенный сервер NeoForge 21.1.259 (Minecraft 1.21.1) запущен, Done (8.1 с) при повторном старте. Лог: "FoxPhys native core loaded (NeoForge)", "FoxPhys alpha ready". Ошибок миксинов и мода нет.
+        Консольный тест (сервер, FIFO):
+          - foxphys status: до создания физики честно сообщает "Физики ещё нет".
+          - foxphys spawn wood / spawn stone: "Тело #1 создано", тело видно в status (позиция в мире).
+          - foxphys pause false: t растёт (0.04 с → 4.04 с), тело падает по гравитации (y 67.00 → -10.72 за 4 с, ожидаемо ~78 м). Исключений нет.
+          - foxphys assemble 2 без блоков рядом: WARN "no collidable cells", ошибка обработана, сервер не падает.
+          - foxphys clear: физика удалена, блоки сборок возвращены. stop: миры сохранены.
+          - Исключений в логе нет (кроме ожидаемых WARN по командам без физики и без блоков).
+        Не проверено: клиент (runClient, нет дисплея), рендер PhysicsBlockRenderer, видимость физичных блоков, камера и игрок на теле, гриф-пушка, мёд-клей, сборщик (GUI), размещение блоков, Sodium (не переносится, решение агента, не подтверждено пользователем), Sable, Windows DLL на Windows. Всё это в игре пока не проверено.
+        Изменено: удалён временный task printCp из neoforge/build.gradle.
+        Ресурсы: ~/.gradle (631 МБ) перенесён в /var/tmp/dot-gradle, чтобы не попадать в снимок workspace (лимит 128 МБ). Сборка с другим GRADLE_USER_HOME: GRADLE_USER_HOME=/var/tmp/dot-gradle sh ./gradlew ... После перезапуска среды /var/tmp может очиститься, тогда зависимости скачаются заново.
+        Поведение (не изменено): рестарт сервера без /foxphys restore удаляет физические блоки (старое поведение).
+        Релиз alpha.7 (Fabric) не менялся. NeoForge-сборка в релиз не включена.
+
+Ходы 21–23: текстуры, физ-ган, ведро, рендер мягких тел, выравнивание R (NeoForge)
+        Ассеты: текстуры мёд-клея, гравипушки, ведра физичной воды, блока сборщика (top/side/bottom); модели item/*.json и block/physics_assembler.json (cube_bottom_top); ключи en_us и ru_ru. json.load прошёл.
+        Код: PhysicsWaterBucketItem (ПКМ — вода, Shift+ПКМ — разрыв плотины), GridAlign (выравнивание по целой сетке lab-local), SoftBodies.publish() после tick() (список тел, позиции, sendSoftMeshes), FoxPhysNetwork (payloads, канал версии "1"), client/SoftBodyRenderer, client/FoxPhysClient (R → AlignRequest).
+        Тест GridAlign вне workspace: ALL OK (yaw-повороты, 20 000 случайных кватернионов).
+        Нативы: Linux libfoxphys_core.so (sha256 4f2a789e…, 2500496 байт), Windows foxphys_core.dll (sha256 a0a267eb…, 2173440 байт). Пересборка через /var/tmp/rust/build-natives.sh (cargo-xwin для Windows). Windows DLL не запускалась на Windows.
+        Сборка: cd neoforge && gradlew build -x test на JDK 21 (openjdk-21-jdk-headless): BUILD SUCCESSFUL. В jar обновлённые нативы (старые из prebuilt были взяты до очистки build/generated/neonatives и build/resources/main).
+        Сервер (выделенный, NeoForge 21.1.259): Done (5.068 с). Прямой запуск через BootstrapLauncher без раскрытия аргументов давал NPE в ImmediateWindowHandler; причина: @serverRunProgramArgs.txt после главного класса Java не раскрывает. Работающий вариант: classpath с neoforge-21.1.259.jar, foxphys-0.1.0-alpha.7.jar, DevLaunch; VM-аргументы из serverRunVmArgs.txt; main net.neoforged.devlaunch.Main @serverRunProgramArgs.txt nogui.
+        Консоль (FIFO):
+          - foxphys spawn rubber: отказ, как и задумано. spawn принимает wood, stone, boat, wing; мягкие тела через foxphys soft spawn.
+          - foxphys soft spawn rubber: «Мягкое тело #1 (rubber, частиц 125)».
+          - foxphys soft status 1: центр (50.60, 63.10, 3.61), vmax 0.00 м/с, объём 0.963..1.001. Тело на месте после спавна; движения при этом не видно.
+          - Лог rust: t растёт (15.03 → 41.13 с), publish без исключений и ошибок. Ошибок в логе нет.
+          - foxphys pause true, stop: миры сохранены.
+        Не проверено в игре: рендер мягких тел (SoftBodyRenderer), R-выравнивание на физ-гане, ведро физичной воды, видимость физичных блоков, Sodium. Клиент без дисплея не запускался.
+        Нерешено: «улучши физику» — пользователь уточнит; таблица плотностей из датапака ещё не получена.
+        cargo test --release (после правки preset в soft_world.rs): 103 passed, 3 ignored, EXIT 0.
+        Решение пользователя: «улучши физику» означает всё четыре направления: стабильность, реалистичность, производительность, мягкие тела. Таблица плотностей из датапака ещё не получена; пока используется текущая, часть значений помечена как непроверенная.
+
+Ход 24: очистка workspace и улучшение физики (мягкие тела, стабильность)
+        Workspace: ~/.cargo (67 МБ) и ~/.rustup (590 МБ) перенесены в /var/tmp/cargo-home и /var/tmp/rustup-home (лимит снимка 128 МБ). ~/.profile переписан на эти пути. Тулчейн 1.89.0 по умолчанию, прокси cargo/rustc восстановлены ссылками на rustup.
+        Удалены старые версии мода: release/alpha.6, release/alpha.7-wip (включая prev-14-39), release/alpha.7-neoforge-NOT-FUNCTIONAL (заглушка), voxphys-release (alpha.1–5). Оставлен release/alpha.7. Размер workspace без target/build: 23 МБ.
+        Инверсия мягких тел при ударе: причина найдена измерением (native/examples/soft_drop.rs), не предположением.
+          - Одиночный тетраэдр на полу не инвертируется: солвер верный, дело в коллективном сжатии куба.
+          - 4 итерации на тик недостаточны: куб инвертировал при падении с 0.3 м (минимум −0.79). 16 итераций убирают инверсию при 0.3 м (0.80), но дороже в 4 раза.
+          - Пресет rubber 2e-4 м/Н на ребро с ячейкой 5 см мягче резины примерно на два порядка. Объёмная податливость 1e-7 слишком велика для удара с 1 м.
+        Изменено: rubber и jelly 5e-6 / 1e-9 (cloth и rope без изменений, они стабильны). Неупругий контакт на полу (SoftBody.inelastic_floor, по умолчанию включён): нормальная скорость узла обнуляется при касании. Вклад в инверсию не измерен заметным, но без него поправка на пол даёт скачок скорости вверх.
+        Замеры (8 подшагов, 4 итерации, 125 частиц): 0.3 м — минимум 0.565 (было −0.79); 1 м — минимум 0.023 (было −1.10); в покое vfinal = 0; время около 0.6 мс на тик (как раньше).
+        Тесты: soft::tests::rubber_cube_dropped_on_floor_never_inverts (новый). cargo test --release: 104 passed, 3 ignored, EXIT 0 (/var/tmp/rust/test3.log).
+        Производительность: soft_budget_1000_particles — 0.88 мс на шаг с 1 итерацией, 3.34 мс с 4. Цель 1 мс не достигнута при стабильной конфигурации. Жёсткие тела: bench, 64 тела — 0.29 мс на фиксированный шаг (не менялось).
+        Нативы пересобраны (скрипт /var/tmp/rust/build-natives.sh): Linux libfoxphys_core.so sha256 66d9c36f…, Windows foxphys_core.dll sha256 e264b58b…, 12 JNI-экспортов. Скопированы в neoforge/prebuilt/natives. Сборка neoforge: gradlew build -x test (JDK 21): BUILD SUCCESSFUL, в jar новые нативы (sha совпадает).
+        Сервер (NeoForge, Done 5.5 с): foxphys soft spawn rubber → тело #1, отношение объёма 0.976..1.001, исключений нет. Команда pause false до спавна физики выдаёт «Физики ещё нет» (поведение прежнее).
+        Не сделано: столкновения мягких тел с блоками и физическими телами; ускорение солвера до цели 1 мс на 1000 частиц; рендер мягких тел и R-выравнивание в игре (не проверено); стабильность жёстких тел не менялась (замеров проблемы не найдено). Таблица плотностей не трогалась (по решению пользователя).
+        Release jar для Fabric (release/alpha.7) не пересобран: в нём старые нативы. Пересборка только по решению пользователя.
+
+Ход 25: пересборка релиза Fabric и HD-ассеты (ассемблер, гравипушка, вода)
+        Релиз: build/libs собран через ./gradlew build -PskipNative (JDK 21). Нативы в jar: Linux libfoxphys_core.so sha256 036001a1…, Windows foxphys_core.dll (MSVC, cargo-xwin) sha256 e264b58b…, 12 JNI-экспортов. Ранее в релизе была GNU-сборка DLL 5.1 МБ, которую не пересобирали; mingw не установлен. Ветка NeoForge использует ту же Linux-сборку.
+        jniSmoke и protocolSmoke: JNI_SMOKE_OK, PROTOCOL_SMOKE_OK (отдельный запуск без -PskipNative, так как skipNative отключает smoke-задачи).
+        Релиз release/alpha.7: обновлены foxphys-0.1.0-alpha.7.jar и -sources.jar, SHA256SUMS.txt пересчитан (sha256sum -c: OK). fxs-0.1.0-alpha.7.jar не трогали (старый код, решение пользователя не менялось). NeoForge в релиз не включён.
+        HD-текстуры 128×128 (процедурные, scripts/textures/gen_hd.py): physics_assembler_top/side/bottom/front (новая лицевая панель), gravity_gun, physics_water_bucket (металл), physics_water_surface (вода, полупрозрачная). Проверены визуально по контактному листу.
+        3D-модели элементами (scripts/textures/gen_models.py): block/physics_assembler (плинт, корпус, панель на +z, крышка, кабель), item/gravity_gun (приёмник, ствол, излучатель, рукоять, катушка, конденсатор), item/physics_water_bucket (дно, стенки, борт, дужка, плоскость воды). Геометрия проверена изометрическим предпросмотром (/var/tmp/tex/model_preview.png), в игре не открывалась.
+        Fabric-ветка: скопированы текстуры assembler и gravity_gun и модели assembler и gravity_gun. Вода в Fabric не добавлялась (предмета там нет).
+        Сборка NeoForge: gradlew build -x test: BUILD SUCCESSFUL, в jar новые текстуры и модели.
+        Не проверено в игре: отображение моделей (размеры, ориентация гравипушки в руке, прозрачность воды, лицевая панель ассемблера смотрит на +z, ориентация у блока не меняется).
+
+Ход 26: публичный API для сторонних модов (NeoForge, dev.foxphys.api, версия API 1)
+        Добавлено: dev.foxphys.api.FoxPhysApi (isNativeLoaded, physics, ensurePhysics, soft, registerDensity, densityOf, describe), PhysicsWorld (тела, импульсы, позы, сборка и разборка, пауза, ветер, статистика), SoftBodyApi (spawn, ids, info, remove, pin, pinParticle, жёсткость, демпфирование, позиции), BodyKind, BodyInfo, WorldStats, SoftBodyInfo.
+        События (dev.foxphys.api.event): AssembleRequestedEvent (отменяемое), BodyAssembledEvent, BodyDisassembledEvent, BodySpawnedEvent, PhysicsWorldTickEvent, SoftBodySpawnedEvent, SoftBodyRemovedEvent. Публикация в NeoForge.EVENT_BUS.
+        Внутренние изменения: Lab.assembleBody (возвращает AssemblyResult или null при отмене), Lab.density публичная и проверяет полный id раньше пути, Lab.setPaused и Lab.setWind, DensityTable.register (переопределения), SoftBodies.remove (команда soft remove использует его же), LabManager публикует PhysicsWorldTickEvent.
+        Команда: /foxphys api (версия, нативы, таблица плотностей, мягкие тела).
+        Документация: docs/API.md (политика стабильности, потоки, ошибки, пример, события, ограничения).
+        Компиляция: neoforge gradlew compileJava (JDK 21): BUILD SUCCESSFUL. Сборка gradlew build -x test: BUILD SUCCESSFUL, в jar 15 классов api.
+        Проверено вне игры: API_SMOKE_OK (/var/tmp/apitest/ApiSmoke.java, нативы из neoforge/prebuilt): версия, загрузка нативов, регистрация и отказы плотностей, мягкое тело (создание, информация, закрепление, жёсткость, позиции, удаление), события мягких тел, отмена ICancellableEvent.
+        Не проверено: PhysicsWorld и Lab-методы (сборка, разборка, импульсы, позы, события сборки) требуют ServerLevel и запущенного сервера. Не запускалось в игре.
+        Замечание: шина NeoForge не доставляет события, пока не вызван EventBus.start() (загрузчик делает это сам в игре; в голой JVM вызывается вручную).
+        Не сделано: порт API на Fabric; клиентский API; релиз NeoForge-jar; удаление старых версий мода.
+
+Ход 27: API улучшен и перенесён на Fabric
+        Окружение сбросилось перед ходом: JDK 21 установлен заново (apt), swap 3 ГБ создан заново, /var/tmp очищен (кэш Gradle пересоздан).
+        Улучшения (обе сборки): проверка серверного потока в FoxPhysApi.physics/ensurePhysics и во всех методах PhysicsWorld (IllegalStateException до изменений); PhysicsWorld.bodiesIn(box); BodyInfo.assembled и Lab.isAssembly; FoxPhysApi.isCompatible(n); unregisterDensity и registeredDensities (только чтение, DensityTable.unregister/registered); событие PhysicsWorldCreatedEvent (из LabManager.ensure при первом создании мира).
+        Fabric: пакет dev.foxphys.api (Yarn-имена) и dev.foxphys.api.event; события через FoxPhysEvents (статические Event из EventFactory.createArrayBacked); в Lab добавлены setPaused, setWind, setPose (set_pose), assembleBody с AssemblyResult и отменой, события спавна, сборки, разборки; density с полным id; LabManager (created и tick); SoftBodies.remove с событием; /foxphys api; команда soft remove через SoftBodies.remove. DensityTable взят из NeoForge целиком.
+        Различие: в NeoForge после отмены слушатели без receiveCanceled не вызываются (проверено CancelOrder); в Fabric вызываются все. Задокументировано в docs/API.md.
+        Проверки: NeoForge compileJava и build -x test BUILD SUCCESSFUL; Fabric compileJava -PskipNative и build -PskipNative -x test BUILD SUCCESSFUL, gradlew test (GrabRayTest, MigrationTest) BUILD SUCCESSFUL. В обоих jar есть классы api (NeoForge 16, Fabric 17).
+        Smoke: validation/api/run-neoforge-smoke.sh → API_SMOKE_OK; validation/api/run-fabric-smoke.sh → API_SMOKE_OK (проверяют нативы, плотности, мягкие тела, события, отмену; без мира).
+        Не проверено: PhysicsWorld и Lab-методы (сборка, разборка, импульсы, позы, bodiesIn, события сборки) требуют сервера; в игре не запускалось ни в одной сборке.
+        Известное расхождение: эвристики плотности в Fabric Lab старее (нет sandstone, lattice, iron по-новому); таблица датапака одна и та же.
+        Не сделано: релиз NeoForge-jar и Fabric-jar в release/alpha.7 не обновлялись; удаление старых версий мода не выполнено.
+
+Ход 27:
+- Блоки: харнесс BlockDump (Mojang-имена; заглушки LoadingModList, version.json, en_us.json={}) → 1060 блоков, 0 ошибок.
+  Дамп: scripts/blocks/blocks-dump.tsv. Твёрдость и взрывоустойчивость — игровые значения.
+- Плотность и хрупкость — оценки по материалу (в Minecraft нет такого свойства; датапака с ними не найдено).
+  Таблица для каждого из 1060 блоков: docs/BLOCK_PHYSICS.md, docs/block-physics.csv,
+  neoforge/src/main/resources/assets/foxphys/block-physics.json (читает BlockPhysics.java).
+  Порядок плотности в Lab.density: API-переопределение → per-block таблица → старый density-table.json → эвристики.
+  Лава: 3100 (значение ТЗ), в старом файле 2800.
+- Ветер (Wind.java): погода (дождь, гроза) + порывы по игровому времени; задаётся каждый тик для жёстких тел (set_wind)
+  и мягких тел (новая op "wind" в Rust: аэродинамическое сопротивление на частицу).
+- Крепление мягких тел к жёстким (SoftAttachments.java, Rust: anchor, anchor_targets, release). Команды
+  /foxphys soft attach <id> top|bottom|start|end [bodyId] и /foxphys soft detach <id>.
+  Проверено: Rust cargo test --release → 108 passed (было 104, +4 новых); validation/attach/AttachSmoke.java → ATTACH_SMOKE_OK
+  (повороты, цикл anchor→anchor_targets→ветер→release, отказ на непривязанной частице, таблица блоков).
+  Не проверено: захват тела в игре (Lab.bodyNear, toWorld) — нужен сервер.
+- Нативы: Linux .so и Windows DLL пересобраны (cargo xwin). Windows DLL собрана из того же кода, на Windows не запускалась.
+  Gradle copyNeoNatives: добавлены входы (раньше задача не копировала пересобранные нативы).
+- Видимость мягких тел: код рендера проверен (debugQuads: POSITION_COLOR, без отсечения, прозрачный). Причина не найдена
+  без игры. Добавлен лог клиента «FoxPhys soft body #id ...» (число частиц, габариты) для диагностики.
+- Не сделано: вода («мега реалистичная», пункт 5). Fabric-ветка не обновлена (ветер, крепление, таблица блоков).
+- Хвосты: soft_drop.rs без SOFT_DUMP; /home/user/.gradle (612 МБ) перенесён в /var/tmp/gradle-user-home (лимит снимка);
+  старые версии в release/ и voxphys-release/ отсутствуют (до хода 27 не сохранились после сброса).
+  ApiSmokeFabric.java: класс переименован в ApiSmokeFabric (javac-ошибка исправлена); сам Fabric smoke не запускался;
+  сверка docs/API.md — не сделана.
+
+Ход 27, вода (SPH): гидростатика исправлена. Прежняя «накачка энергии» была переходным процессом обрушения колонки, а не неустойчивостью. Дефолты sph.rs: alpha_visc 0.2, xsph 0.5. Тест hydrostatic (постановка y=0, 5 с симуляции): bottom 1419 Па против ρgh 1239 Па, KE 0.49 Дж, тест проходит (--ignored, ~160 с в release). cargo test --release: 108 passed, 3 ignored. Временный mod probe удалён.
+Ограничение: 3D WCSPH не подключён к Lab, ведру, сети и рендеру. Стоимость: ~6 мс на подшаг dt=2e-4 для ~750 частиц, то есть ~1.6 с реального времени на тик 20 TPS. В реальном времени на текущем солвере не работает.
+Ход 27, вода (SPH), ускорение (запрос пользователя: ускорить в разы без потери физики): sph.rs переписан горячий путь. HashMap-сетка заменена плотной сеткой counting-sort; циклы по частицам параллельны (std::thread::scope, без новых зависимостей); шаг по времени берётся из stable_dt() (раньше искусственно ограничивался 2e-4). Численная проверка: старая и новая версии совпадают до 1e-15 на 1000 шагах; расхождение к 25000 шагам (13 см по позициям) вызвано хаотичной динамикой всплеска, а не изменением физики. Гидростатика (усреднение за последнюю секунду): dt=2e-4 → 1370 Па против 1235 Па; stable_dt → 1369 Па против 1196 Па; время 123 с → 23.7 с (×5.2); относительно исходной версии ×6.8 (161 с → 23.7 с) на 2 ядрах. Мера шумная: одиночные снимки колеблются на ±3–5 %.
+Оценка для игры: ~6 мс на подшаг для ~750 жидких и ~5000 граничных частиц; один тик 20 TPS требует ~40 подшагов, то есть ~250 мс на 2 ядрах. Для ведра нужны меньшее число частиц, облегчённая граница и асинхронный шаг SPH вне тика.
+
+Ход 26 (восстановлено по сессии; записи в журнале не было):
+- Публичный API для сторонних модов: пакет dev.foxphys.api (FoxPhysApi API_VERSION=1, PhysicsWorld, SoftBodyApi, BodyKind, BodyInfo, WorldStats, SoftBodyInfo) и события dev.foxphys.api.event (9 классов).
+  NeoForge: NeoForge.EVENT_BUS. Fabric: FoxPhysEvents (17 файлов в src/main/java/dev/foxphys/api/).
+- docs/API.md: политика стабильности, потоки и ошибки, ограничения версии 1.
+- validation/api: ApiSmoke.java (NeoForge) и ApiSmokeFabric.java; ApiSmokeFabric переименован (ошибка javac: класс назывался ApiSmoke).
+
+Ход 28 (итог текущего прохода, все пункты хода 27 доведены до сборки):
+- NeoForge: compileJava и jar (BUILD SUCCESSFUL). Jar содержит нативы: linux libfoxphys_core.so 4945687c…, windows foxphys_core.dll 12fc4f5b…. Sources-jar пересобран.
+- Fabric: порт завершён. Компиляция, сборка `gradlew build --offline` (BUILD SUCCESSFUL), оба нативных файла в jar.
+  Исправлено при компиляции: порядок параметров кодека (ValueFirstEncoder, значение первым), BlockPos.toImmutable(), VertexConsumerProvider вместо Immediate в рендере.
+  Регистрация в FoxPhysClient: BlockEntityRenderer, WorldRenderEvents.AFTER_TRANSLUCENT (SoftBodyRenderer, FluidRenderer), приёмники SoftMeshes и FluidFrame.
+  Fabric Commands: soft attach / soft detach, water sph still|dam|clear.
+- Smoke: API NeoForge и Fabric → API_SMOKE_OK; FLUID_SMOKE_OK; ATTACH_SMOKE_OK (validation/attach/run-attach-smoke.sh, добавлен).
+- Rust: cargo test --release → 111 passed, 4 ignored, 0 failed. dt: решение — production-шаг stable_dt() без постоянного ограничения (DT_CAP_TEST уже удалён; cap 2e-4 даёт 119 с на гидростатику, для тика игры не годится).
+- Релиз release/alpha.7: foxphys-fabric-0.1.0-alpha.7.jar (+ sources), foxphys-neoforge-0.1.0-alpha.7.jar (+ sources), icon, SHA256SUMS.txt (sha256sum -c OK). Удалены старый foxphys-0.1.0-alpha.7.jar (заменён) и fxs-0.1.0-alpha.7.jar (старый код без исходников в репозитории).
+- Не проверено в игре: ведро, крепление флагов, ветер на сервере, рендер воды и мягких тел в Fabric/NeoForge клиенте. Видимость мягких тел в игре до сих пор не подтверждена.
+- Производительность воды: 62 мс на 0.05 с симуляции (320 частиц) — выше бюджета 20 TPS. Подробности в docs/WATER.md.
+
+Ход 28 (поправка, финальная проверка; заменяет цифры выше):
+- Вода: бенчмарк после оптимизации 30.5 мс (320 частиц, dx 0.05) и 63.4 мс (600 частиц, dx 0.04), до оптимизации 70.5 и 162.1 мс. Цифра «62 мс» выше устарела. Подробности в docs/WATER.md.
+- Clippy: `cargo clippy --locked --all-targets -- -D warnings` на rustc 1.89 с чистой папкой сборки → EXIT 0. Первые попытки падали с E0514 из-за смеси версий rustc в одной папке сборки, это не ошибка кода. Исправлены замечания needless_range_loop в sph.rs (тестовые и рабочие циклы, арифметика та же) и useless_format в тестах soft_world.rs.
+- cargo test --release --locked (rustc 1.89): 112 passed, 4 ignored, 0 failed.
+- Нативы: Linux libfoxphys_core.so (sha c997e293…), Windows foxphys_core.dll (sha bd48273a…, cargo-xwin на stable). DLL скопирована в neoforge/prebuilt/natives/windows-x86_64/ и build/generated/natives/natives/windows-x86_64/. Предыдущая DLL (c01f0cfe…) собиралась до последней правки sph.rs.
+- Сборка Windows-DLL на rustc 1.89 падала (E0463: нет std для x86_64-pc-windows-msvc). Причина: неверный toolchain в цепочке, а не код. На stable таргет есть.
+- Fabric: в FoxPhysBlocks.java javadoc физ-блока перенесён к PHYSICS_BLOCK (был над регистрацией ведра). Ведро добавлено во вкладку инструментов.
+- docs/API.md сверён с кодом: все методы из документа есть в NeoForge и Fabric; 8 событий из таблицы есть в обеих ветках.
+- docs/PROTOCOL.md: добавлен раздел про soft/fluid JSON-операции, ошибки JNI и сетевые пакеты.
+- docs/SOFT.md: видимость мягких тел не подтверждена в игре; описан путь данных по коду.
+Ход 28 (финальная сборка и smoke):
+- NeoForge: gradlew jar sourcesJar --offline → BUILD SUCCESSFUL. Fabric: gradlew build --offline → BUILD SUCCESSFUL (Gradle-сборка нативов запускалась на stable; на закреплённом 1.89 Windows std нет).
+- Нативы в обоих jar одинаковые: Linux libfoxphys_core.so 96a637b7…, Windows foxphys_core.dll bd48273a….
+- Первая сборка Fabric падала с E0514: в native/target смешались артефакты rustc 1.89 и 1.99. Исправлено удалением native/target/release и native/target/debug.
+- Smoke: API NeoForge и Fabric → API_SMOKE_OK; FLUID_SMOKE_OK; ATTACH_SMOKE_OK. Скрипты требуют GRADLE_USER_HOME (NeoForge: /var/tmp/gradle-user-home, Fabric: /var/tmp/gradle-home), без него падают на поиске кэша.
+- Релиз release/alpha.7: четыре jar (+ sources), иконка, SHA256SUMS.txt, sha256sum -c OK.
+
+Ход 29 (продолжение: видимость мягких тел, ветер, плотности):
+- Ветер: Wind.at() зависит от дождя и грозы (getRainLevel/getThunderLevel и тиковое время), подключён в тик сервера (FoxPhysMod: SoftBodies.setWind) и в лаборатории (LabManager: lab.setWind) в обеих ветках.
+- Видимость мягких тел, проверка по коду и прогоном физики: спавн как в игре (origin = feet + (2.5, 0.1, 0.5), floor = feet.y), 200 тиков по 0.05 с, 8 подшагов: тела остаются на полу (y от 0 до ~0.3 м), координаты мировые, число треугольников ненулевое для всех четырёх пресетов. Пакет SoftMeshes: кодек записи и чтения симметричен. Регистрация клиента (FoxPhysClient.init только на Dist.CLIENT) и стадия AFTER_TRANSLUCENT_BLOCKS совпадают с Fabric. RenderType.debugQuads в 1.21.1: POSITION_COLOR, QUADS, полупрозрачный, без отсечения (проверено javap).
+- Причину невидимости по этим звеньям не найдено. Вывод: ошибка, если она есть, в клиентском рендере в реальной игре, и её можно поймать только в клиенте (лог `FoxPhys soft body #id`).
+- Плотности: датапак с плотностями блоков не найден (поиск повторён). В vanilla таких данных нет; таблица docs/block-physics.csv (1060 блоков) остаётся оценкой по материалу.
+- Временный пример native/examples/soft_game_check.rs удалён после прогона.
+Ход 30 (видимость мягких тел, устойчивость отправки):
+- Найдено: при первой ошибке отправки форм клиентам (SoftBodies.publish) флаг viewBroken отключал отправку до перезапуска сервера, без сообщения в чате. Это одна из возможных причин «невидимости» из прошлых ходов. Не доказано: в игре проверить не удалось.
+- Исправлено в обеих ветках: ошибка не отключает отправку; сбой логируется с трассой один раз на серию, на следующем тике попытка повторяется; при восстановлении выводится «view recovered after N failed ticks». Физика (флаг broken) по-прежнему останавливается при ошибке, это осознанное решение.
+- Сборка после правки: NeoForge jar и sources jar, Fabric build — BUILD SUCCESSFUL. Нативы без изменений (Linux 96a637b7…, Windows bd48273a…). Smoke: API_SMOKE_OK (NeoForge и Fabric), FLUID_SMOKE_OK, ATTACH_SMOKE_OK. Релиз release/alpha.7 обновлён, sha256sum -c OK.
+- Не проверено в игре: видимость мягких тел (причина не подтверждена), ведро, крепление флагов, ветер, гравипушка, клавиша R в Fabric, рендер воды.
+
+Ход 30 (рендер через миксин, оптимизация физики и сети):
+- Rust: поверхность мягкого тела считается один раз при спавне (surface_of); positions принимает "tris": false. Тест surface_is_cached_and_can_be_omitted. cargo test --release → 113 passed, 4 ignored; clippy -D warnings → OK.
+- Замер (временный пример, удалён): jelly, один вызов positions: 50 → 32 мкс, ответ 9297 → 4606 байт.
+- Java (обе ветки): publish шлёт треугольники полностью при появлении тела и раз в 20 тиков; в остальные тики список пустой, клиент берёт кэш по id. Поздно зашедший игрок получает поверхность за ≤1 с. Сброс при ошибке и при пустом мире.
+- Рендер (обе ветки): один треугольник вместо двух (debugQuads: отсечение отключено, проверено по байткоду NeoForge и Fabric).
+- Миксин EntityRenderDispatcherMixin (обе ветки, клиент): блоки-дисплеи лаборатории пропускают проверку рамки видимости, проверку дистанции оставляют. Сигнатуры: NeoForge shouldRender(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/client/renderer/culling/Frustum;DDD)Z; Yarn shouldRender(Lnet/minecraft/entity/Entity;Lnet/minecraft/client/render/Frustum;DDD)Z. require=0.
+- Сборка: нативы Linux 3cf24646…, Windows f156feced…; Fabric build и NeoForge jar — BUILD SUCCESSFUL; smoke: API_SMOKE_OK (NeoForge и Fabric), FLUID_SMOKE_OK, ATTACH_SMOKE_OK. Релиз обновлён, sha256sum -c OK.
+- Не проверено в игре: миксин (применение и поведение), видимость мягких тел, ведро, крепление, ветер, гравипушка, вода.

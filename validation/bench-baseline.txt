@@ -1,0 +1,8 @@
+   Compiling voxphys-core v0.1.0-alpha.1 (/home/user/voxphys/native)
+    Finished `release` profile [optimized] target(s) in 18.01s
+     Running `target/release/examples/bench`
+rigid_bodies=  1 sim=10s steps=1200 wall=   24.32 ms  per_fixed_step=0.020 ms
+rigid_bodies= 16 sim=10s steps=1200 wall=  126.03 ms  per_fixed_step=0.105 ms
+rigid_bodies= 64 sim=10s steps=1200 wall=  405.63 ms  per_fixed_step=0.338 ms
+water 16x16: wall=   1.174 ms per 1 sim-second  per_advance=0.0098 ms  volume_err=8.88e-16
+water 32x32: wall=   4.794 ms per 1 sim-second  per_advance=0.0399 ms  volume_err=-1.42e-15

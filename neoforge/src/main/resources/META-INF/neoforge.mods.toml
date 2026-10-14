@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+issueTrackerURL = ""
+
+[[mixins]]
+config = "foxphys.mixins.json"
+
+[[mixins]]
+config = "foxphys.player.mixins.json"
+
+[[mixins]]
+config = "foxphys.client.mixins.json"
+
+[[mods]]
+modId = "foxphys"
+version = "${version}"
+displayName = "FoxPhysic"
+authors = "FoxPhys contributors"
+description = "Experimental rigid bodies, buoyancy, aerodynamic forces, springs and a bounded shallow-water laboratory. Not a global replacement for vanilla physics."
+logoFile = "assets/foxphys/icon.png"
+
+[[dependencies.foxphys]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.foxphys]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"

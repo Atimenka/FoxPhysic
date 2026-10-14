@@ -1,0 +1,12 @@
+{
+  "block.foxphys.physics_assembler": "Physics Assembler",
+  "block.foxphys.physics_block": "Physics Block",
+  "item.foxphys.physics_assembler": "Physics Assembler",
+  "item.foxphys.gravity_gun": "Gravity Gun",
+  "item.foxphys.honey_glue": "Honey Glue",
+  "item.foxphys.physics_water_bucket": "Physics Water Bucket (debug)",
+  "key.foxphys.align": "Grid align held body",
+  "key.categories.foxphys": "FoxPhys",
+  "block.voxphys.physics_assembler": "Physics Assembler (VoxPhys, legacy)",
+  "item.voxphys.gravity_gun": "Gravity Gun (VoxPhys, legacy)"
+}

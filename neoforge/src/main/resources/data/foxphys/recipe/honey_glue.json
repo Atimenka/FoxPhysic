@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:honey_bottle" },
+    { "item": "minecraft:sugar" }
+  ],
+  "result": {
+    "id": "foxphys:honey_glue",
+    "count": 2
+  }
+}

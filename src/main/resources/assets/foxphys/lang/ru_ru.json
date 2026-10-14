@@ -1,0 +1,9 @@
+{
+  "block.foxphys.physics_assembler": "Физический сборщик",
+  "item.foxphys.physics_assembler": "Физический сборщик",
+  "item.foxphys.gravity_gun": "Гравипушка",
+  "item.foxphys.honey_glue": "Мёд-клей",
+  "block.voxphys.physics_assembler": "Физический сборщик (VoxPhys, старый)",
+  "item.voxphys.gravity_gun": "Гравипушка (VoxPhys, старая)",
+  "item.foxphys.physics_water_bucket": "Ведро физичной воды (отладка)"
+}

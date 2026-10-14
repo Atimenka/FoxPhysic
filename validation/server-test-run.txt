@@ -1,0 +1,24 @@
+Серверная проверка рабочей копии (после alpha.3), 2026-10-11, Minecraft 1.21.1 + Fabric 0.16.14, offline, RCON + mineflayer.
+
+Команды (фрагмент):
+  voxphys lab -> Стенд Rust создан. Начало области 16×20×16: -8, 78, -8.
+  voxphys assemble 2 -> Сборка #1: блоков 8, пропущено 0. Блоки перенесены в тело.
+  voxphys disassemble 2 -> Тело #2 разобрано: блоков возвращено 8
+  voxphys impulse 1 200000 200000 0 -> Импульс приложен (Н·с, НЕ м/с).
+
+Тело над полом (игрок рядом, пол 256 коллайдеров):
+  t=10.58 с | тел 1 | коллайдеров 264 | позиции (мир): #1 (3.17, 87.00, -0.01)
+  t=12.59 с | тел 1 | коллайдеров 256 | позиции (мир): #1 (3.15, 80.00, 0.31)
+  t=22.79 с | тел 1 | коллайдеров 256 | позиции (мир): #1 (3.15, 80.00, 0.31)
+
+Тело у стены x=6 (импульс вверх и в сторону): максимум x центра = 4.74 за 6 с опросов.
+
+Тело без игроков рядом: пауза true, позиция не меняется.
+
+Удаление тела дальше 128 м:
+  [WARN] VoxPhys: body #1 left the physics world (beyond 128 m); its blocks returned to their original cells: 8 placed, 0 dropped as items
+  проверка блока (2, 86, -1): Test passed
+
+Смоуки на JAR рабочей копии:
+  JNI_SMOKE_OK: ABI, spawn/step, world isolation, JSON errors, lifecycle, assembler, incremental terrain, snapped disassembly, physics worker
+  PROTOCOL_SMOKE_OK: Gson snake_case records, native loader, tank, pause

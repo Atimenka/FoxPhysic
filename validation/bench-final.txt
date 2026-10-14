@@ -1,0 +1,8 @@
+    Finished `release` profile [optimized] target(s) in 18.08s
+     Running `target/release/examples/bench`
+assembler: assemble 8^3=0.120 ms  attach 100 cells=0.020 ms  disassemble=0.043 ms  cells_back=612
+rigid_bodies=  1 sim=10s steps=1200 wall=   44.59 ms  per_fixed_step=0.037 ms
+rigid_bodies= 16 sim=10s steps=1200 wall=  144.21 ms  per_fixed_step=0.120 ms
+rigid_bodies= 64 sim=10s steps=1200 wall=  436.56 ms  per_fixed_step=0.364 ms
+water 16x16: wall=   3.216 ms per 1 sim-second  per_advance=0.0268 ms  volume_err=7.11e-16
+water 32x32: wall=  12.941 ms per 1 sim-second  per_advance=0.1078 ms  volume_err=2.13e-15

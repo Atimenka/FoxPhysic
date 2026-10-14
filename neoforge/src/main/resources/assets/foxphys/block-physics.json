@@ -1,0 +1,7425 @@
+{
+"_about": "Свойства всех 1060 блоков Minecraft 1.21.1 (состояние по умолчанию). hardness и blast — значения игры. density (кг/м^3) и fragility (0..1) — оценки по материалу; см. docs/BLOCK_PHYSICS.md. Генератор: scripts/blocks/build_block_table.py.",
+"blocks": {
+"minecraft:acacia_button": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:acacia_door": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:acacia_fence": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_fence_gate": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:acacia_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:acacia_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_planks": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:acacia_sapling": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:acacia_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:acacia_slab": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_stairs": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:acacia_trapdoor": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:acacia_wall_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:acacia_wall_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:acacia_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:activator_rail": {
+"blast": 0.7,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.7,
+"material": "plant"
+},
+"minecraft:air": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:allium": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:amethyst_block": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:amethyst_cluster": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:ancient_debris": {
+"blast": 1200.0,
+"density": 8000,
+"fragility": 0.1,
+"hardness": 30.0,
+"material": "netherite"
+},
+"minecraft:andesite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:andesite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:andesite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:andesite_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:anvil": {
+"blast": 1200.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:attached_melon_stem": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:attached_pumpkin_stem": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:azalea": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:azalea_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:azure_bluet": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:bamboo": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_block": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_button": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:bamboo_door": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_fence": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_fence_gate": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_mosaic": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_mosaic_slab": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_mosaic_stairs": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_planks": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_pressure_plate": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:bamboo_sapling": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_slab": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_stairs": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_trapdoor": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_wall_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:bamboo_wall_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:barrel": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:barrier": {
+"blast": 3600000.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:basalt": {
+"blast": 4.2,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "deepslate"
+},
+"minecraft:beacon": {
+"blast": 3.0,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "glass"
+},
+"minecraft:bedrock": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "bedrock"
+},
+"minecraft:bee_nest": {
+"blast": 0.3,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.3,
+"material": "wood"
+},
+"minecraft:beehive": {
+"blast": 0.6,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.6,
+"material": "wood"
+},
+"minecraft:beetroots": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:bell": {
+"blast": 5.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:big_dripleaf": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:big_dripleaf_stem": {
+"blast": 0.1,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "wood"
+},
+"minecraft:birch_button": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:birch_door": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:birch_fence": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_fence_gate": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:birch_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:birch_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_planks": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:birch_sapling": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:birch_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:birch_slab": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_stairs": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:birch_trapdoor": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:birch_wall_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:birch_wall_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:birch_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:black_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:black_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:black_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:black_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:black_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:black_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:black_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:black_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:black_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:black_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:black_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:black_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:black_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:black_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:blackstone": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:blackstone_slab": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:blackstone_stairs": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:blackstone_wall": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:blast_furnace": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:blue_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:blue_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:blue_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:blue_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:blue_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:blue_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:blue_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:blue_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:blue_ice": {
+"blast": 2.8,
+"density": 950,
+"fragility": 0.9,
+"hardness": 2.8,
+"material": "blue_ice"
+},
+"minecraft:blue_orchid": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:blue_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:blue_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:blue_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:blue_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:blue_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:blue_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:bone_block": {
+"blast": 2.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:bookshelf": {
+"blast": 1.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.5,
+"material": "wood"
+},
+"minecraft:brain_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:brain_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:brain_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:brain_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:brewing_stand": {
+"blast": 0.5,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 0.5,
+"material": "iron"
+},
+"minecraft:brick_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:brick_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:brick_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:brown_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:brown_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:brown_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:brown_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:brown_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:brown_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:brown_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:brown_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:brown_mushroom": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:brown_mushroom_block": {
+"blast": 0.2,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood_light"
+},
+"minecraft:brown_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:brown_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:brown_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:brown_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:brown_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:brown_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:bubble_column": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:bubble_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:bubble_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:bubble_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:bubble_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:budding_amethyst": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:cactus": {
+"blast": 0.4,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.4,
+"material": "wood"
+},
+"minecraft:cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:calcite": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:calibrated_sculk_sensor": {
+"blast": 1.5,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:campfire": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:carrots": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:cartography_table": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:carved_pumpkin": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:cauldron": {
+"blast": 2.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 2.0,
+"material": "iron"
+},
+"minecraft:cave_air": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:cave_vines": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:cave_vines_plant": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:chain": {
+"blast": 6.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:chain_command_block": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:cherry_button": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:cherry_door": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:cherry_fence": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_fence_gate": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:cherry_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:cherry_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_planks": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_pressure_plate": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:cherry_sapling": {
+"blast": 0.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood_light"
+},
+"minecraft:cherry_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:cherry_slab": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_stairs": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:cherry_trapdoor": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:cherry_wall_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:cherry_wall_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:cherry_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:chest": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:chipped_anvil": {
+"blast": 1200.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:chiseled_bookshelf": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:chiseled_deepslate": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:chiseled_nether_bricks": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:chiseled_polished_blackstone": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:chiseled_quartz_block": {
+"blast": 0.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "quartz"
+},
+"minecraft:chiseled_red_sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:chiseled_sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:chiseled_stone_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:chiseled_tuff": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:chiseled_tuff_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:chorus_flower": {
+"blast": 0.4,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.4,
+"material": "plant"
+},
+"minecraft:chorus_plant": {
+"blast": 0.4,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.4,
+"material": "plant"
+},
+"minecraft:clay": {
+"blast": 0.6,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 0.6,
+"material": "clay"
+},
+"minecraft:coal_block": {
+"blast": 6.0,
+"density": 1350,
+"fragility": 0.6,
+"hardness": 5.0,
+"material": "coal_ore"
+},
+"minecraft:coal_ore": {
+"blast": 3.0,
+"density": 1350,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "coal_ore"
+},
+"minecraft:coarse_dirt": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "dirt"
+},
+"minecraft:cobbled_deepslate": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:cobbled_deepslate_slab": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:cobbled_deepslate_stairs": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:cobbled_deepslate_wall": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:cobblestone": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:cobblestone_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:cobblestone_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:cobblestone_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:cobweb": {
+"blast": 4.0,
+"density": 100,
+"fragility": 0.05,
+"hardness": 4.0,
+"material": "cobweb"
+},
+"minecraft:cocoa": {
+"blast": 3.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "plant"
+},
+"minecraft:command_block": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:comparator": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:composter": {
+"blast": 0.6,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.6,
+"material": "wood"
+},
+"minecraft:conduit": {
+"blast": 3.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 3.0,
+"material": "water"
+},
+"minecraft:copper_block": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:copper_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "ore"
+},
+"minecraft:copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:cornflower": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:cracked_deepslate_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:cracked_deepslate_tiles": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:cracked_nether_bricks": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:cracked_polished_blackstone_bricks": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:cracked_stone_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:crafter": {
+"blast": 3.5,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 1.5,
+"material": "iron"
+},
+"minecraft:crafting_table": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:creeper_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:creeper_wall_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:crimson_button": {
+"blast": 0.5,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "nether_wood"
+},
+"minecraft:crimson_door": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_fence": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_fence_gate": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_fungus": {
+"blast": 0.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_hanging_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_hyphae": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_nylium": {
+"blast": 0.4,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 0.4,
+"material": "netherrack"
+},
+"minecraft:crimson_planks": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_pressure_plate": {
+"blast": 0.5,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "nether_wood"
+},
+"minecraft:crimson_roots": {
+"blast": 0.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_slab": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_stairs": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_stem": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_trapdoor": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_wall_hanging_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:crimson_wall_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:crying_obsidian": {
+"blast": 1200.0,
+"density": 2450,
+"fragility": 0.9,
+"hardness": 50.0,
+"material": "obsidian"
+},
+"minecraft:cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:cut_red_sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:cut_red_sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:cut_sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:cut_sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:cyan_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:cyan_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:cyan_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:cyan_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:cyan_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:cyan_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:cyan_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:cyan_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:cyan_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:cyan_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:cyan_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:cyan_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:cyan_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:cyan_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:damaged_anvil": {
+"blast": 1200.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:dandelion": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:dark_oak_button": {
+"blast": 0.5,
+"density": 750,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_door": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_fence": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_fence_gate": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_hanging_sign": {
+"blast": 1.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:dark_oak_log": {
+"blast": 2.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_planks": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_pressure_plate": {
+"blast": 0.5,
+"density": 750,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_sapling": {
+"blast": 0.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_sign": {
+"blast": 1.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_slab": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_stairs": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_trapdoor": {
+"blast": 3.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_wall_hanging_sign": {
+"blast": 1.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_wall_sign": {
+"blast": 1.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_hard"
+},
+"minecraft:dark_oak_wood": {
+"blast": 2.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:dark_prismarine": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:dark_prismarine_slab": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:dark_prismarine_stairs": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:daylight_detector": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:dead_brain_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_brain_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dead_brain_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_brain_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_bubble_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_bubble_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dead_bubble_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_bubble_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:dead_fire_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_fire_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dead_fire_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_fire_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_horn_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_horn_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dead_horn_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_horn_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_tube_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_tube_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dead_tube_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:dead_tube_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:decorated_pot": {
+"blast": 0.0,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 0.0,
+"material": "terracotta"
+},
+"minecraft:deepslate": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "deepslate"
+},
+"minecraft:deepslate_brick_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_brick_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_brick_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_bricks": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:deepslate_coal_ore": {
+"blast": 3.0,
+"density": 1350,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "coal_ore"
+},
+"minecraft:deepslate_copper_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "ore"
+},
+"minecraft:deepslate_diamond_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "ore"
+},
+"minecraft:deepslate_emerald_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "ore"
+},
+"minecraft:deepslate_gold_ore": {
+"blast": 3.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 4.5,
+"material": "gold"
+},
+"minecraft:deepslate_iron_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "ore"
+},
+"minecraft:deepslate_lapis_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 4.5,
+"material": "ore"
+},
+"minecraft:deepslate_redstone_ore": {
+"blast": 3.0,
+"density": 2400,
+"fragility": 0.9,
+"hardness": 4.5,
+"material": "redstone"
+},
+"minecraft:deepslate_tile_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_tile_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_tile_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:deepslate_tiles": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:detector_rail": {
+"blast": 0.7,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.7,
+"material": "plant"
+},
+"minecraft:diamond_block": {
+"blast": 6.0,
+"density": 3515,
+"fragility": 0.9,
+"hardness": 5.0,
+"material": "diamond"
+},
+"minecraft:diamond_ore": {
+"blast": 3.0,
+"density": 3515,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "diamond"
+},
+"minecraft:diorite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:diorite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:diorite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:diorite_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dirt": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "dirt"
+},
+"minecraft:dirt_path": {
+"blast": 0.65,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.65,
+"material": "dirt"
+},
+"minecraft:dispenser": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:dragon_egg": {
+"blast": 9.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "stone"
+},
+"minecraft:dragon_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:dragon_wall_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:dried_kelp_block": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:dripstone_block": {
+"blast": 1.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:dropper": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:emerald_block": {
+"blast": 6.0,
+"density": 2760,
+"fragility": 0.9,
+"hardness": 5.0,
+"material": "emerald"
+},
+"minecraft:emerald_ore": {
+"blast": 3.0,
+"density": 2760,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "emerald"
+},
+"minecraft:enchanting_table": {
+"blast": 1200.0,
+"density": 2450,
+"fragility": 0.9,
+"hardness": 5.0,
+"material": "obsidian"
+},
+"minecraft:end_gateway": {
+"blast": 3600000.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "endstone"
+},
+"minecraft:end_portal": {
+"blast": 3600000.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": -1.0,
+"material": "air"
+},
+"minecraft:end_portal_frame": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:end_rod": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:end_stone": {
+"blast": 9.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "endstone"
+},
+"minecraft:end_stone_brick_slab": {
+"blast": 9.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "endstone"
+},
+"minecraft:end_stone_brick_stairs": {
+"blast": 9.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "endstone"
+},
+"minecraft:end_stone_brick_wall": {
+"blast": 9.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "endstone"
+},
+"minecraft:end_stone_bricks": {
+"blast": 9.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "endstone"
+},
+"minecraft:ender_chest": {
+"blast": 600.0,
+"density": 2450,
+"fragility": 0.9,
+"hardness": 22.5,
+"material": "obsidian"
+},
+"minecraft:exposed_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:exposed_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:farmland": {
+"blast": 0.6,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.6,
+"material": "dirt"
+},
+"minecraft:fern": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:fire": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:fire_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:fire_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:fire_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:fire_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:fletching_table": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:flower_pot": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:flowering_azalea": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:flowering_azalea_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:frogspawn": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:frosted_ice": {
+"blast": 0.5,
+"density": 917,
+"fragility": 0.9,
+"hardness": 0.5,
+"material": "ice"
+},
+"minecraft:furnace": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:gilded_blackstone": {
+"blast": 6.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 1.5,
+"material": "gold"
+},
+"minecraft:glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:glow_lichen": {
+"blast": 0.2,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "plant"
+},
+"minecraft:glowstone": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:gold_block": {
+"blast": 6.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "gold"
+},
+"minecraft:gold_ore": {
+"blast": 3.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "gold"
+},
+"minecraft:granite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:granite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:granite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:granite_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:grass_block": {
+"blast": 0.6,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.6,
+"material": "dirt"
+},
+"minecraft:gravel": {
+"blast": 0.6,
+"density": 1800,
+"fragility": 0.2,
+"hardness": 0.6,
+"material": "gravel"
+},
+"minecraft:gray_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:gray_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:gray_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:gray_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:gray_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:gray_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:gray_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:gray_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:gray_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:gray_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:gray_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:gray_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:gray_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:gray_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:green_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:green_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:green_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:green_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:green_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:green_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:green_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:green_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:green_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:green_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:green_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:green_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:green_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:green_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:grindstone": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:hanging_roots": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:hay_block": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:heavy_core": {
+"blast": 1200.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 10.0,
+"material": "iron"
+},
+"minecraft:heavy_weighted_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:honey_block": {
+"blast": 0.0,
+"density": 1400,
+"fragility": 0.05,
+"hardness": 0.0,
+"material": "honey"
+},
+"minecraft:honeycomb_block": {
+"blast": 0.6,
+"density": 600,
+"fragility": 0.05,
+"hardness": 0.6,
+"material": "honeycomb"
+},
+"minecraft:hopper": {
+"blast": 4.8,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "iron"
+},
+"minecraft:horn_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:horn_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:horn_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:horn_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:ice": {
+"blast": 0.5,
+"density": 917,
+"fragility": 0.9,
+"hardness": 0.5,
+"material": "ice"
+},
+"minecraft:infested_chiseled_stone_bricks": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:infested_cobblestone": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.0,
+"material": "stone"
+},
+"minecraft:infested_cracked_stone_bricks": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:infested_deepslate": {
+"blast": 0.75,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:infested_mossy_stone_bricks": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:infested_stone": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:infested_stone_bricks": {
+"blast": 0.75,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.75,
+"material": "stone"
+},
+"minecraft:iron_bars": {
+"blast": 6.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:iron_block": {
+"blast": 6.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:iron_door": {
+"blast": 5.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:iron_ore": {
+"blast": 3.0,
+"density": 3000,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "ore"
+},
+"minecraft:iron_trapdoor": {
+"blast": 5.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:jack_o_lantern": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:jigsaw": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:jukebox": {
+"blast": 6.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:jungle_button": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:jungle_door": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:jungle_fence": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_fence_gate": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:jungle_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:jungle_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_planks": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_pressure_plate": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:jungle_sapling": {
+"blast": 0.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood_light"
+},
+"minecraft:jungle_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:jungle_slab": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_stairs": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:jungle_trapdoor": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:jungle_wall_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:jungle_wall_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:jungle_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:kelp": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:kelp_plant": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:ladder": {
+"blast": 0.4,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.4,
+"material": "wood"
+},
+"minecraft:lantern": {
+"blast": 3.5,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 3.5,
+"material": "iron"
+},
+"minecraft:lapis_block": {
+"blast": 3.0,
+"density": 2800,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "lapis"
+},
+"minecraft:lapis_ore": {
+"blast": 3.0,
+"density": 2800,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "lapis"
+},
+"minecraft:large_amethyst_bud": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:large_fern": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:lava": {
+"blast": 100.0,
+"density": 3100,
+"fragility": 0.0,
+"hardness": 100.0,
+"material": "lava"
+},
+"minecraft:lava_cauldron": {
+"blast": 2.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 2.0,
+"material": "iron"
+},
+"minecraft:lectern": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:lever": {
+"blast": 0.5,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "plant"
+},
+"minecraft:light": {
+"blast": 3600000.8,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": -1.0,
+"material": "air"
+},
+"minecraft:light_blue_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:light_blue_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:light_blue_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:light_blue_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:light_blue_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:light_blue_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:light_blue_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:light_blue_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:light_blue_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:light_blue_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:light_blue_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:light_blue_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:light_blue_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:light_blue_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:light_gray_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:light_gray_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:light_gray_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:light_gray_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:light_gray_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:light_gray_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:light_gray_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:light_gray_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:light_gray_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:light_gray_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:light_gray_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:light_gray_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:light_gray_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:light_gray_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:light_weighted_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:lightning_rod": {
+"blast": 6.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "iron"
+},
+"minecraft:lilac": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:lily_of_the_valley": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:lily_pad": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:lime_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:lime_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:lime_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:lime_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:lime_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:lime_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:lime_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:lime_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:lime_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:lime_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:lime_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:lime_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:lime_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:lime_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:lodestone": {
+"blast": 3.5,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 3.5,
+"material": "iron"
+},
+"minecraft:loom": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:magenta_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:magenta_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:magenta_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:magenta_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:magenta_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:magenta_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:magenta_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:magenta_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:magenta_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:magenta_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:magenta_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:magenta_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:magenta_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:magenta_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:magma_block": {
+"blast": 0.5,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "netherrack"
+},
+"minecraft:mangrove_button": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:mangrove_door": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:mangrove_fence": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_fence_gate": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:mangrove_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:mangrove_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_planks": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:mangrove_propagule": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:mangrove_roots": {
+"blast": 0.7,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 0.7,
+"material": "clay"
+},
+"minecraft:mangrove_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:mangrove_slab": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_stairs": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:mangrove_trapdoor": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:mangrove_wall_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:mangrove_wall_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:mangrove_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:medium_amethyst_bud": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:melon": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:melon_stem": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:moss_block": {
+"blast": 0.1,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.1,
+"material": "dirt"
+},
+"minecraft:moss_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:mossy_cobblestone": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:mossy_cobblestone_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:mossy_cobblestone_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:mossy_cobblestone_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:mossy_stone_brick_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:mossy_stone_brick_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:mossy_stone_brick_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:mossy_stone_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:moving_piston": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": -1.0,
+"material": "air"
+},
+"minecraft:mud": {
+"blast": 0.5,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "clay"
+},
+"minecraft:mud_brick_slab": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:mud_brick_stairs": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:mud_brick_wall": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:mud_bricks": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:muddy_mangrove_roots": {
+"blast": 0.7,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 0.7,
+"material": "clay"
+},
+"minecraft:mushroom_stem": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:mycelium": {
+"blast": 0.6,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.6,
+"material": "dirt"
+},
+"minecraft:nether_brick_fence": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:nether_brick_slab": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:nether_brick_stairs": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:nether_brick_wall": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:nether_bricks": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:nether_gold_ore": {
+"blast": 3.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "gold"
+},
+"minecraft:nether_portal": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": -1.0,
+"material": "air"
+},
+"minecraft:nether_quartz_ore": {
+"blast": 3.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 3.0,
+"material": "netherrack"
+},
+"minecraft:nether_sprouts": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:nether_wart": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:nether_wart_block": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:netherite_block": {
+"blast": 1200.0,
+"density": 8000,
+"fragility": 0.1,
+"hardness": 50.0,
+"material": "netherite"
+},
+"minecraft:netherrack": {
+"blast": 0.4,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 0.4,
+"material": "netherrack"
+},
+"minecraft:note_block": {
+"blast": 0.8,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.8,
+"material": "wood"
+},
+"minecraft:oak_button": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:oak_door": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:oak_fence": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_fence_gate": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:oak_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:oak_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_planks": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_pressure_plate": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:oak_sapling": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:oak_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:oak_slab": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_stairs": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:oak_trapdoor": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:oak_wall_hanging_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:oak_wall_sign": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:oak_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:observer": {
+"blast": 3.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood"
+},
+"minecraft:obsidian": {
+"blast": 1200.0,
+"density": 2450,
+"fragility": 0.9,
+"hardness": 50.0,
+"material": "obsidian"
+},
+"minecraft:ochre_froglight": {
+"blast": 0.3,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 0.3,
+"material": "composite"
+},
+"minecraft:orange_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:orange_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:orange_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:orange_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:orange_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:orange_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:orange_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:orange_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:orange_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:orange_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:orange_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:orange_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:orange_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:orange_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:orange_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:oxeye_daisy": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:oxidized_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:oxidized_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:packed_ice": {
+"blast": 0.5,
+"density": 917,
+"fragility": 0.9,
+"hardness": 0.5,
+"material": "ice"
+},
+"minecraft:packed_mud": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.0,
+"material": "clay"
+},
+"minecraft:pearlescent_froglight": {
+"blast": 0.3,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 0.3,
+"material": "composite"
+},
+"minecraft:peony": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:petrified_oak_slab": {
+"blast": 6.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:piglin_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:piglin_wall_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:pink_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:pink_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:pink_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:pink_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:pink_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:pink_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:pink_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:pink_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:pink_petals": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:pink_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:pink_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:pink_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:pink_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:pink_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:pink_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:pink_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:piston": {
+"blast": 1.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.5,
+"material": "wood"
+},
+"minecraft:piston_head": {
+"blast": 1.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.5,
+"material": "wood"
+},
+"minecraft:pitcher_crop": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:pitcher_plant": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:player_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:player_wall_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:podzol": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "dirt"
+},
+"minecraft:pointed_dripstone": {
+"blast": 3.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_andesite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_andesite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_andesite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_basalt": {
+"blast": 4.2,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_brick_slab": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_brick_stairs": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_brick_wall": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_bricks": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_button": {
+"blast": 0.5,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_pressure_plate": {
+"blast": 0.5,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_slab": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_stairs": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:polished_blackstone_wall": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "deepslate"
+},
+"minecraft:polished_deepslate": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:polished_deepslate_slab": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:polished_deepslate_stairs": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:polished_deepslate_wall": {
+"blast": 6.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "deepslate"
+},
+"minecraft:polished_diorite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_diorite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_diorite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_granite": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_granite_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_granite_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_tuff": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_tuff_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_tuff_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:polished_tuff_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:poppy": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potatoes": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_acacia_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_allium": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_azalea_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_azure_bluet": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_bamboo": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_birch_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_blue_orchid": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_brown_mushroom": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_cactus": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_cherry_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_cornflower": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_crimson_fungus": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_crimson_roots": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_dandelion": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_dark_oak_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_dead_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_fern": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_flowering_azalea_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_jungle_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_lily_of_the_valley": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_mangrove_propagule": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_oak_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_orange_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_oxeye_daisy": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_pink_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_poppy": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_red_mushroom": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_red_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_spruce_sapling": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_torchflower": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_warped_fungus": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_warped_roots": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_white_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:potted_wither_rose": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:powder_snow": {
+"blast": 0.25,
+"density": 100,
+"fragility": 0.2,
+"hardness": 0.25,
+"material": "snow_powder"
+},
+"minecraft:powder_snow_cauldron": {
+"blast": 2.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 2.0,
+"material": "iron"
+},
+"minecraft:powered_rail": {
+"blast": 0.7,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.7,
+"material": "plant"
+},
+"minecraft:prismarine": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_brick_slab": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_brick_stairs": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_bricks": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_slab": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_stairs": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:prismarine_wall": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "prismarine"
+},
+"minecraft:pumpkin": {
+"blast": 1.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood"
+},
+"minecraft:pumpkin_stem": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:purple_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:purple_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:purple_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:purple_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:purple_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:purple_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:purple_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:purple_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:purple_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:purple_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:purple_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:purple_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:purple_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:purple_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:purpur_block": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "endstone"
+},
+"minecraft:purpur_pillar": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "endstone"
+},
+"minecraft:purpur_slab": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "endstone"
+},
+"minecraft:purpur_stairs": {
+"blast": 6.0,
+"density": 2700,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "endstone"
+},
+"minecraft:quartz_block": {
+"blast": 0.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "quartz"
+},
+"minecraft:quartz_bricks": {
+"blast": 0.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "quartz"
+},
+"minecraft:quartz_pillar": {
+"blast": 0.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "quartz"
+},
+"minecraft:quartz_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "quartz"
+},
+"minecraft:quartz_stairs": {
+"blast": 0.8,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "quartz"
+},
+"minecraft:rail": {
+"blast": 0.7,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.7,
+"material": "plant"
+},
+"minecraft:raw_copper_block": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "copper"
+},
+"minecraft:raw_gold_block": {
+"blast": 6.0,
+"density": 19300,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "gold"
+},
+"minecraft:raw_iron_block": {
+"blast": 6.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:red_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:red_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:red_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:red_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:red_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:red_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:red_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:red_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:red_mushroom": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:red_mushroom_block": {
+"blast": 0.2,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood_light"
+},
+"minecraft:red_nether_brick_slab": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:red_nether_brick_stairs": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:red_nether_brick_wall": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:red_nether_bricks": {
+"blast": 6.0,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "netherrack"
+},
+"minecraft:red_sand": {
+"blast": 0.5,
+"density": 1600,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "sand"
+},
+"minecraft:red_sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:red_sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:red_sandstone_stairs": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:red_sandstone_wall": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:red_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:red_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:red_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:red_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:red_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:red_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:red_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:redstone_block": {
+"blast": 6.0,
+"density": 2400,
+"fragility": 0.9,
+"hardness": 5.0,
+"material": "redstone"
+},
+"minecraft:redstone_lamp": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:redstone_ore": {
+"blast": 3.0,
+"density": 2400,
+"fragility": 0.9,
+"hardness": 3.0,
+"material": "redstone"
+},
+"minecraft:redstone_torch": {
+"blast": 0.0,
+"density": 2400,
+"fragility": 0.9,
+"hardness": 0.0,
+"material": "redstone"
+},
+"minecraft:redstone_wall_torch": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:redstone_wire": {
+"blast": 0.0,
+"density": 2400,
+"fragility": 0.9,
+"hardness": 0.0,
+"material": "redstone"
+},
+"minecraft:reinforced_deepslate": {
+"blast": 1200.0,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 55.0,
+"material": "deepslate"
+},
+"minecraft:repeater": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:repeating_command_block": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:respawn_anchor": {
+"blast": 1200.0,
+"density": 2450,
+"fragility": 0.9,
+"hardness": 50.0,
+"material": "obsidian"
+},
+"minecraft:rooted_dirt": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "dirt"
+},
+"minecraft:rose_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:sand": {
+"blast": 0.5,
+"density": 1600,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "sand"
+},
+"minecraft:sandstone": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:sandstone_stairs": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:sandstone_wall": {
+"blast": 0.8,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 0.8,
+"material": "sandstone"
+},
+"minecraft:scaffolding": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:sculk": {
+"blast": 0.2,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 0.2,
+"material": "clay"
+},
+"minecraft:sculk_catalyst": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 3.0,
+"material": "clay"
+},
+"minecraft:sculk_sensor": {
+"blast": 1.5,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 1.5,
+"material": "clay"
+},
+"minecraft:sculk_shrieker": {
+"blast": 3.0,
+"density": 1700,
+"fragility": 0.2,
+"hardness": 3.0,
+"material": "clay"
+},
+"minecraft:sculk_vein": {
+"blast": 0.2,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "plant"
+},
+"minecraft:sea_lantern": {
+"blast": 0.3,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.3,
+"material": "stone"
+},
+"minecraft:sea_pickle": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:seagrass": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:short_grass": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:shroomlight": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "honeycomb"
+},
+"minecraft:shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:skeleton_skull": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:skeleton_wall_skull": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:slime_block": {
+"blast": 0.0,
+"density": 1200,
+"fragility": 0.05,
+"hardness": 0.0,
+"material": "slime"
+},
+"minecraft:small_amethyst_bud": {
+"blast": 1.5,
+"density": 2650,
+"fragility": 0.9,
+"hardness": 1.5,
+"material": "amethyst"
+},
+"minecraft:small_dripleaf": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:smithing_table": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:smoker": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:smooth_basalt": {
+"blast": 4.2,
+"density": 2850,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "deepslate"
+},
+"minecraft:smooth_quartz": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "quartz"
+},
+"minecraft:smooth_quartz_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:smooth_quartz_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:smooth_red_sandstone": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_red_sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_red_sandstone_stairs": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_sandstone": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_sandstone_slab": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_sandstone_stairs": {
+"blast": 6.0,
+"density": 2200,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "sandstone"
+},
+"minecraft:smooth_stone": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:smooth_stone_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:sniffer_egg": {
+"blast": 0.5,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "composite"
+},
+"minecraft:snow": {
+"blast": 0.1,
+"density": 100,
+"fragility": 0.2,
+"hardness": 0.1,
+"material": "snow_powder"
+},
+"minecraft:snow_block": {
+"blast": 0.2,
+"density": 500,
+"fragility": 0.2,
+"hardness": 0.2,
+"material": "snow_block"
+},
+"minecraft:soul_campfire": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:soul_fire": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:soul_lantern": {
+"blast": 3.5,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 3.5,
+"material": "iron"
+},
+"minecraft:soul_sand": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "soul_sand"
+},
+"minecraft:soul_soil": {
+"blast": 0.5,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "netherrack"
+},
+"minecraft:soul_torch": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:soul_wall_torch": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:spawner": {
+"blast": 5.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 5.0,
+"material": "iron"
+},
+"minecraft:sponge": {
+"blast": 0.6,
+"density": 150,
+"fragility": 0.05,
+"hardness": 0.6,
+"material": "sponge"
+},
+"minecraft:spore_blossom": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:spruce_button": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:spruce_door": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:spruce_fence": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_fence_gate": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:spruce_leaves": {
+"blast": 0.2,
+"density": 200,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "leaves"
+},
+"minecraft:spruce_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_planks": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_pressure_plate": {
+"blast": 0.5,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood_light"
+},
+"minecraft:spruce_sapling": {
+"blast": 0.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood_light"
+},
+"minecraft:spruce_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:spruce_slab": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_stairs": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:spruce_trapdoor": {
+"blast": 3.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "wood_light"
+},
+"minecraft:spruce_wall_hanging_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:spruce_wall_sign": {
+"blast": 1.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "wood_light"
+},
+"minecraft:spruce_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:sticky_piston": {
+"blast": 1.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 1.5,
+"material": "wood"
+},
+"minecraft:stone": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:stone_brick_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:stone_brick_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:stone_brick_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:stone_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:stone_button": {
+"blast": 0.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "stone"
+},
+"minecraft:stone_pressure_plate": {
+"blast": 0.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 0.5,
+"material": "stone"
+},
+"minecraft:stone_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 2.0,
+"material": "stone"
+},
+"minecraft:stone_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:stonecutter": {
+"blast": 3.5,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 3.5,
+"material": "stone"
+},
+"minecraft:stripped_acacia_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_acacia_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_bamboo_block": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_birch_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_birch_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_cherry_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_cherry_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_crimson_hyphae": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:stripped_crimson_stem": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:stripped_dark_oak_log": {
+"blast": 2.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:stripped_dark_oak_wood": {
+"blast": 2.0,
+"density": 750,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_hard"
+},
+"minecraft:stripped_jungle_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_jungle_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_mangrove_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_mangrove_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_oak_log": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_oak_wood": {
+"blast": 2.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood"
+},
+"minecraft:stripped_spruce_log": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_spruce_wood": {
+"blast": 2.0,
+"density": 450,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "wood_light"
+},
+"minecraft:stripped_warped_hyphae": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:stripped_warped_stem": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:structure_block": {
+"blast": 3600000.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": -1.0,
+"material": "stone"
+},
+"minecraft:structure_void": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:sugar_cane": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:sunflower": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:suspicious_gravel": {
+"blast": 0.25,
+"density": 1800,
+"fragility": 0.2,
+"hardness": 0.25,
+"material": "gravel"
+},
+"minecraft:suspicious_sand": {
+"blast": 0.25,
+"density": 1600,
+"fragility": 0.2,
+"hardness": 0.25,
+"material": "sand"
+},
+"minecraft:sweet_berry_bush": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:tall_grass": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:tall_seagrass": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:target": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:tinted_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:tnt": {
+"blast": 0.0,
+"density": 1600,
+"fragility": 0.2,
+"hardness": 0.0,
+"material": "tnt"
+},
+"minecraft:torch": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:torchflower": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:torchflower_crop": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:trapped_chest": {
+"blast": 2.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 2.5,
+"material": "wood"
+},
+"minecraft:trial_spawner": {
+"blast": 50.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 50.0,
+"material": "iron"
+},
+"minecraft:tripwire": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:tripwire_hook": {
+"blast": 0.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 0.0,
+"material": "iron"
+},
+"minecraft:tube_coral": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:tube_coral_block": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tube_coral_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:tube_coral_wall_fan": {
+"blast": 0.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "water"
+},
+"minecraft:tuff": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_brick_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_brick_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_brick_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_bricks": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_slab": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_stairs": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:tuff_wall": {
+"blast": 6.0,
+"density": 2650,
+"fragility": 0.6,
+"hardness": 1.5,
+"material": "stone"
+},
+"minecraft:turtle_egg": {
+"blast": 0.5,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "plant"
+},
+"minecraft:twisting_vines": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:twisting_vines_plant": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:vault": {
+"blast": 50.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 50.0,
+"material": "iron"
+},
+"minecraft:verdant_froglight": {
+"blast": 0.3,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 0.3,
+"material": "composite"
+},
+"minecraft:vine": {
+"blast": 0.2,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "plant"
+},
+"minecraft:void_air": {
+"blast": 0.0,
+"density": 1.225,
+"fragility": 0.0,
+"hardness": 0.0,
+"material": "air"
+},
+"minecraft:wall_torch": {
+"blast": 0.0,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "wood"
+},
+"minecraft:warped_button": {
+"blast": 0.5,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "nether_wood"
+},
+"minecraft:warped_door": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "nether_wood"
+},
+"minecraft:warped_fence": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_fence_gate": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_fungus": {
+"blast": 0.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "nether_wood"
+},
+"minecraft:warped_hanging_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:warped_hyphae": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_nylium": {
+"blast": 0.4,
+"density": 2600,
+"fragility": 0.6,
+"hardness": 0.4,
+"material": "netherrack"
+},
+"minecraft:warped_planks": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_pressure_plate": {
+"blast": 0.5,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "nether_wood"
+},
+"minecraft:warped_roots": {
+"blast": 0.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "nether_wood"
+},
+"minecraft:warped_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:warped_slab": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_stairs": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_stem": {
+"blast": 2.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "nether_wood"
+},
+"minecraft:warped_trapdoor": {
+"blast": 3.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 3.0,
+"material": "nether_wood"
+},
+"minecraft:warped_wall_hanging_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:warped_wall_sign": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:warped_wart_block": {
+"blast": 1.0,
+"density": 600,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "nether_wood"
+},
+"minecraft:water": {
+"blast": 100.0,
+"density": 1000,
+"fragility": 0.0,
+"hardness": 100.0,
+"material": "water"
+},
+"minecraft:water_cauldron": {
+"blast": 2.0,
+"density": 7874,
+"fragility": 0.1,
+"hardness": 2.0,
+"material": "iron"
+},
+"minecraft:waxed_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_copper_block": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_exposed_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_oxidized_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:waxed_weathered_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_chiseled_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_copper_bulb": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_copper_door": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_copper_grate": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_copper_trapdoor": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_cut_copper": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_cut_copper_slab": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weathered_cut_copper_stairs": {
+"blast": 6.0,
+"density": 8960,
+"fragility": 0.1,
+"hardness": 3.0,
+"material": "copper"
+},
+"minecraft:weeping_vines": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:weeping_vines_plant": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:wet_sponge": {
+"blast": 0.6,
+"density": 150,
+"fragility": 0.05,
+"hardness": 0.6,
+"material": "sponge"
+},
+"minecraft:wheat": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:white_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:white_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:white_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:white_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:white_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:white_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:white_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:white_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:white_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:white_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:white_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:white_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:white_tulip": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:white_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:white_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:wither_rose": {
+"blast": 0.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.0,
+"material": "plant"
+},
+"minecraft:wither_skeleton_skull": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:wither_skeleton_wall_skull": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:yellow_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:yellow_bed": {
+"blast": 0.2,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.2,
+"material": "wood"
+},
+"minecraft:yellow_candle": {
+"blast": 0.1,
+"density": 150,
+"fragility": 0.3,
+"hardness": 0.1,
+"material": "plant"
+},
+"minecraft:yellow_candle_cake": {
+"blast": 0.5,
+"density": 700,
+"fragility": 0.3,
+"hardness": 0.5,
+"material": "wood"
+},
+"minecraft:yellow_carpet": {
+"blast": 0.1,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.1,
+"material": "wool"
+},
+"minecraft:yellow_concrete": {
+"blast": 1.8,
+"density": 2400,
+"fragility": 0.6,
+"hardness": 1.8,
+"material": "concrete"
+},
+"minecraft:yellow_concrete_powder": {
+"blast": 0.5,
+"density": 1500,
+"fragility": 0.2,
+"hardness": 0.5,
+"material": "concrete_powder"
+},
+"minecraft:yellow_glazed_terracotta": {
+"blast": 1.4,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.4,
+"material": "terracotta"
+},
+"minecraft:yellow_shulker_box": {
+"blast": 2.0,
+"density": 1100,
+"fragility": 0.3,
+"hardness": 2.0,
+"material": "composite"
+},
+"minecraft:yellow_stained_glass": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:yellow_stained_glass_pane": {
+"blast": 0.3,
+"density": 2500,
+"fragility": 0.9,
+"hardness": 0.3,
+"material": "glass"
+},
+"minecraft:yellow_terracotta": {
+"blast": 4.2,
+"density": 2000,
+"fragility": 0.6,
+"hardness": 1.25,
+"material": "terracotta"
+},
+"minecraft:yellow_wall_banner": {
+"blast": 1.0,
+"density": 350,
+"fragility": 0.05,
+"hardness": 1.0,
+"material": "wool"
+},
+"minecraft:yellow_wool": {
+"blast": 0.8,
+"density": 350,
+"fragility": 0.05,
+"hardness": 0.8,
+"material": "wool"
+},
+"minecraft:zombie_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+},
+"minecraft:zombie_wall_head": {
+"blast": 1.0,
+"density": 150,
+"fragility": 0.3,
+"hardness": 1.0,
+"material": "plant"
+}
+}
+}

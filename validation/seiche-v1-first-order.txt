@@ -1,0 +1,1 @@
+period_numeric=5.1142s period_linear=5.1084s  amp_cycle1=0.02000 amp_cycle9=0.00217 retained=10.8%  volume_err=2.2e-16

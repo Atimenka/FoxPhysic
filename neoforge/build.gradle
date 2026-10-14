@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = project.mod_version
+group = project.maven_group
+base { archivesName = 'foxphys' }
+
+repositories { mavenCentral() }
+
+neoForge {
+    // Skip NeoForm decompile/recompile (MDG 2.0.124+): fits 2 GB RAM hosts, avoids createMinecraftArtifacts OOM.
+    enable {
+        version = project.neoforge_version
+        disableRecompilation = true
+    }
+    runs {
+        client { client() }
+        server { server() }
+    }
+    mods {
+        foxphys { sourceSet sourceSets.main }
+    }
+}
+
+// Minecraft (Mojang names) on the compile classpath of the mod sources.
+neoForge.addModdingDependenciesTo(sourceSets.main)
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+tasks.withType(JavaCompile).configureEach { options.release = 21 }
+
+// Each library is taken from the Rust build output when it exists, otherwise from neoforge/prebuilt/
+// (MSVC DLL and Linux .so built from the same sources). Windows users need no Rust toolchain.
+def natives = [
+    'natives/linux-x86_64/libfoxphys_core.so': ['../native/target/release/libfoxphys_core.so', 'prebuilt/natives/linux-x86_64/libfoxphys_core.so'],
+    'natives/windows-x86_64/foxphys_core.dll': ['../native/target/x86_64-pc-windows-msvc/release/foxphys_core.dll', 'prebuilt/natives/windows-x86_64/foxphys_core.dll']
+]
+tasks.register('copyNeoNatives') {
+    // Declare every candidate as an input, so a rebuilt library is copied (missing candidates are fine).
+    inputs.files(natives.values().flatten().collect { file(it) })
+    outputs.dir(layout.buildDirectory.dir('generated/neonatives'))
+    doLast {
+        natives.each { dest, candidates ->
+            def target = layout.buildDirectory.file("generated/neonatives/${dest}").get().asFile
+            target.parentFile.mkdirs()
+            def source = candidates.collect { file(it) }.find { it.exists() }
+            if (source == null) throw new GradleException("Native library missing, tried: ${candidates}. Build it first or restore neoforge/prebuilt/.")
+            source.withInputStream { i -> target.withOutputStream { o -> o << i } }
+        }
+    }
+}
+sourceSets.main.resources.srcDir(layout.buildDirectory.dir('generated/neonatives'))
+processResources.dependsOn copyNeoNatives
+tasks.named('sourcesJar') { dependsOn copyNeoNatives }
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand 'version': project.version }
+}
+
+jar {
+    from('../LICENSE') { rename { 'LICENSE_foxphys' } }
+}
+

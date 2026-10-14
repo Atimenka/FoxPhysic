@@ -1,0 +1,1061 @@
+id,hardness_game,blast_game,density_kg_m3,density_source,material,material_key,fragility_score,fragility_class,fluid,full_cube,solid,block_entity,tool_required,rule
+air,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,rule
+stone,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+granite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+polished_granite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+diorite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+polished_diorite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+andesite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+polished_andesite,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+grass_block,0.6,0.6,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+dirt,0.5,0.5,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+coarse_dirt,0.5,0.5,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+podzol,0.5,0.5,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+cobblestone,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+oak_planks,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+spruce_planks,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+birch_planks,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+jungle_planks,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+acacia_planks,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+cherry_planks,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+dark_oak_planks,2.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,True,True,False,False,rule
+mangrove_planks,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+bamboo_planks,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+bamboo_mosaic,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+oak_sapling,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+spruce_sapling,0.0,0.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+birch_sapling,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+jungle_sapling,0.0,0.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+acacia_sapling,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+cherry_sapling,0.0,0.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+dark_oak_sapling,0.0,0.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,False,False,False,rule
+mangrove_propagule,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+bedrock,-1.0,3600000.0,2650,условно (игровое значение не физическое),бедрок (неразрушим; в моде масса задаётся отдельно),bedrock,0.6,каменный,False,True,True,False,False,override
+water,100.0,100.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+lava,100.0,100.0,3100,оценка,"лава (значение ТЗ 3100; в старом файле 2800, не проверено)",lava,0.0,жидкость,True,False,False,False,False,rule
+sand,0.5,0.5,1600,оценка,песок,sand,0.2,сыпучий,False,True,True,False,False,rule
+suspicious_sand,0.25,0.25,1600,оценка,песок,sand,0.2,сыпучий,False,True,True,True,False,rule
+red_sand,0.5,0.5,1600,оценка,песок,sand,0.2,сыпучий,False,True,True,False,False,rule
+gravel,0.6,0.6,1800,оценка,гравий,gravel,0.2,сыпучий,False,True,True,False,False,rule
+suspicious_gravel,0.25,0.25,1800,оценка,гравий,gravel,0.2,сыпучий,False,True,True,True,False,rule
+gold_ore,3.0,3.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,rule
+deepslate_gold_ore,4.5,3.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,rule
+iron_ore,3.0,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+deepslate_iron_ore,4.5,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+coal_ore,3.0,3.0,1350,оценка,угольный блок / уголь,coal_ore,0.6,каменный,False,True,True,False,True,rule
+deepslate_coal_ore,4.5,3.0,1350,оценка,угольный блок / уголь,coal_ore,0.6,каменный,False,True,True,False,True,rule
+nether_gold_ore,3.0,3.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,rule
+oak_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+spruce_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+birch_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+jungle_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+acacia_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+cherry_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+dark_oak_log,2.0,2.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,True,True,False,False,rule
+mangrove_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+mangrove_roots,0.7,0.7,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,False,rule
+muddy_mangrove_roots,0.7,0.7,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,False,rule
+bamboo_block,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_spruce_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_birch_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_jungle_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_acacia_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_cherry_log,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_dark_oak_log,2.0,2.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,True,True,False,False,rule
+stripped_oak_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_mangrove_log,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_bamboo_block,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+oak_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+spruce_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+birch_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+jungle_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+acacia_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+cherry_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+dark_oak_wood,2.0,2.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,True,True,False,False,rule
+mangrove_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_oak_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_spruce_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_birch_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_jungle_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_acacia_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_cherry_wood,2.0,2.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+stripped_dark_oak_wood,2.0,2.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,True,True,False,False,rule
+stripped_mangrove_wood,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+oak_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+spruce_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+birch_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+jungle_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+acacia_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+cherry_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+dark_oak_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+mangrove_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+azalea_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+flowering_azalea_leaves,0.2,0.2,200,оценка,листва,leaves,0.3,мягкий органический,False,True,True,False,False,rule
+sponge,0.6,0.6,150,оценка,губка,sponge,0.05,упругий,False,True,True,False,False,rule
+wet_sponge,0.6,0.6,150,оценка,губка,sponge,0.05,упругий,False,True,True,False,False,rule
+glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+lapis_ore,3.0,3.0,2800,оценка,ляпис,lapis,0.9,хрупкий,False,True,True,False,True,rule
+deepslate_lapis_ore,4.5,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+lapis_block,3.0,3.0,2800,оценка,ляпис,lapis,0.9,хрупкий,False,True,True,False,True,override
+dispenser,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+chiseled_sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+cut_sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+note_block,0.8,0.8,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+white_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+orange_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+magenta_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+light_blue_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+yellow_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+lime_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+pink_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+gray_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+light_gray_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+cyan_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+purple_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+blue_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+brown_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+green_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+red_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+black_bed,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+powered_rail,0.7,0.7,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+detector_rail,0.7,0.7,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+sticky_piston,1.5,1.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+cobweb,4.0,4.0,100,оценка,паутина,cobweb,0.05,упругий,False,False,True,False,True,override
+short_grass,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+fern,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+dead_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+seagrass,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+tall_seagrass,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+piston,1.5,1.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+piston_head,1.5,1.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+white_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+orange_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+magenta_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+light_blue_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+yellow_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+lime_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+pink_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+gray_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+light_gray_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+cyan_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+purple_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+blue_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+brown_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+green_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+red_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+black_wool,0.8,0.8,350,оценка,шерсть,wool,0.05,упругий,False,True,True,False,False,rule
+moving_piston,-1.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,True,True,False,rule
+dandelion,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+torchflower,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+poppy,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+blue_orchid,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+allium,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+azure_bluet,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+red_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+orange_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+white_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+pink_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+oxeye_daisy,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+cornflower,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+wither_rose,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+lily_of_the_valley,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+brown_mushroom,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+red_mushroom,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+gold_block,3.0,6.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,override
+iron_block,5.0,6.0,7874,оценка,железо,iron,0.1,пластичный,False,True,True,False,True,override
+bricks,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+tnt,0.0,0.0,1600,оценка,TNT,tnt,0.2,сыпучий,False,True,True,False,False,override
+bookshelf,1.5,1.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+chiseled_bookshelf,1.5,1.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,False,rule
+mossy_cobblestone,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+obsidian,50.0,1200.0,2450,оценка,обсидиан,obsidian,0.9,хрупкий,False,True,True,False,True,override
+torch,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,override
+wall_torch,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,override
+fire,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,override
+soul_fire,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,override
+spawner,5.0,5.0,7874,оценка,железо,iron,0.1,пластичный,False,True,True,True,True,override
+oak_stairs,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+chest,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+redstone_wire,0.0,0.0,2400,оценка,редстоун,redstone,0.9,хрупкий,False,False,False,False,False,rule
+diamond_ore,3.0,3.0,3515,оценка,алмаз,diamond,0.9,хрупкий,False,True,True,False,True,rule
+deepslate_diamond_ore,4.5,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+diamond_block,5.0,6.0,3515,оценка,алмаз,diamond,0.9,хрупкий,False,True,True,False,True,override
+crafting_table,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+wheat,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+farmland,0.6,0.6,1500,оценка,земля,dirt,0.2,сыпучий,False,False,True,False,False,rule
+furnace,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+oak_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+spruce_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+birch_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+acacia_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+cherry_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+jungle_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+dark_oak_sign,1.0,1.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,True,False,rule
+mangrove_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+bamboo_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+oak_door,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+ladder,0.4,0.4,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+rail,0.7,0.7,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+cobblestone_stairs,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+oak_wall_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+spruce_wall_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+birch_wall_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+acacia_wall_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+cherry_wall_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+jungle_wall_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+dark_oak_wall_sign,1.0,1.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,True,False,rule
+mangrove_wall_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+bamboo_wall_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+oak_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+spruce_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+birch_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+acacia_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+cherry_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+jungle_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+dark_oak_hanging_sign,1.0,1.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,True,False,rule
+crimson_hanging_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+warped_hanging_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+mangrove_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+bamboo_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+oak_wall_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+spruce_wall_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+birch_wall_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+acacia_wall_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+cherry_wall_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+jungle_wall_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+dark_oak_wall_hanging_sign,1.0,1.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,True,False,rule
+mangrove_wall_hanging_sign,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+crimson_wall_hanging_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+warped_wall_hanging_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+bamboo_wall_hanging_sign,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,True,False,rule
+lever,0.5,0.5,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+stone_pressure_plate,0.5,0.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+iron_door,5.0,5.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,rule
+oak_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+spruce_pressure_plate,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_pressure_plate,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_pressure_plate,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_pressure_plate,0.5,0.5,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_pressure_plate,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+redstone_ore,3.0,3.0,2400,оценка,редстоун,redstone,0.9,хрупкий,False,True,True,False,True,rule
+deepslate_redstone_ore,4.5,3.0,2400,оценка,редстоун,redstone,0.9,хрупкий,False,True,True,False,True,rule
+redstone_torch,0.0,0.0,2400,оценка,редстоун,redstone,0.9,хрупкий,False,False,False,False,False,rule
+redstone_wall_torch,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+stone_button,0.5,0.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,False,False,False,rule
+snow,0.1,0.1,100,оценка,снег (порошок),snow_powder,0.2,сыпучий,False,False,False,False,True,rule
+ice,0.5,0.5,917,оценка,лёд,ice,0.9,хрупкий,False,True,True,False,False,rule
+snow_block,0.2,0.2,500,оценка,снежный блок,snow_block,0.2,сыпучий,False,True,True,False,True,rule
+cactus,0.4,0.4,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+clay,0.6,0.6,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,False,rule
+sugar_cane,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+jukebox,2.0,6.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,True,False,rule
+oak_fence,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+netherrack,0.4,0.4,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+soul_sand,0.5,0.5,1500,оценка,песок душ,soul_sand,0.2,сыпучий,False,False,True,False,False,rule
+soul_soil,0.5,0.5,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,False,rule
+basalt,1.25,4.2,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+polished_basalt,1.25,4.2,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+soul_torch,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,override
+soul_wall_torch,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+glowstone,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,override
+nether_portal,-1.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,override
+carved_pumpkin,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+jack_o_lantern,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+repeater,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+white_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+orange_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+magenta_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+light_blue_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+yellow_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+lime_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+pink_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+gray_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+light_gray_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+cyan_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+purple_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+blue_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+brown_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+green_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+red_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+black_stained_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,rule
+oak_trapdoor,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+spruce_trapdoor,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_trapdoor,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_trapdoor,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_trapdoor,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_trapdoor,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_trapdoor,3.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_trapdoor,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_trapdoor,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+stone_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+mossy_stone_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+cracked_stone_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+chiseled_stone_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+packed_mud,1.0,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,False,rule
+mud_bricks,1.5,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,True,rule
+infested_stone,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+infested_cobblestone,1.0,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+infested_stone_bricks,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+infested_mossy_stone_bricks,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+infested_cracked_stone_bricks,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+infested_chiseled_stone_bricks,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,rule
+brown_mushroom_block,0.2,0.2,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+red_mushroom_block,0.2,0.2,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,True,True,False,False,rule
+mushroom_stem,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+iron_bars,5.0,6.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+chain,5.0,6.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,override
+pumpkin,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+melon,1.0,1.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+attached_pumpkin_stem,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+attached_melon_stem,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+pumpkin_stem,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+melon_stem,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+vine,0.2,0.2,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+glow_lichen,0.2,0.2,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+oak_fence_gate,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+brick_stairs,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+stone_brick_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mud_brick_stairs,1.5,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,False,True,rule
+mycelium,0.6,0.6,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+lily_pad,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+nether_bricks,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+nether_brick_fence,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+nether_brick_stairs,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+nether_wart,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+enchanting_table,5.0,1200.0,2450,оценка,обсидиан,obsidian,0.9,хрупкий,False,False,True,True,True,override
+brewing_stand,0.5,0.5,7874,оценка,железо,iron,0.1,пластичный,False,False,True,True,True,rule
+cauldron,2.0,2.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+water_cauldron,2.0,2.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+lava_cauldron,2.0,2.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+powder_snow_cauldron,2.0,2.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+end_portal,-1.0,3600000.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,True,False,override
+end_portal_frame,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,False,override
+end_stone,3.0,9.0,2700,оценка,камень Края,endstone,0.6,каменный,False,True,True,False,True,override
+dragon_egg,3.0,9.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,False,override
+redstone_lamp,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,override
+cocoa,0.2,3.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+sandstone_stairs,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+emerald_ore,3.0,3.0,2760,оценка,изумруд,emerald,0.9,хрупкий,False,True,True,False,True,rule
+deepslate_emerald_ore,4.5,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+ender_chest,22.5,600.0,2450,оценка,обсидиан,obsidian,0.9,хрупкий,False,False,True,True,True,override
+tripwire_hook,0.0,0.0,7874,оценка,железо,iron,0.1,пластичный,False,False,False,False,False,override
+tripwire,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+emerald_block,5.0,6.0,2760,оценка,изумруд,emerald,0.9,хрупкий,False,True,True,False,True,override
+spruce_stairs,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_stairs,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_stairs,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+command_block,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+beacon,3.0,3.0,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,True,False,rule
+cobblestone_wall,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mossy_cobblestone_wall,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+flower_pot,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+potted_torchflower,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_oak_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_spruce_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_birch_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_jungle_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_acacia_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_cherry_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_dark_oak_sapling,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_mangrove_propagule,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_fern,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_dandelion,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_poppy,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_blue_orchid,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_allium,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_azure_bluet,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_red_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_orange_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_white_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_pink_tulip,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_oxeye_daisy,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_cornflower,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_lily_of_the_valley,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_wither_rose,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_red_mushroom,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_brown_mushroom,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_dead_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_cactus,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+carrots,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+potatoes,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+oak_button,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+spruce_button,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+birch_button,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+jungle_button,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+acacia_button,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+cherry_button,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+dark_oak_button,0.5,0.5,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,False,False,False,rule
+mangrove_button,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+bamboo_button,0.5,0.5,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,False,False,False,rule
+skeleton_skull,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+skeleton_wall_skull,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+wither_skeleton_skull,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+wither_skeleton_wall_skull,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+zombie_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+zombie_wall_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+player_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+player_wall_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+creeper_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+creeper_wall_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+dragon_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+dragon_wall_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+piglin_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+piglin_wall_head,1.0,1.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+anvil,5.0,1200.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+chipped_anvil,5.0,1200.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+damaged_anvil,5.0,1200.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+trapped_chest,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+light_weighted_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,True,rule
+heavy_weighted_pressure_plate,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,True,rule
+comparator,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,True,False,fallback
+daylight_detector,0.2,0.2,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+redstone_block,5.0,6.0,2400,оценка,редстоун,redstone,0.9,хрупкий,False,True,True,False,True,override
+nether_quartz_ore,3.0,3.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,override
+hopper,3.0,4.8,7874,оценка,железо,iron,0.1,пластичный,False,False,True,True,True,rule
+quartz_block,0.8,0.8,2650,оценка,кварц,quartz,0.6,каменный,False,True,True,False,True,override
+chiseled_quartz_block,0.8,0.8,2650,оценка,кварц,quartz,0.6,каменный,False,True,True,False,True,override
+quartz_pillar,0.8,0.8,2650,оценка,кварц,quartz,0.6,каменный,False,True,True,False,True,override
+quartz_stairs,0.8,0.8,2650,оценка,кварц,quartz,0.6,каменный,False,False,True,False,True,rule
+activator_rail,0.7,0.7,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+dropper,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+white_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+orange_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+magenta_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+light_blue_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+yellow_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+lime_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+pink_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+gray_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+light_gray_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+cyan_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+purple_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+blue_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+brown_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+green_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+red_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+black_terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+white_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+orange_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+magenta_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+light_blue_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+yellow_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+lime_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+pink_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+gray_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+light_gray_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+cyan_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+purple_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+blue_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+brown_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+green_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+red_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+black_stained_glass_pane,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,False,True,False,False,rule
+acacia_stairs,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_stairs,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_stairs,2.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_stairs,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_stairs,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_mosaic_stairs,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+slime_block,0.0,0.0,1200,оценка,слизь,slime,0.05,упругий,False,True,True,False,False,override
+barrier,-1.0,3600000.8,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,override
+light,-1.0,3600000.8,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,override
+iron_trapdoor,5.0,5.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,rule
+prismarine,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,True,True,False,True,rule
+prismarine_bricks,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,True,True,False,True,rule
+dark_prismarine,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,True,True,False,True,rule
+prismarine_stairs,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+prismarine_brick_stairs,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+dark_prismarine_stairs,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+prismarine_slab,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+prismarine_brick_slab,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+dark_prismarine_slab,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+sea_lantern,0.3,0.3,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,False,override
+hay_block,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,override
+white_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+orange_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+magenta_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+light_blue_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+yellow_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+lime_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+pink_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+gray_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+light_gray_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+cyan_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+purple_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+blue_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+brown_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+green_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+red_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+black_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+terracotta,1.25,4.2,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+coal_block,5.0,6.0,1350,оценка,угольный блок / уголь,coal_ore,0.6,каменный,False,True,True,False,True,override
+packed_ice,0.5,0.5,917,оценка,лёд,ice,0.9,хрупкий,False,True,True,False,False,override
+sunflower,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+lilac,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+rose_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+peony,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+tall_grass,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+large_fern,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+white_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+orange_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+magenta_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+light_blue_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+yellow_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+lime_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+pink_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+gray_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+light_gray_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+cyan_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+purple_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+blue_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+brown_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+green_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+red_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+black_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+white_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+orange_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+magenta_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+light_blue_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+yellow_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+lime_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+pink_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+gray_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+light_gray_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+cyan_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+purple_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+blue_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+brown_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+green_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+red_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+black_wall_banner,1.0,1.0,350,оценка,шерсть,wool,0.05,упругий,False,False,True,True,False,rule
+red_sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+chiseled_red_sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+cut_red_sandstone,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+red_sandstone_stairs,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+oak_slab,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+spruce_slab,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_slab,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_slab,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_slab,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_slab,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_slab,2.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_slab,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_slab,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_mosaic_slab,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+stone_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+smooth_stone_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+cut_sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+petrified_oak_slab,2.0,6.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,True,rule
+cobblestone_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+brick_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+stone_brick_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mud_brick_slab,1.5,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,False,True,rule
+nether_brick_slab,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+quartz_slab,2.0,6.0,2650,оценка,кварц,quartz,0.6,каменный,False,False,True,False,True,rule
+red_sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+cut_red_sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+purpur_slab,2.0,6.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,True,False,True,rule
+smooth_stone,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+smooth_sandstone,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+smooth_quartz,2.0,6.0,2650,оценка,кварц,quartz,0.6,каменный,False,True,True,False,True,override
+smooth_red_sandstone,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,True,True,False,True,rule
+spruce_fence_gate,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_fence_gate,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_fence_gate,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_fence_gate,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_fence_gate,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_fence_gate,2.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_fence_gate,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_fence_gate,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+spruce_fence,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_fence,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_fence,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_fence,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_fence,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_fence,2.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_fence,2.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_fence,2.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+spruce_door,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+birch_door,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+jungle_door,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+acacia_door,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cherry_door,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+dark_oak_door,3.0,3.0,750,оценка,твёрдая древесина,wood_hard,0.3,волокнистый,False,False,True,False,False,rule
+mangrove_door,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+bamboo_door,3.0,3.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+end_rod,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,override
+chorus_plant,0.4,0.4,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+chorus_flower,0.4,0.4,150,оценка,растение,plant,0.3,мягкий органический,False,True,False,False,False,fallback
+purpur_block,1.5,6.0,2700,оценка,камень Края,endstone,0.6,каменный,False,True,True,False,True,rule
+purpur_pillar,1.5,6.0,2700,оценка,камень Края,endstone,0.6,каменный,False,True,True,False,True,rule
+purpur_stairs,1.5,6.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,True,False,True,rule
+end_stone_bricks,3.0,9.0,2700,оценка,камень Края,endstone,0.6,каменный,False,True,True,False,True,rule
+torchflower_crop,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+pitcher_crop,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+pitcher_plant,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+beetroots,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+dirt_path,0.65,0.65,1500,оценка,земля,dirt,0.2,сыпучий,False,False,True,False,False,override
+end_gateway,-1.0,3600000.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,False,True,False,override
+repeating_command_block,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+chain_command_block,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+frosted_ice,0.5,0.5,917,оценка,лёд,ice,0.9,хрупкий,False,True,True,False,False,rule
+magma_block,0.5,0.5,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+nether_wart_block,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+red_nether_bricks,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+bone_block,2.0,2.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,override
+structure_void,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,rule
+observer,3.0,3.0,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,True,rule
+shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+white_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+orange_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+magenta_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+light_blue_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+yellow_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+lime_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+pink_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+gray_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+light_gray_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+cyan_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+purple_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+blue_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+brown_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+green_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+red_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+black_shulker_box,2.0,2.0,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,True,False,rule
+white_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+orange_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+magenta_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+light_blue_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+yellow_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+lime_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+pink_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+gray_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+light_gray_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+cyan_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+purple_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+blue_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+brown_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+green_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+red_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+black_glazed_terracotta,1.4,1.4,2000,оценка,терракота,terracotta,0.6,каменный,False,True,True,False,True,rule
+white_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+orange_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+magenta_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+light_blue_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+yellow_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+lime_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+pink_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+gray_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+light_gray_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+cyan_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+purple_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+blue_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+brown_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+green_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+red_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+black_concrete,1.8,1.8,2400,оценка,бетон,concrete,0.6,каменный,False,True,True,False,True,rule
+white_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+orange_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+magenta_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+light_blue_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+yellow_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+lime_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+pink_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+gray_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+light_gray_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+cyan_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+purple_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+blue_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+brown_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+green_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+red_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+black_concrete_powder,0.5,0.5,1500,оценка,бетонный порошок,concrete_powder,0.2,сыпучий,False,True,True,False,False,rule
+kelp,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+kelp_plant,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+dried_kelp_block,0.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+turtle_egg,0.5,0.5,150,оценка,растение,plant,0.3,мягкий органический,False,False,True,False,False,rule
+sniffer_egg,0.5,0.5,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,False,True,False,False,rule
+dead_tube_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+dead_brain_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+dead_bubble_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+dead_fire_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+dead_horn_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+tube_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+brain_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+bubble_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+fire_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+horn_coral_block,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+dead_tube_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_brain_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_bubble_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_fire_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_horn_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+tube_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+brain_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+bubble_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+fire_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+horn_coral,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+dead_tube_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_brain_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_bubble_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_fire_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_horn_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+tube_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+brain_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+bubble_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+fire_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+horn_coral_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+dead_tube_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_brain_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_bubble_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_fire_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+dead_horn_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,False,True,fallback
+tube_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+brain_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+bubble_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+fire_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+horn_coral_wall_fan,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,fallback
+sea_pickle,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,True,False,False,False,False,rule
+blue_ice,2.8,2.8,950,оценка,синий лёд,blue_ice,0.9,хрупкий,False,True,True,False,False,override
+conduit,3.0,3.0,1000,оценка,вода,water,0.0,жидкость,True,False,True,True,False,fallback
+bamboo_sapling,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+bamboo,1.0,1.0,450,оценка,светлая древесина (ель/джунгли),wood_light,0.3,волокнистый,False,False,True,False,False,rule
+potted_bamboo,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+void_air,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,rule
+cave_air,0.0,0.0,1.225,оценка,воздух,air,0.0,нет,False,False,False,False,False,rule
+bubble_column,0.0,0.0,1000,оценка,вода,water,0.0,жидкость,True,False,False,False,False,rule
+polished_granite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+smooth_red_sandstone_stairs,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+mossy_stone_brick_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_diorite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mossy_cobblestone_stairs,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+end_stone_brick_stairs,3.0,9.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,True,False,True,rule
+stone_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+smooth_sandstone_stairs,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+smooth_quartz_stairs,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+granite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+andesite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+red_nether_brick_stairs,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+polished_andesite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+diorite_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_granite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+smooth_red_sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+mossy_stone_brick_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_diorite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mossy_cobblestone_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+end_stone_brick_slab,3.0,9.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,True,False,True,rule
+smooth_sandstone_slab,2.0,6.0,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+smooth_quartz_slab,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+granite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+andesite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+red_nether_brick_slab,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+polished_andesite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+diorite_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+brick_wall,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+prismarine_wall,1.5,6.0,2700,оценка,призмарин,prismarine,0.6,каменный,False,False,True,False,True,rule
+red_sandstone_wall,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+mossy_stone_brick_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+granite_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+stone_brick_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+mud_brick_wall,1.5,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,False,True,rule
+nether_brick_wall,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+andesite_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+red_nether_brick_wall,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,False,True,False,True,rule
+sandstone_wall,0.8,0.8,2200,оценка,песчаник,sandstone,0.6,каменный,False,False,True,False,True,rule
+end_stone_brick_wall,3.0,9.0,2700,оценка,камень Края,endstone,0.6,каменный,False,False,True,False,True,rule
+diorite_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+scaffolding,0.0,0.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+loom,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+barrel,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,True,False,rule
+smoker,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+blast_furnace,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+cartography_table,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+fletching_table,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+grindstone,2.0,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,override
+lectern,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+smithing_table,2.5,2.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,rule
+stonecutter,3.5,3.5,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,override
+bell,5.0,5.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,True,True,rule
+lantern,3.5,3.5,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+soul_lantern,3.5,3.5,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+campfire,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+soul_campfire,2.0,2.0,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,True,False,rule
+sweet_berry_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+warped_stem,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_warped_stem,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+warped_hyphae,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_warped_hyphae,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+warped_nylium,0.4,0.4,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+warped_fungus,0.0,0.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+warped_wart_block,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+warped_roots,0.0,0.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+nether_sprouts,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+crimson_stem,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_crimson_stem,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+crimson_hyphae,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+stripped_crimson_hyphae,2.0,2.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+crimson_nylium,0.4,0.4,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+crimson_fungus,0.0,0.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+shroomlight,1.0,1.0,600,оценка,соты,honeycomb,0.05,упругий,False,True,True,False,False,override
+weeping_vines,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+weeping_vines_plant,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+twisting_vines,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+twisting_vines_plant,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+crimson_roots,0.0,0.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+crimson_planks,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+warped_planks,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,True,True,False,False,rule
+crimson_slab,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_slab,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_pressure_plate,0.5,0.5,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_pressure_plate,0.5,0.5,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_fence,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_fence,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_trapdoor,3.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_trapdoor,3.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_fence_gate,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_fence_gate,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_stairs,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_stairs,2.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_button,0.5,0.5,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+warped_button,0.5,0.5,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,False,False,False,rule
+crimson_door,3.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+warped_door,3.0,3.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,False,False,rule
+crimson_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+warped_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+crimson_wall_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+warped_wall_sign,1.0,1.0,600,оценка,адская древесина,nether_wood,0.3,волокнистый,False,False,True,True,False,rule
+structure_block,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+jigsaw,-1.0,3600000.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,True,True,override
+composter,0.6,0.6,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+target,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,False,False,override
+bee_nest,0.3,0.3,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,True,False,rule
+beehive,0.6,0.6,700,оценка,древесина,wood,0.3,волокнистый,False,True,True,True,False,rule
+honey_block,0.0,0.0,1400,оценка,мёд,honey,0.05,упругий,False,False,True,False,False,override
+honeycomb_block,0.6,0.6,600,оценка,соты,honeycomb,0.05,упругий,False,True,True,False,False,override
+netherite_block,50.0,1200.0,8000,оценка,древний металл (netherite),netherite,0.1,пластичный,False,True,True,False,True,override
+ancient_debris,30.0,1200.0,8000,оценка,древний металл (netherite),netherite,0.1,пластичный,False,True,True,False,True,rule
+crying_obsidian,50.0,1200.0,2450,оценка,обсидиан,obsidian,0.9,хрупкий,False,True,True,False,True,rule
+respawn_anchor,50.0,1200.0,2450,оценка,обсидиан,obsidian,0.9,хрупкий,False,True,True,False,True,override
+potted_crimson_fungus,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_warped_fungus,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_crimson_roots,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_warped_roots,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+lodestone,3.5,3.5,7874,оценка,железо,iron,0.1,пластичный,False,True,True,False,True,override
+blackstone,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+blackstone_stairs,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+blackstone_wall,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+blackstone_slab,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+polished_blackstone_bricks,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+cracked_polished_blackstone_bricks,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+chiseled_polished_blackstone,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+polished_blackstone_brick_slab,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone_brick_stairs,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone_brick_wall,1.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+gilded_blackstone,1.5,6.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,rule
+polished_blackstone_stairs,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone_slab,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone_pressure_plate,0.5,0.5,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_blackstone_button,0.5,0.5,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,False,False,False,rule
+polished_blackstone_wall,2.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+chiseled_nether_bricks,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+cracked_nether_bricks,2.0,6.0,2600,оценка,адский камень,netherrack,0.6,каменный,False,True,True,False,True,rule
+quartz_bricks,0.8,0.8,2650,оценка,кварц,quartz,0.6,каменный,False,True,True,False,True,override
+candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+white_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+orange_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+magenta_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+light_blue_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+yellow_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+lime_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+pink_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+gray_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+light_gray_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+cyan_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+purple_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+blue_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+brown_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+green_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+red_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+black_candle,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+white_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+orange_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+magenta_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+light_blue_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+yellow_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+lime_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+pink_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+gray_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+light_gray_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+cyan_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+purple_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+blue_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+brown_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+green_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+red_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+black_candle_cake,0.5,0.5,700,оценка,древесина,wood,0.3,волокнистый,False,False,True,False,False,rule
+amethyst_block,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,True,True,False,True,override
+budding_amethyst,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,True,True,False,True,override
+amethyst_cluster,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,False,True,False,False,rule
+large_amethyst_bud,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,False,True,False,False,rule
+medium_amethyst_bud,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,False,True,False,False,rule
+small_amethyst_bud,1.5,1.5,2650,оценка,аметист,amethyst,0.9,хрупкий,False,False,True,False,False,rule
+tuff,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,override
+tuff_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+tuff_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+tuff_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_tuff,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+polished_tuff_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_tuff_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+polished_tuff_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+chiseled_tuff,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+tuff_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+tuff_brick_slab,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+tuff_brick_stairs,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+tuff_brick_wall,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+chiseled_tuff_bricks,1.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+calcite,0.75,0.75,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,override
+tinted_glass,0.3,0.3,2500,оценка,стекло,glass,0.9,хрупкий,False,True,True,False,False,override
+powder_snow,0.25,0.25,100,оценка,снег (порошок),snow_powder,0.2,сыпучий,False,False,False,False,False,rule
+sculk_sensor,1.5,1.5,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,True,False,override
+calibrated_sculk_sensor,1.5,1.5,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,True,False,rule
+sculk,0.2,0.2,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,False,False,override
+sculk_vein,0.2,0.2,150,оценка,растение,plant,0.3,мягкий органический,False,False,True,False,False,override
+sculk_catalyst,3.0,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,True,True,True,False,override
+sculk_shrieker,3.0,3.0,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,True,False,override
+copper_block,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,override
+exposed_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+weathered_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+oxidized_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+copper_ore,3.0,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+deepslate_copper_ore,4.5,3.0,3000,оценка,руда (смесь с породой),ore,0.6,каменный,False,True,True,False,True,rule
+oxidized_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+weathered_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+exposed_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+oxidized_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+weathered_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+exposed_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_weathered_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_exposed_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_chiseled_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+oxidized_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+weathered_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+exposed_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+oxidized_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+weathered_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+exposed_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_copper_block,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_weathered_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_exposed_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_weathered_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_exposed_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_cut_copper,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_weathered_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_exposed_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_cut_copper_stairs,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_oxidized_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_weathered_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_exposed_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_cut_copper_slab,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+exposed_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+oxidized_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+weathered_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_exposed_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_oxidized_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_weathered_copper_door,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+exposed_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+oxidized_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+weathered_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_exposed_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_oxidized_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+waxed_weathered_copper_trapdoor,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,False,True,False,True,rule
+copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+exposed_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+weathered_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+oxidized_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_exposed_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_weathered_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_copper_grate,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+exposed_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+weathered_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+oxidized_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_exposed_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_weathered_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+waxed_oxidized_copper_bulb,3.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,rule
+lightning_rod,3.0,6.0,7874,оценка,железо,iron,0.1,пластичный,False,False,True,False,True,override
+pointed_dripstone,1.5,3.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,False,rule
+dripstone_block,1.5,1.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+cave_vines,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+cave_vines_plant,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+spore_blossom,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+azalea,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+flowering_azalea,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+moss_carpet,0.1,0.1,350,оценка,шерсть,wool,0.05,упругий,False,False,False,False,False,rule
+pink_petals,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+moss_block,0.1,0.1,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+big_dripleaf,0.1,0.1,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+big_dripleaf_stem,0.1,0.1,700,оценка,древесина,wood,0.3,волокнистый,False,False,False,False,False,rule
+small_dripleaf,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+hanging_roots,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+rooted_dirt,0.5,0.5,1500,оценка,земля,dirt,0.2,сыпучий,False,True,True,False,False,rule
+mud,0.5,0.5,1700,оценка,глина,clay,0.2,сыпучий,False,False,True,False,False,rule
+deepslate,3.0,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+cobbled_deepslate,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+cobbled_deepslate_stairs,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+cobbled_deepslate_slab,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+cobbled_deepslate_wall,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_deepslate,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+polished_deepslate_stairs,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_deepslate_slab,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+polished_deepslate_wall,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,False,True,False,True,rule
+deepslate_tiles,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+deepslate_tile_stairs,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+deepslate_tile_slab,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+deepslate_tile_wall,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+deepslate_bricks,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+deepslate_brick_stairs,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+deepslate_brick_slab,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+deepslate_brick_wall,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,False,True,False,True,rule
+chiseled_deepslate,3.5,6.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+cracked_deepslate_bricks,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+cracked_deepslate_tiles,3.5,6.0,2650,оценка,камень / магматическая порода,stone,0.6,каменный,False,True,True,False,True,rule
+infested_deepslate,1.5,0.75,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,False,rule
+smooth_basalt,1.25,4.2,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,True,rule
+raw_iron_block,5.0,6.0,7874,оценка,железо,iron,0.1,пластичный,False,True,True,False,True,override
+raw_copper_block,5.0,6.0,8960,оценка,медь,copper,0.1,пластичный,False,True,True,False,True,override
+raw_gold_block,5.0,6.0,19300,оценка,золото,gold,0.1,пластичный,False,True,True,False,True,override
+potted_azalea_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+potted_flowering_azalea_bush,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,fallback
+ochre_froglight,0.3,0.3,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,False,False,rule
+verdant_froglight,0.3,0.3,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,False,False,rule
+pearlescent_froglight,0.3,0.3,1100,оценка,"композит (шалкер, сборные блоки)",composite,0.3,волокнистый,False,True,True,False,False,rule
+frogspawn,0.0,0.0,150,оценка,растение,plant,0.3,мягкий органический,False,False,False,False,False,rule
+reinforced_deepslate,55.0,1200.0,2850,оценка,глубинный сланец,deepslate,0.6,каменный,False,True,True,False,False,rule
+decorated_pot,0.0,0.0,2000,оценка,терракота,terracotta,0.6,каменный,False,False,True,True,False,rule
+crafter,1.5,3.5,7874,оценка,железо,iron,0.1,пластичный,False,True,True,True,False,rule
+trial_spawner,50.0,50.0,7874,оценка,железо,iron,0.1,пластичный,False,True,True,True,False,override
+vault,50.0,50.0,7874,оценка,железо,iron,0.1,пластичный,False,True,True,True,False,override
+heavy_core,10.0,1200.0,7874,оценка,железо,iron,0.1,пластичный,False,False,False,False,False,override

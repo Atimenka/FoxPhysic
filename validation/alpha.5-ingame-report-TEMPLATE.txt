@@ -1,0 +1,57 @@
+VoxPhys 0.1.0-alpha.5 — игровой отчёт (Windows x64, выделенный сервер)
+
+Окружение
+- ОС / CPU / RAM:
+- Java (java -version):
+- Minecraft 1.21.1, Fabric Loader 0.16.14, Fabric API 0.116.6+1.21.1
+- Другие моды на сервере:
+- SHA256 JAR: (запишите значение из SHA256SUMS.txt)
+- Версия DLL (ожидается MSVC, SHA256 из сборки):
+
+Команды (отметьте результат: OK / ОШИБКА, вставьте ответ сервера)
+- /voxphys lab            ->
+- /voxphys demo           ->
+- /voxphys spawn wood     ->
+- /voxphys spawn stone    ->
+- /voxphys spawn boat     ->
+- /voxphys spawn wing     ->
+- /voxphys water still    ->
+- /voxphys water dam      ->
+- /voxphys spring         ->
+- /voxphys wind 5 0 0     ->
+- /voxphys impulse 1 0 3000 0 ->
+- /voxphys pause true / false ->
+- /voxphys status         ->
+- /voxphys save           ->
+- /voxphys restore        ->
+- /voxphys assemble 2     ->
+- /voxphys disassemble N  ->
+- /voxphys clear          ->
+
+Замеры (вставьте значения)
+- TPS до demo (команда /tick query, строка TPS и MSPT):
+- TPS во время demo, 2 минуты (/tick query):
+- Время нативного шага (поле "расчёт последнего тика" в /voxphys status), минимум/максимум:
+- Ошибка объёма воды (поле "ошибка объёма" в /voxphys status):
+
+Поведение тел (наблюдение)
+- Дерево плавает: да / нет (глубина осадки)
+- Камень тонет: да / нет
+- Лодка держится на воде: да / нет
+- Тело не проходит сквозь блоки (стена/пол): да / нет
+
+Сохранение/загрузка
+- Позиции тел до остановки (/voxphys status):
+- После перезапуска и /voxphys restore (/voxphys status):
+- Совпадение: да / нет, разница (м):
+
+Логи приложите: latest.log, crash-reports (если есть), вывод /tick query.
+
+Проверки alpha.5 (OK / ОШИБКА, описание)
+- Стояние сверху на теле на полу (тело не разгоняется, игрок не кикается):
+- Удар пустой рукой по телу на полу (сообщение «Удар: тело #…», откидывание):
+- Один взмах гравипушкой (только «запуск», без «Удар»):
+- /voxphys assembler give, затем /voxphys assembler run <позиция> (блоки собраны в тело):
+- Тело не проходит сквозь статичные блоки и не уходит в пустоту при стоянии рядом:
+
+Логи (вставьте путь и выдержку): latest.log, /tick query, /voxphys status

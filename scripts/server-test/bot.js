@@ -1,0 +1,10 @@
+const mineflayer = require('mineflayer');
+const name = process.argv[2] || 'VoxBot';
+const seconds = Number(process.argv[3] || 900);
+const bot = mineflayer.createBot({ host: '127.0.0.1', port: 25565, username: name, version: '1.21.1', auth: 'offline' });
+bot.on('login', () => console.log('login ok', name));
+bot.on('spawn', () => console.log('spawned at', JSON.stringify(bot.entity.position)));
+bot.on('kicked', (r) => console.log('kicked', JSON.stringify(r)));
+bot.on('error', (e) => console.log('error', e.message));
+bot.on('end', (r) => console.log('end', r));
+setTimeout(() => { console.log('timeout, quitting'); bot.quit(); process.exit(0); }, seconds * 1000);

@@ -1,0 +1,161 @@
+# FoxPhysic (FoxPhys) · Minecraft 1.21.1 · Fabric и NeoForge + Rust
+
+> **FoxPhys — физика лисы в Minecraft.**
+
+**Версия: 0.1.0-alpha.7.** Экспериментальный физический мод: жёсткие тела, мягкие тела, объёмная вода (SPH) и публичный API для других модов. Все новые физические расчёты выполняет Rust (нативная библиотека `foxphys_core`). Java отвечает за интеграцию с Minecraft, сеть, команды и отображение.
+
+Мод **не заменяет** физику Minecraft: ванильная физика игрока, мобов и ванильные жидкости не меняются. Команды `/foxphys` и `/fox` работают только у оператора (уровень прав 2).
+
+Игровой проверки этой версии нет: в среде сборки нет клиента Minecraft. Сборки проверены компиляцией, модульными тестами Rust, JNI smoke-тестами и тестами API. Поведение в игре нужно проверить на тестовом мире.
+
+## Загрузчики и зависимости
+
+| Сборка | Файл в `release/alpha.7/` | Что нужно установить |
+|---|---|---|
+| Fabric | `foxphys-fabric-0.1.0-alpha.7.jar` | Minecraft 1.21.1, Fabric Loader 0.16.14+, Fabric API 0.116.6+1.21.1, Java 21 |
+| NeoForge | `foxphys-neoforge-0.1.0-alpha.7.jar` | Minecraft 1.21.1, NeoForge 21.1.259+, Java 21 |
+
+Обе сборки содержат нативную библиотеку для Windows x64 (`foxphys_core.dll`) и Linux x64 (`libfoxphys_core.so`). Rust на компьютере игрока не нужен. Sable Companion (MIT) вложен в Fabric-сборку и нужен только для совместимости с Sable (`suggests`): без Sable мод работает.
+
+Контрольные суммы: `release/alpha.7/SHA256SUMS.txt` (проверка: `sha256sum -c SHA256SUMS.txt`).
+
+## Что реализовано
+
+| Подсистема | Состояние alpha.7 |
+|---|---|
+| Жёсткие тела | Rapier 3D: масса и инерция из размеров и плотности материала, составные тела, столкновения, CCD |
+| Плавучесть и гидродинамика | Архимедова сила по погружённому объёму; сопротивление относительно потока воды |
+| Воздух | Давление и трение на открытых гранях, модель крыла (подъём, индуктивное сопротивление) |
+| Механика | Пружины, суставы (шарнир, слайдер, конус, верёвка), разрыв по `break_force` |
+| Ветер | Меняется от погоды (дождь и гроза усиливают) и во времени (порывы). Действует на жёсткие и мягкие тела |
+| Резервуар воды (2.5D) | Мелкая вода над плоским дном: MUSCL, поток Русанова, SSP-RK2, замкнутые стенки |
+| **Объёмная вода (SPH)** | 3D WCSPH-пулы: ведро физичной воды, команды, рендер. Ограничения ниже |
+| Мягкие тела (XPBD) | Пресеты rubber, jelly, cloth, rope; крепление слоя к физическому телу; ветер |
+| Блок-сборщик | Перенос блоков в физическое тело и обратно; гравипушка с выравниванием по сетке (клавиша R); мёд-клей |
+| Плотности блоков | Таблица на 1060 блоков Minecraft 1.21.1: вес, плотность, хрупкость (`docs/BLOCK_PHYSICS.md`) |
+| API для модов | `dev.foxphys.api`, версия API 1 (`docs/API.md`) |
+
+## Команды
+
+Одинаковы в обеих сборках. `/fox` — короткий алиас, `/voxphys` — временный алиас миграции с VoxPhys.
+
+```text
+/foxphys                              справка
+/foxphys lab                          пустой физический стенд возле игрока
+/foxphys demo                         резервуар, дерево, камень, составной корпус
+/foxphys spawn wood|stone|boat|wing   тестовые тела
+/foxphys impulse <id> x y z           импульс телу в Н·с (не скорость)
+/foxphys spring                       блок на пружинном подвесе
+/foxphys wind x y z                   ветер в м/с вручную (поверх погоды)
+/foxphys water still|dam              резервуар 2.5D
+/foxphys water sph still|dam|clear    SPH-пул над игроком / разрыв плотины / удалить пулы
+/foxphys pause true|false
+/foxphys status
+/foxphys save | restore | clear
+/foxphys assemble <N>                 куб N×N×N блоков перед игроком становится телом
+/foxphys disassemble <id>             вернуть блоки тела в мир
+/foxphys assembler give | run x y z assemble|attach|disassemble
+/foxphys gun give | glue give         гравипушка, мёд-клей
+/foxphys soft spawn rubber|jelly|cloth|rope
+/foxphys soft status [id] | remove <id>
+/foxphys soft pin <id> top|bottom|start|end
+/foxphys soft stiffness <id> <k> | damping <id> <d>
+/foxphys soft attach <id> top|bottom|start|end [bodyId]
+/foxphys soft detach <id>
+/foxphys api                          версия API и состояние нативной библиотеки
+```
+
+ID тела выводится в чате. 1 блок = 1 метр. Деревянный куб 1×1×1 м имеет массу 550 кг, поэтому маленькие импульсы почти не заметны.
+
+Управление гравипушкой: ЛКМ — запуск, ПКМ — отпустить, **R** — выровнять тело по сетке блоков.
+
+Вода с ведром: ПКМ по блоку — пул на нажатой грани; Shift+ПКМ — прорыв плотины; ПКМ в воздух — пул у ног.
+
+## Быстрый тест на Windows 10/11 x64
+
+1. Установить Minecraft 1.21.1, загрузчик (Fabric или NeoForge) и Java 21.
+2. Положить нужный jar из `release/alpha.7/` в папку `mods`. Для Fabric также нужен Fabric API.
+3. Создать **тестовый мир** в Creative с правами команд.
+4. Выполнить `/foxphys demo`, затем `/foxphys status`: время симуляции, число тел, относительная ошибка объёма воды.
+5. Для мягких тел: `/foxphys soft spawn jelly`, затем `/foxphys soft status`. Если тело не видно, в логе клиента будет строка `FoxPhys soft body #id (...)` с числом частиц и габаритами. Эти данные нужны для проверки видимости.
+
+## Сборка из исходников
+
+Нужны JDK 21, Rust toolchain **1.89.0** (файл `native/rust-toolchain.toml`) и интернет для первой загрузки Gradle, Minecraft и crates.
+
+### Нативная библиотека
+
+```bash
+cd native
+cargo test --locked --release
+cargo clippy --locked --all-targets -- -D warnings
+cargo build --locked --release --lib                       # Linux: target/release/libfoxphys_core.so
+cargo xwin build --locked --release --target x86_64-pc-windows-msvc --lib   # Windows DLL с Linux
+```
+
+Готовые библиотеки лежат в `neoforge/prebuilt/natives/` (Linux и Windows). Сборка Fabric и NeoForge берёт их оттуда. Windows DLL из `prebuilt` вкладывается в Fabric-сборку на Linux автоматически (задача `copyPrebuiltWindowsNative`).
+
+### Fabric
+
+Windows: `.\gradlew.bat build --no-daemon`. Linux: `./gradlew build --no-daemon`.
+Результат: `build/libs/foxphys-0.1.0-alpha.7.jar` (без `-dev` и `-sources`). Это готовый мод для `mods`.
+
+### NeoForge
+
+```bash
+cd neoforge
+./gradlew jar sourcesJar           # Windows: gradlew.bat jar sourcesJar
+```
+Результат: `neoforge/build/libs/foxphys-0.1.0-alpha.7.jar`. Нативные библиотеки копируются из `neoforge/prebuilt/natives/`.
+
+### Проверки без игры
+
+Smoke-скрипты берут классы Minecraft из кэша Gradle, поэтому перед запуском задайте `GRADLE_USER_HOME` того проекта, который собирали (NeoForge: `GRADLE_USER_HOME=... sh validation/...`; Fabric: отдельный каталог). Без него скрипт падает на поиске библиотек.
+
+```bash
+sh validation/api/run-fabric-smoke.sh      # API (Fabric)
+sh validation/api/run-neoforge-smoke.sh    # API (NeoForge)
+sh validation/attach/run-attach-smoke.sh   # крепление мягких тел и ветер
+sh validation/fluid/run-fluid-smoke.sh     # SPH-вода через JNI
+```
+Каждый скрипт печатает строку `*_OK` при успехе. Скрипты читают кэш Gradle из `GRADLE_USER_HOME`.
+
+## Ограничения alpha.7 (честно)
+
+- **Игра не проверена.** Видимость мягких тел, ведро, крепление, ветер, гравипушка и рендер воды в клиенте ещё не подтверждены. Видимость мягких тел — открытый вопрос: по коду рендер корректен, но причину «невидимости» из прошлых ходов без клиента найти не удалось.
+- **Вода.** SPH-пулы не сталкиваются с блоками мира и физическими телами, размер пула фиксирован, поверхность — куб-частицы. Один пул 0.4 м при 320 частицах занимает около 30 мс на тик (бюджет 50 мс), при 600 частицах — около 63 мс: на сервере с этим пулом тик отстаёт. Это не «реалистичная» вода в смысле пены, брызг и отражений.
+- **Мягкие тела.** Нет коллизий с блоками и физическими телами, кроме плоскости пола. Крепление односторонне: мягкое тело следует за жёстким, но не толкает его. Разрыв не реализован.
+- **Плотности блоков.** Вес и твёрдость взяты из игровых данных. Плотность и хрупкость — оценки по материалу: в Minecraft таких значений нет, а датапак с ними в интернете не найден.
+- **Сборка тел из блоков** работает для тел, выровненных по сетке (кратно 90°). Наклонённое тело нельзя прикрепить или разобрать, пока оно не встанет ровно.
+- **Связь воды и тел** односторонняя в резервуаре 2.5D: тело не вытесняет воду. SPH-вода с телами не связана.
+- **Сохранение.** Тела, пружины, суставы и ветер сохраняются в `<мир>/foxphys/` (`save`, `restore`, автосохранение). Окружение (блоки, вода) заново считывается из мира. Мягкие тела и SPH-пулы не сохраняются.
+- **Производительность.** Стенд шагает в отдельном потоке и не более 4 догоняющих шагов за цикл. Поведение при нагрузке на сервере не измерено.
+- Это alpha: используйте отдельный тестовый мир, лучше Creative. Блоки существующего мира стенд не изменяет.
+
+## Структура
+
+```text
+native/src/engine.rs       Rapier-мир, фиксированный шаг, силы
+native/src/forces.rs       аэродинамика, гидродинамика, плавучесть
+native/src/water.rs        2.5D решатель воды (резервуар)
+native/src/sph.rs          3D WCSPH: пары соседей, плотность, силы, XSPH
+native/src/fluid_world.rs  SPH-пулы (JSON-операции)
+native/src/soft.rs         XPBD мягких тел
+native/src/soft_world.rs   реестр мягких тел, крепление, ветер
+native/src/mechanics.rs    пружины и демпфирование
+native/src/protocol.rs     JSON-протокол и валидация
+native/src/lib.rs          JNI, дескрипторы, перехват panic
+src/main/java/             Fabric: команды, интеграция, рендер, API
+neoforge/src/main/java/    NeoForge: тот же код на именах Mojang
+validation/                скрипты и smoke-тесты
+docs/                      документация (см. ниже)
+release/alpha.7/           готовые jar и контрольные суммы
+```
+
+Документация: [API для модов](docs/API.md) · [мягкие тела](docs/SOFT.md) · [вода](docs/WATER.md) · [плотности блоков](docs/BLOCK_PHYSICS.md) · [физические модели](docs/PHYSICS.md) · [протокол JNI](docs/PROTOCOL.md) · [проверки](docs/VALIDATION.md) · [план alpha.7](docs/ROADMAP-alpha.7.md).
+
+Первый запуск создаёт `config/foxphys.json`. Настройки применяются после перезапуска.
+
+## Лицензии
+
+Код проекта — MIT. Rapier и Parry — Apache-2.0; остальные Rust-зависимости имеют собственные лицензии (`native/Cargo.lock`). Тексты и уведомления — в `THIRD_PARTY_NOTICES.md` и `licenses/`. Minecraft, Fabric API и NeoForge в мод не вложены: их нужно установить отдельно.

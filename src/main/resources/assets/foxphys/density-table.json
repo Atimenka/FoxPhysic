@@ -1,0 +1,20 @@
+{
+  "_about": "Плотности блоков для FoxPhys alpha.6 (задача 5). status: verified = подтверждено справочником; unverified_ttr = значение из ТЗ, справочник не найден; game_tuned = не физическая величина, подобрано под игровую гравитацию. Значения в kg/m3. Пока не загружаются кодом: датапак — следующий шаг.",
+  "air": {"density": 1.225, "status": "verified", "source": "стандартная плотность воздуха у уровня моря (ТЗ; совпадает с общепринятым значением)"},
+  "water": {"density": 1000, "status": "verified", "source": "ТЗ; общепринятое значение пресной воды при 4 °C"},
+  "stone": {"density": 2650, "range": [2600, 2800], "status": "verified_range", "source": "granite: Engineering ToolBox, через smart-calculators.net (2600–2800) и superglobalcalculator.com (2640–2760); ТЗ давало 2515–2650 — нижняя граница из ТЗ не подтверждена, взята середина справочника"},
+  "cobblestone": {"density": 2650, "status": "verified_range", "source": "как stone"},
+  "basalt_like_deepslate": {"density": 2850, "range": [2700, 3100], "status": "verified_range", "source": "basalt: densitiestable.com (2850), superglobalcalculator.com (2700–3100)"},
+  "dirt": {"density": 1500, "range": [1220, 1750], "status": "unverified_ttr", "source": "ТЗ (1220–1750); справочник не найден, середина диапазона"},
+  "oak_planks": {"density": 750, "range": [600, 900], "status": "verified_range", "source": "oak: Engineering ToolBox через smart-calculators.net (600–900, середина 750)"},
+  "spruce_planks": {"density": 450, "status": "unverified_ttr", "source": "ориентир по видам древесины из Engineering ToolBox (ель 350–600 у pine), не точное значение"},
+  "birch_planks": {"density": 650, "status": "unverified_ttr", "source": "оценка, справочник не открыт"},
+  "iron_block": {"density": 7874, "status": "verified", "source": "densitiestable.com: Density of Iron 7874"},
+  "gold_block": {"density": 19300, "status": "verified", "source": "densitiestable.com: Gold 19300; NIST через smart-calculators.net (19.32 g/cm3)"},
+  "diamond_block": {"density": 3515, "status": "verified", "source": "densitiestable.com: Diamond 3515 (ТЗ: 3500)"},
+  "obsidian": {"density": 2450, "range": [2350, 2550], "status": "verified_range", "source": "superglobalcalculator.com (2350–2550); ТЗ давало 2550, взята середина"},
+  "honey_block": {"density": 1500, "status": "unverified_ttr", "source": "ТЗ; справочник не найден"},
+  "emerald_block": {"density": 2750, "status": "unverified_ttr", "source": "ТЗ; справочник не найден (минерал изумруд — берилл, около 2700)"},
+  "lava": {"density": 2800, "status": "unverified_ttr", "source": "ТЗ давало 3100; справочник по расплавленной базальтовой лаве указывает 2700–2800 — значение 3100 требует проверки"},
+  "bedrock": {"density": 25470000000, "status": "game_tuned", "source": "ТЗ; не физическая плотность. Подобрана под игровую гравитацию, как указано в ТЗ. Значение нужно подтвердить отдельно."}
+}

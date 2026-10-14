@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.foxphys.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DisplayAccessor",
+    "BlockDisplayAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "server": [
+    "ServerPlayNetworkHandlerMixin"
+  ]
+}

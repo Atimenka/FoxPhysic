@@ -1,0 +1,49 @@
+name: Build and validate
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: '1.89.0'
+          components: rustfmt, clippy
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Rust tests
+        working-directory: native
+        run: cargo test --locked
+      - name: Rust lint
+        working-directory: native
+        run: cargo clippy --locked --all-targets -- -D warnings
+      - name: Fabric + platform library (Linux)
+        if: runner.os != 'Windows'
+        run: ./gradlew build --no-daemon
+      - name: Fabric + platform library (Windows)
+        if: runner.os == 'Windows'
+        run: .\gradlew.bat build --no-daemon
+      - name: Compile JNI smoke harness
+        run: javac -d tests/classes src/main/java/dev/foxphys/nativecore/NativeBridge.java tests/NativeSmoke.java
+      - name: JNI smoke (Linux)
+        if: runner.os != 'Windows'
+        run: java -ea -cp tests/classes NativeSmoke native/target/release/libfoxphys_core.so
+      - name: JNI smoke (Windows)
+        if: runner.os == 'Windows'
+        run: java -ea -cp tests/classes NativeSmoke native/target/release/foxphys_core.dll
+      - uses: actions/upload-artifact@v4
+        with:
+          name: foxphys-${{ runner.os }}-x64
+          path: build/libs/foxphys-0.1.0-alpha.3.jar

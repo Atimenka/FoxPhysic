@@ -1,0 +1,1 @@
+PROTOCOL_SMOKE_OK: Gson snake_case records, native loader, tank, pause

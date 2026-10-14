@@ -1,0 +1,26 @@
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: ntdll.dll
+	DLL Name: USERENV.dll
+	DLL Name: WS2_32.dll
+native/target/x86_64-pc-windows-gnu/release/voxphys_core.dll:     file format pei-x86-64
+Entry 0 00000000003da000 000002e9 Export Directory [.edata (or where ever we found it)]
+The Export Tables (interpreted .edata section contents)
+Export Flags 			0
+Name 				00000000003da096 voxphys_core.dll
+	Export Address Table 		0000000b
+	Export Address Table 		00000000003da028
+Export Address Table -- Ordinal Base 1
+Java_dev_voxphys_nativecore_NativeBridge_abiVersion
+Java_dev_voxphys_nativecore_NativeBridge_create
+Java_dev_voxphys_nativecore_NativeBridge_destroy
+Java_dev_voxphys_nativecore_NativeBridge_exchange
+Java_dev_voxphys_nativecore_NativeBridge_workerCall
+Java_dev_voxphys_nativecore_NativeBridge_workerCreate
+Java_dev_voxphys_nativecore_NativeBridge_workerDestroy
+Java_dev_voxphys_nativecore_NativeBridge_workerLatest
+Java_dev_voxphys_nativecore_NativeBridge_workerPush
+Java_dev_voxphys_nativecore_NativeBridge_workerSetIdle
+Java_dev_voxphys_nativecore_NativeBridge_workerTakeError

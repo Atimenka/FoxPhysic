@@ -1,0 +1,17 @@
+{
+  "artifact": "voxphys-0.1.0-alpha.1-windows-x64.jar",
+  "size_bytes": 2313265,
+  "jar_sha256": "8f36fec427c84811d3fd044523ce4770afbf3061c7787d2cbdbdf34da49c1059",
+  "native_sha256": "b02d79323b00d8683ec9e99f5a4a42eed654837be860ab47639f2ac913967ffa",
+  "native_machine": "AMD64 (0x8664)",
+  "java_class_version": 65,
+  "minecraft": "1.21.1",
+  "mixins_refmap_checked": true,
+  "zip_integrity_checked": true,
+  "native_windows_runtime_tested": false,
+  "minecraft_gameplay_tested": false,
+  "windows_dll_sha256": "23674f05affb67e534eeeb0c82703be45bf2261355084b1cd29b209801922d9d",
+  "version_iteration": "2",
+  "checked_at": "2026-10-10",
+  "iteration": 2
+}

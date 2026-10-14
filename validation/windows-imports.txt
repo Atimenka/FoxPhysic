@@ -1,0 +1,11 @@
+	DLL Name: api-ms-win-core-synch-l1-2-0.dll
+	DLL Name: bcryptprimitives.dll
+	DLL Name: KERNEL32.dll
+	DLL Name: msvcrt.dll
+	DLL Name: ntdll.dll
+	DLL Name: USERENV.dll
+	DLL Name: WS2_32.dll
+	[   0] +base[   1]  0000 Java_dev_voxphys_nativecore_NativeBridge_abiVersion
+	[   1] +base[   2]  0001 Java_dev_voxphys_nativecore_NativeBridge_create
+	[   2] +base[   3]  0002 Java_dev_voxphys_nativecore_NativeBridge_destroy
+	[   3] +base[   4]  0003 Java_dev_voxphys_nativecore_NativeBridge_exchange

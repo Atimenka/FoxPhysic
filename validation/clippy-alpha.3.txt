@@ -1,0 +1,3 @@
+    Checking voxphys-core v0.1.0-alpha.3 (/home/user/voxphys/native)
+    Finished `dev` profile [unoptimized] target(s) in 4.33s
+CLIPPY_EXIT=0

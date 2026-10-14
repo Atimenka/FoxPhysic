@@ -1,0 +1,27 @@
+[package]
+name = "foxphys-core"
+version = "0.1.0-alpha.7"
+edition = "2021"
+rust-version = "1.89"
+license = "MIT"
+description = "Experimental Rust physics kernel for Minecraft Fabric 1.21.1"
+
+[lib]
+name = "foxphys_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+rapier3d = { version = "=0.22.0", features = ["enhanced-determinism"] }
+jni = "=0.21.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+strip = "debuginfo"
+
+[profile.dev]
+debug = 0

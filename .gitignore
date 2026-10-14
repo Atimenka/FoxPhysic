@@ -1,0 +1,10 @@
+﻿native/target/
+.gradle/
+build/
+out/
+*.class
+.idea/
+*.iml
+.vscode/
+*.log
+run/

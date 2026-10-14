@@ -1,0 +1,100 @@
+plugins {
+    id 'fabric-loom' version "${loom_version}"
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+base { archivesName = project.archives_base_name }
+
+repositories { mavenCentral() }
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.10.2"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+tasks.withType(JavaCompile).configureEach { options.release = 21 }
+
+// Only the integration layer is Java. The actual physics is a Rust cdylib.
+def hostOs = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+def nativePlatform = hostOs.contains('win') ? 'windows-x86_64' :
+        (hostOs.contains('linux') ? 'linux-x86_64' : 'unsupported')
+def nativeFile = hostOs.contains('win') ? 'foxphys_core.dll' : 'libfoxphys_core.so'
+def nativeOutput = layout.buildDirectory.dir('generated/natives')
+
+tasks.register('buildNative', Exec) {
+    workingDir file('native')
+    commandLine 'cargo', 'build', '--locked', '--release'
+    onlyIf { !project.hasProperty('skipNative') }
+    doFirst {
+        if (nativePlatform == 'unsupported') throw new GradleException('Supported native targets: Windows/Linux x64.')
+    }
+}
+// Cargo only builds the host platform. On Linux the committed Windows DLL (neoforge/prebuilt, built by
+// cargo-xwin from the same native/ sources) is packed too, so the Fabric jar works on Windows without Visual Studio.
+tasks.register('copyPrebuiltWindowsNative', Copy) {
+    from('neoforge/prebuilt/natives/windows-x86_64') { include 'foxphys_core.dll' }
+    into(nativeOutput.map { it.dir('natives/windows-x86_64') })
+    onlyIf { !project.hasProperty('skipNative') && !hostOs.contains('win') }
+}
+tasks.register('copyNative', Copy) {
+    dependsOn 'buildNative', 'copyPrebuiltWindowsNative'
+    from("native/target/release/${nativeFile}")
+    into(nativeOutput.map { it.dir("natives/${nativePlatform}") })
+    onlyIf { !project.hasProperty('skipNative') }
+    doFirst {
+        if (!file("native/target/release/${nativeFile}").exists()) {
+            throw new GradleException('Native output is missing; install Rust and rerun build.')
+        }
+    }
+}
+sourceSets.main.resources.srcDir(nativeOutput)
+// sourcesJar packs the same generated folder, so it must wait for the native copy.
+tasks.named('sourcesJar') { dependsOn 'copyNative' }
+processResources {
+    dependsOn 'copyNative'
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand 'version': project.version }
+}
+jar {
+    // Sable Companion (MIT) is nested as a Fabric jar (JarJar equivalent); see fabric.mod.json "jars".
+    from('libs/sable-companion-fabric-1.21.1-1.6.0.jar') { into 'META-INF/jars' }
+    from('LICENSE') { rename { 'LICENSE_foxphys' } }
+    from('THIRD_PARTY_NOTICES.md')
+    from('licenses') { into 'licenses' }
+}
+// Plain JVM tests use the same protocol classes as the Fabric integration.
+sourceSets.test.java.srcDir('tests')
+tasks.register('jniSmoke', JavaExec) {
+    dependsOn 'buildNative', 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'NativeSmoke'
+    jvmArgs '-ea', '-Xcheck:jni'
+    args file("native/target/release/${nativeFile}").absolutePath
+    onlyIf { !project.hasProperty('skipNative') }
+}
+tasks.register('protocolSmoke', JavaExec) {
+    dependsOn 'buildNative', 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'ProtocolSmoke'
+    jvmArgs '-ea', '-Xcheck:jni'
+    args file("native/target/release/${nativeFile}").absolutePath
+    onlyIf { !project.hasProperty('skipNative') }
+}
+tasks.named('check') { dependsOn 'jniSmoke', 'protocolSmoke' }
+// Keep the JNI class name intact: it is not a Minecraft mapping.
+// `build`, not the unremapped `jar`, produces the distributable mod.

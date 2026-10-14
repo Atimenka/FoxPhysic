@@ -1,0 +1,19 @@
+VoxPhys 0.1.0-alpha.4 — сборка (2026-10-11), рабочая среда Linux x86_64
+
+Rust (native/):
+- cargo test --locked: 68 passed, 0 failed, 1 ignored (файл alpha.4-rust-tests.txt)
+- cargo clippy --locked --all-targets -- -D warnings: чисто (alpha.4-clippy.txt)
+- Windows DLL: MSVC, cargo xwin build --release --locked --target x86_64-pc-windows-msvc
+  SHA256 375e30fcfa6b86651eb2285b4b5a31ea9b363963f907754a2b4a129562ac668a
+  PE32+ x86-64 DLL, 11 экспортов Java_dev_voxphys_nativecore_NativeBridge_*, статический CRT,
+  импорты: api-ms-win-core-synch-l1-2-0, KERNEL32, ntdll, bcryptprimitives (системные)
+- Linux .so: SHA256 06bcb890a210c22ccd713ad66d5971b09f35cfcdd789af8e5c0ccfefc491dcf1
+
+Java / JAR:
+- ./gradlew build (Fabric Loom 1.8.13, Yarn 1.21.1+build.3, Loader 0.16.14, API 0.116.6+1.21.1)
+- JAR: voxphys-0.1.0-alpha.4.jar, содержит natives/windows-x86_64 и natives/linux-x86_64
+- Исправление сборки: sourcesJar зависит от copyNative (раньше скрывалось -PskipNative)
+
+Смоуки на JAR alpha.4 (Linux .so): JNI_SMOKE_OK, PROTOCOL_SMOKE_OK.
+
+Не проверено: Windows-сервер, игровой тест (см. validation/alpha.4-ingame-report-TEMPLATE.txt).

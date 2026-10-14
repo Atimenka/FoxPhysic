@@ -1,0 +1,7 @@
+   Compiling voxphys-core v0.1.0-alpha.1 (/home/user/voxphys/native)
+    Finished `release` profile [optimized] target(s) in 16.41s
+     Running `target/release/examples/headless`
+logical_seconds=10.00, fixed_steps=1200
+body=1 mass_kg=550.00 center_y_m=2.85233 vertical_velocity_m_s=0.39574
+body=2 mass_kg=2600.00 center_y_m=0.49883 vertical_velocity_m_s=0.00000
+water_volume_m3=432.000000000 relative_volume_error=0.000e0

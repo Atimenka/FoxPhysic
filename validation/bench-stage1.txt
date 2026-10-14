@@ -1,0 +1,9 @@
+   Compiling voxphys-core v0.1.0-alpha.1 (/home/user/voxphys/native)
+    Finished `release` profile [optimized] target(s) in 28.39s
+     Running `target/release/examples/bench`
+assembler: assemble 8^3=0.153 ms  attach 100 cells=0.019 ms  disassemble=0.042 ms  cells_back=612
+rigid_bodies=  1 sim=10s steps=1200 wall=   50.09 ms  per_fixed_step=0.042 ms
+rigid_bodies= 16 sim=10s steps=1200 wall=  159.14 ms  per_fixed_step=0.133 ms
+rigid_bodies= 64 sim=10s steps=1200 wall=  448.01 ms  per_fixed_step=0.373 ms
+water 16x16: wall=   3.698 ms per 1 sim-second  per_advance=0.0308 ms  volume_err=7.11e-16
+water 32x32: wall=  17.854 ms per 1 sim-second  per_advance=0.1488 ms  volume_err=2.13e-15

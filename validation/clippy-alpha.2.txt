@@ -1,0 +1,2 @@
+    Checking voxphys-core v0.1.0-alpha.2 (/home/user/voxphys/native)
+    Finished `dev` profile [unoptimized] target(s) in 4.74s

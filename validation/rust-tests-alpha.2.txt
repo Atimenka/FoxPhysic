@@ -1,0 +1,78 @@
+   Compiling voxphys-core v0.1.0-alpha.2 (/home/user/voxphys/native)
+    Finished `test` profile [unoptimized] target(s) in 12.18s
+     Running unittests src/lib.rs (target/debug/deps/voxphys_core-43f688d8fcd2c491)
+
+running 64 tests
+test assembler::tests::duplicate_and_oversized_inputs_are_rejected ... ok
+test assembler::tests::checkerboard_gives_one_box_per_cell ... ok
+test assembler::tests::long_boxes_are_split_into_protocol_sized_pieces ... ok
+test assembler::tests::solid_cube_is_one_box ... ok
+test assembler::tests::random_shapes_are_exact_covers ... ok
+test engine::assembler::tests::assembled_cube_is_one_body_with_exact_mass ... ok
+test engine::assembler::tests::attach_adds_mass_and_rejects_overlap ... ok
+test engine::assembler::tests::attach_respects_a_90_degree_body_frame ... ok
+test engine::assembler::tests::checkerboard_exceeding_collider_budget_is_rejected ... ok
+test engine::assembler::tests::duplicate_cells_across_materials_are_rejected ... ok
+test engine::assembler::tests::l_shape_has_exact_volume_and_round_trips ... ok
+test engine::assembler::tests::tilted_body_is_refused_for_attach_and_disassemble ... ok
+test engine::tests::bench_solver_settings ... ignored
+test engine::tests::command_failure_is_non_destructive ... ok
+test engine::assembler::tests::assembled_body_falls_under_gravity ... ok
+test engine::tests::cone_twist_limits_the_tilt ... ok
+test engine::tests::excessive_elapsed_time_rejected ... ok
+test engine::tests::extreme_quaternion_rejected_before_normalization ... ok
+test engine::tests::failed_import_keeps_the_previous_world ... ok
+test engine::tests::cube_collides_with_ground ... ok
+test engine::tests::fast_body_does_not_tunnel_through_thin_terrain ... ok
+test engine::tests::full_submersion_has_archimedes_force ... ok
+test engine::tests::gravity_is_in_si_units ... ok
+test engine::tests::fast_body_does_not_tunnel_with_one_ccd_substep ... ok
+test engine::tests::invalid_joints_are_rejected_without_side_effects ... ok
+test engine::tests::joint_breaks_under_overload_and_is_reported_once ... ok
+test engine::tests::json_requests_from_the_jvm_drive_joints_and_state ... ok
+test engine::tests::minimum_integer_water_key_rejected_without_panic ... ok
+test engine::tests::overlapping_parts_rejected ... ok
+test engine::tests::hinge_pendulum_stays_in_its_plane ... ok
+test engine::tests::pause_does_not_accumulate_backlog ... ok
+test engine::tests::removing_a_body_removes_its_joints ... ok
+test engine::tests::pair_spring_conserves_horizontal_momentum ... ok
+test engine::tests::rope_stops_a_fall_at_its_maximum_length ... ok
+test engine::tests::slider_moves_only_on_its_axis_and_respects_limits ... ok
+test engine::tests::snapshot_aabb_bounds_a_rotated_box_exactly ... ok
+test engine::tests::solver_settings_are_validated ... ok
+test engine::tests::unstable_spring_rejected ... ok
+test engine::tests::saved_state_round_trips_through_json_and_resumes_identically ... ok
+test forces::tests::bottom_boundary_limits_volume ... ok
+test forces::tests::drag_opposes_motion ... ok
+test forces::tests::half_submerged_fraction ... ok
+test forces::tests::interior_faces_removed ... ok
+test forces::tests::no_flow_no_drag ... ok
+test forces::tests::positive_angle_of_attack_lifts ... ok
+test mechanics::tests::coincident_anchors_do_not_produce_nan ... ok
+test mechanics::tests::damping_opposes_separation ... ok
+test mechanics::tests::extension_pulls_towards_anchor ... ok
+test mechanics::tests::relaxed_spring_has_zero_force ... ok
+test water::tests::dam_break_conserves_volume ... ok
+test water::tests::dry_bed_is_nonnegative_and_conservative ... ok
+test water::tests::empty_tank_is_stable ... ok
+test water::tests::invalid_tank_rejected ... ok
+test water::tests::manning_friction_slows_the_front_and_conserves_mass ... ok
+test water::tests::ritter_dry_bed_front_matches_analytic_speed ... ok
+test water::tests::sample_respects_domain ... ok
+test water::tests::seiche_mode_keeps_period_and_amplitude ... ok
+test water::tests::still_water_stays_still ... ok
+test worker::tests::catch_up_is_capped_while_active_and_wider_while_idle ... ok
+test worker::tests::invalid_config_is_rejected_before_the_thread_starts ... ok
+test worker::tests::rejected_input_is_reported_once_and_the_worker_keeps_running ... ok
+test engine::tests::wood_floats_and_stone_sinks ... ok
+test worker::tests::worker_stops_cleanly_when_dropped ... ok
+test worker::tests::worker_steps_on_its_own_and_publishes_snapshots ... ok
+
+test result: ok. 63 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 2.65s
+
+   Doc-tests voxphys_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

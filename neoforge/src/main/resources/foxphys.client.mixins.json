@@ -1,0 +1,11 @@
+{
+  "required": false,
+  "package": "dev.foxphys.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "EntityRenderDispatcherMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

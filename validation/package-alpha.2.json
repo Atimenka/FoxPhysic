@@ -1,0 +1,26 @@
+{
+  "artifact": "voxphys-0.1.0-alpha.2-windows-x64.jar",
+  "version": "0.1.0-alpha.2",
+  "size_bytes": 2421808,
+  "jar_sha256": "5e18911b2ec38eee74c10952aa5e955afbc2d70b8802152651272502c4fb2512",
+  "native_sha256": "263e155b925afe873207ff45e943181c6650bb146ace8b9987f69d1dfb133b07",
+  "native_in_jar_sha256": "263e155b925afe873207ff45e943181c6650bb146ace8b9987f69d1dfb133b07",
+  "native_machine": "AMD64 (0x8664)",
+  "native_format": "PE32+ DLL x86-64 (MinGW GNU target)",
+  "jni_exports": 11,
+  "java_class_version": 65,
+  "minecraft": "1.21.1",
+  "loader": "Fabric",
+  "mixins_refmap_checked": true,
+  "zip_integrity_checked": true,
+  "linux_natives_in_jar": false,
+  "rust_tests": "63 passed, 0 failed, 1 ignored (bench)",
+  "clippy_deny_warnings": "clean",
+  "packaged_smoke": {
+    "NativeSmoke": "JNI_SMOKE_OK (Linux .so)",
+    "ProtocolSmoke": "PROTOCOL_SMOKE_OK (Linux .so)"
+  },
+  "native_windows_runtime_tested": false,
+  "minecraft_gameplay_tested": false,
+  "checked_at": "2026-10-11"
+}
