@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 
 pub const ABI_VERSION: i32 = 1;
+pub const MAX_PARTS_PER_BODY: usize = 512;
+pub const MAX_PARTS_PER_WORLD: usize = 512;
 pub type V3 = [f32; 3];
 pub fn zero() -> V3 {
     [0.0; 3]
@@ -170,8 +172,8 @@ impl Body {
         {
             return Err("invalid quaternion".into());
         }
-        if self.parts.is_empty() || self.parts.len() > 64 {
-            return Err("a body needs 1..64 parts".into());
+        if self.parts.is_empty() || self.parts.len() > MAX_PARTS_PER_BODY {
+            return Err(format!("a body needs 1..{MAX_PARTS_PER_BODY} parts"));
         }
         for p in &self.parts {
             p.validate()?;
@@ -185,9 +187,24 @@ impl Body {
         {
             return Err("body mass must be at least 0.05 kg".into());
         }
-        // Overlapping colliders would double-count material and displaced volume.
-        for (i, a) in self.parts.iter().enumerate() {
-            for b in self.parts.iter().skip(i + 1) {
+        // Overlapping colliders would double-count material and displaced volume. Sweep by X
+        // instead of comparing every pair: sparse, high-part-count assemblies usually test only
+        // a small neighbourhood while preserving the same 0.1 mm overlap tolerance.
+        let mut order: Vec<usize> = (0..self.parts.len()).collect();
+        order.sort_unstable_by(|&a, &b| {
+            let pa = &self.parts[a];
+            let pb = &self.parts[b];
+            (pa.offset[0] - pa.size[0] * 0.5).total_cmp(&(pb.offset[0] - pb.size[0] * 0.5))
+        });
+        for i in 0..order.len() {
+            let a = &self.parts[order[i]];
+            let a_max_x = a.offset[0] + a.size[0] * 0.5;
+            for &j in &order[i + 1..] {
+                let b = &self.parts[j];
+                let b_min_x = b.offset[0] - b.size[0] * 0.5;
+                if b_min_x >= a_max_x - 1e-4 {
+                    break;
+                }
                 if (0..3).all(|k| {
                     (a.offset[k] - b.offset[k]).abs() < 0.5 * (a.size[k] + b.size[k]) - 1e-4
                 }) {
@@ -551,6 +568,25 @@ pub enum Command {
         #[serde(default)]
         point: Option<V3>,
     },
+    /// Applies a force (N) for a finite duration, at the body centre or at a Lab-local point.
+    ApplyForce {
+        id: u64,
+        force: V3,
+        #[serde(default)]
+        point: Option<V3>,
+        duration: f32,
+    },
+    /// Applies a torque (N*m) for a finite duration.
+    ApplyTorque {
+        id: u64,
+        torque: V3,
+        duration: f32,
+    },
+    /// Sets angular velocity in rad/s, in Lab axes.
+    SetAngularVelocity {
+        id: u64,
+        velocity: V3,
+    },
     SetWind {
         velocity: V3,
     },
@@ -682,5 +718,66 @@ mod max_bodies_tests {
     fn max_bodies_above_ten_thousand_is_rejected() {
         let config = Config { max_bodies: 10_001, ..Config::default() };
         assert!(config.validate().is_err());
+    }
+}
+
+#[cfg(test)]
+mod body_part_validation_tests {
+    use super::{Body, Part};
+
+    fn part(x: f32) -> Part {
+        part_at([x, 0.0, 0.0])
+    }
+
+    fn part_at(offset: [f32; 3]) -> Part {
+        Part {
+            offset,
+            size: [1.0; 3],
+            density: 1000.0,
+            friction: 0.6,
+            restitution: 0.0,
+            block: "minecraft:stone".into(),
+        }
+    }
+
+    fn body(parts: Vec<Part>) -> Body {
+        Body {
+            id: 1,
+            position: [0.0; 3],
+            rotation: [0.0, 0.0, 0.0, 1.0],
+            velocity: [0.0; 3],
+            parts,
+            wing: None,
+        }
+    }
+
+    #[test]
+    fn part_limit_is_512() {
+        let positions = || {
+            (0..9).flat_map(|x| {
+                (0..9).flat_map(move |y| {
+                    (0..9).map(move |z| {
+                        [
+                            x as f32 * 2.0 - 8.0,
+                            y as f32 * 2.0 - 8.0,
+                            z as f32 * 2.0 - 8.0,
+                        ]
+                    })
+                })
+            })
+        };
+        let parts = positions().take(512).map(part_at).collect();
+        assert!(body(parts).validate().is_ok());
+        let too_many = positions().take(513).map(part_at).collect();
+        assert!(body(too_many).validate().unwrap_err().contains("512"));
+    }
+
+    #[test]
+    fn sweep_preserves_overlap_tolerance() {
+        assert!(body(vec![part(0.0), part(1.0)]).validate().is_ok());
+        assert!(body(vec![part(0.0), part(0.9998)])
+            .validate()
+            .unwrap_err()
+            .contains("must not overlap"));
     }
 }

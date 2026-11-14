@@ -3,6 +3,7 @@ package dev.foxphys;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import dev.foxphys.block.PhysicsBlockEntity;
 import dev.foxphys.mixin.BlockDisplayAccessor;
 import dev.foxphys.mixin.DisplayAccessor;
@@ -54,8 +55,12 @@ public final class Lab implements AutoCloseable {
     private Snapshot snapshot;
     private long nextId = 1;
     private int ticks;
-    /** Terrain box geometry (its JSON) -> native key. Native terrain mirrors this map. */
-    private final Map<String, Long> terrainIds = new HashMap<>();
+    /** Numeric terrain geometry -> native key. JSON is built only for boxes that changed. */
+    private record TerrainBox(double centerX, double centerY, double centerZ,
+                              double sizeX, double sizeY, double sizeZ) {}
+    private final Map<TerrainBox, Long> terrainIds = new HashMap<>();
+    /** Reused per scan to avoid allocating boxed Longs or a large primitive table every tick. */
+    private final LongOpenHashSet scannedCells = new LongOpenHashSet();
     private long nextTerrainId = 1;
     /** Blocks moved into physics bodies by /foxphys assemble, keyed by body id. */
     private final Map<Long, Assembly> assemblies = new LinkedHashMap<>();
@@ -243,6 +248,67 @@ public final class Lab implements AutoCloseable {
         Map<BlockPos, BlockPos> cells = placedCells.get(bodyId);
         return cells != null && cells.containsValue(p);
     }
+    /**
+     * Queues an outward impulse for each body whose bounds intersect a vanilla explosion radius.
+     * This deliberately uses one batched worker message so a blast cannot block the server thread
+     * once complex bodies are allowed to contain hundreds of parts.
+     */
+    public void applyExplosion(Vec3 worldCenter, float power) {
+        if (closed || failed || snapshot == null || worldCenter == null || !Float.isFinite(power) || power <= 0.0f) return;
+        double radius = Math.min(128.0, power * 2.0);
+        if (!(radius > 0.0)) return;
+        Vec3 blast = toLocal(worldCenter);
+        JsonArray impulses = new JsonArray();
+        for (BodyState body : snapshot.bodies()) {
+            float[] center = body.position(), min = body.aabbMin(), max = body.aabbMax();
+            if (center == null || center.length < 3 || min == null || min.length < 3 || max == null || max.length < 3
+                    || !Float.isFinite(body.mass()) || body.mass() <= 0.0f) continue;
+            double px = Math.max(min[0], Math.min(max[0], blast.x));
+            double py = Math.max(min[1], Math.min(max[1], blast.y));
+            double pz = Math.max(min[2], Math.min(max[2], blast.z));
+            double dx = px - blast.x, dy = py - blast.y, dz = pz - blast.z;
+            double distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (!(distance < radius)) continue;
+            double falloff = 1.0 - distance / radius;
+            double directionLength = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (directionLength < 1e-6) {
+                dx = center[0] - blast.x; dy = center[1] - blast.y; dz = center[2] - blast.z;
+                directionLength = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            }
+            if (directionLength < 1e-6) { dx = 0.0; dy = 1.0; dz = 0.0; directionLength = 1.0; }
+            double deltaV = Math.min(8.0, power * 0.75 * falloff);
+            double impulseSize = Math.min(1_000_000.0, body.mass() * deltaV);
+            if (!(impulseSize > 0.0)) continue;
+            JsonObject command = op("impulse");
+            command.addProperty("id", body.id());
+            command.add("impulse", vector(dx / directionLength * impulseSize,
+                    dy / directionLength * impulseSize, dz / directionLength * impulseSize));
+            // Apply at the nearest point on the body's bounds to add a plausible blast torque.
+            command.add("point", vector(px, py, pz));
+            impulses.add(command);
+        }
+        if (impulses.isEmpty()) return;
+        JsonObject request = new JsonObject();
+        request.add("commands", impulses);
+        try {
+            NativeBridge.workerPush(handle, request.toString());
+        } catch (RuntimeException | LinkageError e) {
+            FoxPhysMod.LOGGER.warn("FoxPhys could not queue explosion impulses", e);
+        }
+    }
+
+    /** Queues a bounded batch of lab-local commands returned by fluid, soft-body, and API force coupling. */
+    public void queueCouplingImpulses(JsonArray commands) {
+        if (closed || failed || commands == null || commands.isEmpty()) return;
+        JsonObject request = new JsonObject();
+        request.add("commands", commands);
+        try {
+            NativeBridge.workerPush(handle, request.toString());
+        } catch (RuntimeException | LinkageError e) {
+            FoxPhysMod.LOGGER.warn("FoxPhys could not queue coupled physics commands", e);
+        }
+    }
+
     /** Applies an impulse (N*s) to a body at a world point. Synchronous: throws if rejected. */
     public void impulse(long id, Vec3 impulseWorld, Vec3 pointWorld) {
         JsonObject command = op("impulse");
@@ -250,6 +316,30 @@ public final class Lab implements AutoCloseable {
         command.add("impulse", vector(impulseWorld.x, impulseWorld.y, impulseWorld.z));
         Vec3 local = toLocal(pointWorld);
         command.add("point", vector(local.x, local.y, local.z));
+        commands(command);
+    }
+    public void applyForce(long id, Vec3 forceWorld, Vec3 pointWorld, double duration) {
+        JsonObject command = op("apply_force");
+        command.addProperty("id", id);
+        command.add("force", vector(forceWorld.x, forceWorld.y, forceWorld.z));
+        if (pointWorld != null) {
+            Vec3 local = toLocal(pointWorld);
+            command.add("point", vector(local.x, local.y, local.z));
+        }
+        command.addProperty("duration", duration);
+        commands(command);
+    }
+    public void applyTorque(long id, Vec3 torque, double duration) {
+        JsonObject command = op("apply_torque");
+        command.addProperty("id", id);
+        command.add("torque", vector(torque.x, torque.y, torque.z));
+        command.addProperty("duration", duration);
+        commands(command);
+    }
+    public void setAngularVelocity(long id, Vec3 velocity) {
+        JsonObject command = op("set_angular_velocity");
+        command.addProperty("id", id);
+        command.add("velocity", vector(velocity.x, velocity.y, velocity.z));
         commands(command);
     }
     /** Sets a body's pose (centre of mass and quaternion x, y, z, w, lab-local) and stops it. Synchronous. */
@@ -356,23 +446,26 @@ public final class Lab implements AutoCloseable {
                 regions.add(r);
             }
         }
-        Map<String, JsonObject> terrain = new LinkedHashMap<>();
+        // Primitive set avoids boxing one Long for every sampled cell. Overlapping body regions
+        // are charged to the scan budget only once, after deduplication.
+        Set<TerrainBox> terrain = new LinkedHashSet<>();
         JsonArray water = new JsonArray();
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-        Set<Long> seen = new HashSet<>();
+        LongOpenHashSet seen = scannedCells;
+        seen.clear();
         long budget = SCAN_BUDGET;
         scanSkipped = false;
+        scan:
         for (int[] r : regions) {
-            long volume = (long) (r[3] - r[0]) * (r[4] - r[1]) * (r[5] - r[2]);
-            if (volume <= 0) continue;
-            if (volume > budget) {
-                // Bodies beyond the scan budget get no new terrain this scan; reported by /foxphys status.
-                scanSkipped = true;
-                continue;
-            }
-            budget -= volume;
+            if (r[3] <= r[0] || r[4] <= r[1] || r[5] <= r[2]) continue;
             for (int x = r[0]; x < r[3]; x++) for (int z = r[2]; z < r[5]; z++) for (int y = r[1]; y < r[4]; y++) {
                 if (!seen.add(packKey(x, y, z))) continue;
+                if (budget == 0) {
+                    // The budget counts unique cells actually visited, not overlapping region volume.
+                    scanSkipped = true;
+                    break scan;
+                }
+                budget--;
                 pos.set(origin.getX() + x, origin.getY() + y, origin.getZ() + z);
                 if (world.isOutsideBuildHeight(pos) || !world.hasChunk(pos.getX() >> 4, pos.getZ() >> 4)) continue;
                 BlockState state = world.getBlockState(pos);
@@ -382,10 +475,11 @@ public final class Lab implements AutoCloseable {
                     double sx = box.maxX - box.minX, sy = box.maxY - box.minY, sz = box.maxZ - box.minZ;
                     if (sx < 0.001 || sy < 0.001 || sz < 0.001) continue; // native rejects boxes below 1 mm
                     if (terrain.size() >= 16384) throw new IllegalStateException("Terrain exceeds laboratory collider budget");
-                    JsonObject c = new JsonObject();
-                    c.add("center", vector(x + (box.minX + box.maxX) / 2, y + (box.minY + box.maxY) / 2, z + (box.minZ + box.maxZ) / 2));
-                    c.add("size", vector(sx, sy, sz));
-                    terrain.putIfAbsent(c.toString(), c);
+                    terrain.add(new TerrainBox(
+                            x + (box.minX + box.maxX) / 2,
+                            y + (box.minY + box.maxY) / 2,
+                            z + (box.minZ + box.maxZ) / 2,
+                            sx, sy, sz));
                 }
                 var fluid = state.getFluidState();
                 if (fluid.is(FluidTags.WATER)) {
@@ -593,22 +687,22 @@ public final class Lab implements AutoCloseable {
         for(var d:displays) {manager.untrack(d.getUUID());d.discard();} displays.clear();
     }
     /** Sends only the difference against the terrain the native world already holds. */
-    private void diffTerrain(Map<String, JsonObject> current, JsonArray commands) {
+    private void diffTerrain(Set<TerrainBox> current, JsonArray commands) {
         JsonArray remove = new JsonArray();
-        Iterator<Map.Entry<String, Long>> it = terrainIds.entrySet().iterator();
+        Iterator<Map.Entry<TerrainBox, Long>> it = terrainIds.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry<String, Long> e = it.next();
-            if (!current.containsKey(e.getKey())) { remove.add(e.getValue()); it.remove(); }
+            Map.Entry<TerrainBox, Long> e = it.next();
+            if (!current.contains(e.getKey())) { remove.add(e.getValue()); it.remove(); }
         }
         JsonArray add = new JsonArray();
-        for (Map.Entry<String, JsonObject> e : current.entrySet()) {
-            if (terrainIds.containsKey(e.getKey())) continue;
+        for (TerrainBox box : current) {
+            if (terrainIds.containsKey(box)) continue;
             long id = nextTerrainId++;
-            terrainIds.put(e.getKey(), id);
+            terrainIds.put(box, id);
             JsonObject keyed = new JsonObject();
             keyed.addProperty("key", id);
-            keyed.add("center", e.getValue().get("center"));
-            keyed.add("size", e.getValue().get("size"));
+            keyed.add("center", vector(box.centerX(), box.centerY(), box.centerZ()));
+            keyed.add("size", vector(box.sizeX(), box.sizeY(), box.sizeZ()));
             add.add(keyed);
         }
         if (add.size() == 0 && remove.size() == 0) return;
@@ -760,6 +854,16 @@ public final class Lab implements AutoCloseable {
     public int assemblyCount() { return assemblies.size(); }
     /** True when the body was made from blocks (it can be disassembled back into them). */
     public boolean isAssembly(long id) { return assemblies.containsKey(id); }
+    /** Original block states of an assembly in unspecified order; empty for non-assemblies. */
+    public List<BlockState> blockStates(long id) {
+        Assembly assembly = assemblies.get(id);
+        return assembly == null ? List.of() : List.copyOf(assembly.cells().values());
+    }
+    /** Lab-local cell positions and original states for provider dispatch; returns a defensive copy. */
+    public Map<BlockPos, BlockState> assemblyCells(long id) {
+        Assembly assembly = assemblies.get(id);
+        return assembly == null ? Map.of() : Map.copyOf(assembly.cells());
+    }
     /**
      * Density in kg/m^3. A density registered for the full id (namespace:path) wins, then a registered
      * or table value for the path, then a guess from the block name.

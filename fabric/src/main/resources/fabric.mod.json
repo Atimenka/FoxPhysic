@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "foxphys",
+  "version": "${version}",
+  "name": "FoxPhysic",
+  "icon": "assets/foxphys/icon.png",
+  "description": "Experimental rigid bodies, buoyancy, aerodynamic forces, springs and a bounded shallow-water laboratory. Not a global replacement for vanilla physics.",
+  "authors": [
+    "FoxPhys contributors"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.foxphys.FoxPhysMod"
+    ],
+    "client": [
+      "dev.foxphys.client.FoxPhysClient"
+    ]
+  },
+  "mixins": [
+    "foxphys.mixins.json",
+    "foxphys.client.mixins.json",
+    "foxphys.player.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/sable-companion-fabric-1.21.1-1.6.0.jar"
+    }
+  ],
+  "suggests": {
+    "sable": "*"
+  }
+}

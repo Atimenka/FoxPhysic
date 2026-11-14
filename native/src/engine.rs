@@ -17,6 +17,17 @@ pub const MAX_GRABS: usize = 4;
 mod assembler;
 mod contacts;
 
+#[derive(Clone, Copy)]
+struct ForcePulse {
+    force: V3,
+    point: Option<V3>,
+    remaining: f32,
+}
+#[derive(Clone, Copy)]
+struct TorquePulse {
+    torque: V3,
+    remaining: f32,
+}
 #[derive(Clone)]
 struct Entry {
     handle: RigidBodyHandle,
@@ -24,6 +35,9 @@ struct Entry {
     surfaces: Vec<Surface>,
     buoyancy: Vec3,
     air: Vec3,
+    /// Finite-duration forces are consumed by fixed steps; they survive paused/idle gaps.
+    pending_forces: Vec<ForcePulse>,
+    pending_torques: Vec<TorquePulse>,
 }
 #[derive(Clone)]
 struct JointEntry {
@@ -365,6 +379,35 @@ impl World {
                 }
                 Ok(format!("impulse applied to {id}"))
             }
+            Command::ApplyForce { id, force, point, duration } => {
+                vector(force, 2_000_000.0, "force")?;
+                if let Some(p) = point {
+                    vector(p, 256.0, "force.point")?;
+                }
+                bounded(duration, 0.001, 10.0, "force.duration")?;
+                let entry = self.entries.get_mut(&id).ok_or_else(|| format!("unknown body {id}"))?;
+                if entry.pending_forces.len() >= 128 {
+                    return Err(format!("body {id} has too many pending force pulses"));
+                }
+                entry.pending_forces.push(ForcePulse { force, point, remaining: duration });
+                Ok(format!("force queued for {id}"))
+            }
+            Command::ApplyTorque { id, torque, duration } => {
+                vector(torque, 2_000_000.0, "torque")?;
+                bounded(duration, 0.001, 10.0, "torque.duration")?;
+                let entry = self.entries.get_mut(&id).ok_or_else(|| format!("unknown body {id}"))?;
+                if entry.pending_torques.len() >= 128 {
+                    return Err(format!("body {id} has too many pending torque pulses"));
+                }
+                entry.pending_torques.push(TorquePulse { torque, remaining: duration });
+                Ok(format!("torque queued for {id}"))
+            }
+            Command::SetAngularVelocity { id, velocity } => {
+                vector(velocity, 1000.0, "angular_velocity")?;
+                let h = self.entries.get(&id).ok_or_else(|| format!("unknown body {id}"))?.handle;
+                self.bodies.get_mut(h).ok_or("missing rigid body")?.set_angvel(v(velocity), true);
+                Ok(format!("angular velocity of body {id} set"))
+            }
             Command::SetWind { velocity } => {
                 vector(velocity, 100.0, "wind")?;
                 self.wind = v(velocity);
@@ -430,9 +473,9 @@ impl World {
             .map(|e| e.spec.parts.len())
             .sum::<usize>()
             + spec.parts.len()
-            > 256
+            > MAX_PARTS_PER_WORLD
         {
-            return Err("total visual/material part limit: 256".into());
+            return Err(format!("total visual/material part limit: {MAX_PARTS_PER_WORLD}"));
         }
         let q = spec.rotation;
         let rotation = UnitQuaternion::new_normalize(Quaternion::new(q[3], q[0], q[1], q[2]));
@@ -468,6 +511,8 @@ impl World {
                 surfaces,
                 buoyancy: Vec3::zeros(),
                 air: Vec3::zeros(),
+                pending_forces: Vec::new(),
+                pending_torques: Vec::new(),
             },
         );
         Ok(())
@@ -721,6 +766,28 @@ impl World {
             let rb = &mut self.bodies[e.handle];
             rb.reset_forces(false);
             rb.reset_torques(false);
+            let mut pending_forces = Vec::with_capacity(e.pending_forces.len());
+            for mut pulse in std::mem::take(&mut e.pending_forces) {
+                let fraction = (pulse.remaining / dt).clamp(0.0, 1.0);
+                let force = [pulse.force[0] * fraction, pulse.force[1] * fraction, pulse.force[2] * fraction];
+                if let Some(point) = pulse.point {
+                    rb.add_force_at_point(v(force), Point3::from(v(point)), true);
+                } else {
+                    rb.add_force(v(force), true);
+                }
+                pulse.remaining -= dt;
+                if pulse.remaining > 1e-6 { pending_forces.push(pulse); }
+            }
+            e.pending_forces = pending_forces;
+            let mut pending_torques = Vec::with_capacity(e.pending_torques.len());
+            for mut pulse in std::mem::take(&mut e.pending_torques) {
+                let fraction = (pulse.remaining / dt).clamp(0.0, 1.0);
+                let torque = [pulse.torque[0] * fraction, pulse.torque[1] * fraction, pulse.torque[2] * fraction];
+                rb.add_torque(v(torque), true);
+                pulse.remaining -= dt;
+                if pulse.remaining > 1e-6 { pending_torques.push(pulse); }
+            }
+            e.pending_torques = pending_torques;
             let bundle = forces::body_forces(
                 rb,
                 &e.spec,
@@ -1660,6 +1727,33 @@ mod tests {
 #[cfg(test)]
 mod terrain_patch_tests {
     use super::*;
+
+    #[test]
+    fn force_and_torque_are_applied_for_the_requested_duration() {
+        let mut w = World::new(Config::default()).unwrap();
+        step(&mut w, vec![Command::AddBody { body: falling_cube(1, 30.0, 0.0) }], 0.0);
+        let s = step(
+            &mut w,
+            vec![
+                Command::ApplyForce { id: 1, force: [1000.0, 0.0, 0.0], point: None, duration: 0.05 },
+                Command::ApplyTorque { id: 1, torque: [0.0, 1000.0, 0.0], duration: 0.05 },
+            ],
+            0.05,
+        );
+        assert!(s.bodies[0].velocity[0] > 0.018, "force did not last for the requested 50 ms: {:?}", s.bodies[0].velocity);
+        assert!(s.bodies[0].angular_velocity[1] > 0.05, "torque did not rotate the body: {:?}", s.bodies[0].angular_velocity);
+        let stopped_force = s.bodies[0].velocity[0];
+        let later = step(&mut w, vec![], 0.1);
+        assert!((later.bodies[0].velocity[0] - stopped_force).abs() < 1e-3,
+                "finite force continued after its duration: {:?}", later.bodies[0].velocity);
+        let set = step(
+            &mut w,
+            vec![Command::SetAngularVelocity { id: 1, velocity: [0.0, 0.0, 0.75] }],
+            0.0,
+        );
+        assert!((set.bodies[0].angular_velocity[2] - 0.75).abs() < 1e-4,
+                "angular velocity setter failed: {:?}", set.bodies[0].angular_velocity);
+    }
 
     #[test]
     fn set_pose_moves_rotates_and_stops_a_body() {

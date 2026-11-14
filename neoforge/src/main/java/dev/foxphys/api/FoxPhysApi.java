@@ -3,12 +3,16 @@ package dev.foxphys.api;
 import dev.foxphys.DensityTable;
 import dev.foxphys.FoxPhysMod;
 import dev.foxphys.Lab;
+import dev.foxphys.PhysicsProviderRegistry;
 import dev.foxphys.nativecore.NativeLoader;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
@@ -93,6 +97,50 @@ public final class FoxPhysApi {
         DensityTable.register(key, kgPerM3);
     }
 
+    /** Registers the density (kg/m^3) of a mod block by its registry id. */
+    public static void registerBlock(Block block, double kgPerM3) {
+        if (block == null) throw new IllegalArgumentException("block is null");
+        var id = BuiltInRegistries.BLOCK.getKey(block);
+        if (id == null) throw new IllegalArgumentException("block is not registered");
+        registerDensity(id.toString(), kgPerM3);
+    }
+
+    /** Registers a per-body force provider for cells of this block that become part of an assembly. */
+    public static void registerBlock(Block block, IForceProvider provider) {
+        if (block == null || provider == null) throw new IllegalArgumentException("block and provider are required");
+        PhysicsProviderRegistry.registerBlock(block, provider);
+    }
+
+    /** Removes this block's custom force provider and registered full-id density, if any. */
+    public static boolean unregisterBlock(Block block) {
+        if (block == null) throw new IllegalArgumentException("block is null");
+        var id = BuiltInRegistries.BLOCK.getKey(block);
+        boolean density = id != null && DensityTable.unregister(id.toString());
+        return PhysicsProviderRegistry.unregisterBlock(block) || density;
+    }
+
+    /** Registers an in-world block entity type as a source of forces on nearby rigid bodies. */
+    public static void registerBlockEntity(BlockEntityType<?> type, IForceProvider provider) {
+        if (type == null || provider == null) throw new IllegalArgumentException("type and provider are required");
+        PhysicsProviderRegistry.registerBlockEntity(type, provider);
+    }
+
+    /** Removes a block-entity force provider. */
+    public static boolean unregisterBlockEntity(BlockEntityType<?> type) {
+        if (type == null) throw new IllegalArgumentException("type is null");
+        return PhysicsProviderRegistry.unregisterBlockEntity(type);
+    }
+
+    /** Number of force-producing block registrations. */
+    public static int registeredBlockProviderCount() {
+        return PhysicsProviderRegistry.blockProviderCount();
+    }
+
+    /** Number of force-producing block-entity registrations. */
+    public static int registeredBlockEntityProviderCount() {
+        return PhysicsProviderRegistry.blockEntityProviderCount();
+    }
+
     /** The density physics uses for a block right now (table, registered value or name heuristic). */
     public static double densityOf(BlockState state) {
         if (state == null) throw new IllegalArgumentException("state is null");
@@ -127,8 +175,9 @@ public final class FoxPhysApi {
 
     /** One line of text for logs and diagnostics. */
     public static String describe() {
-        return String.format(Locale.ROOT, "FoxPhys API v%d, native %s, density table %d, registered densities %d, soft bodies %s",
+        return String.format(Locale.ROOT, "FoxPhys API v%d, native %s, density table %d, registered densities %d, block providers %d, block-entity providers %d, soft bodies %s",
                 API_VERSION, isNativeLoaded() ? "loaded" : "NOT loaded", DensityTable.size(),
-                DensityTable.overrideCount(), SoftBodyApi.describeState());
+                DensityTable.overrideCount(), PhysicsProviderRegistry.blockProviderCount(),
+                PhysicsProviderRegistry.blockEntityProviderCount(), SoftBodyApi.describeState());
     }
 }

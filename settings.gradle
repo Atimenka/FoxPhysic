@@ -1,8 +1,22 @@
 pluginManagement {
     repositories {
         maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://maven.neoforged.net/releases' }
         gradlePluginPortal()
         mavenCentral()
     }
+    plugins {
+        id 'fabric-loom' version '1.8.13'
+        id 'net.neoforged.moddev' version '2.0.148'
+    }
 }
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'foxphys'
+include 'common', 'fabric', 'neoforge'

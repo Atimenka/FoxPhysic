@@ -6,12 +6,14 @@ import dev.foxphys.SoftBodies;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Soft bodies: rubber, jelly, cloth and rope, simulated natively with XPBD. They collide with a flat
- * floor plane given at spawn, not with blocks. Limits: {@link #MAX_BODIES} bodies, {@link #MAX_PARTICLES}
- * particles per body. Server thread only.
+ * Soft bodies: rubber, jelly, cloth and rope, simulated natively with XPBD. Bodies spawned with a
+ * {@link ServerLevel} collide with nearby Minecraft block shapes and FoxPhys rigid bodies; all bodies
+ * also use their optional floor plane and self-collision. Cloth and rope can tear under overload.
+ * Limits: {@link #MAX_BODIES} bodies, {@link #MAX_PARTICLES} particles per body. Server thread only.
  */
 public final class SoftBodyApi {
     public static final int MAX_BODIES = 16;
@@ -21,20 +23,24 @@ public final class SoftBodyApi {
 
     SoftBodyApi() {}
 
-    /**
-     * Creates a soft body at {@code origin}, resting on the plane {@code y = floorY} (world coordinates).
-     *
-     * @return the new soft body id, also sent in {@link dev.foxphys.api.event.SoftBodySpawnedEvent}
-     * @throws IllegalArgumentException for an unknown preset or non-finite numbers
-     * @throws IllegalStateException    when the native registry refuses (for example at {@link #MAX_BODIES})
-     */
+    /** Compatibility entry point without a world owner: no Minecraft block or rigid colliders are sampled. */
     public int spawn(String preset, Vec3 origin, double floorY) {
+        return spawnInternal(null, preset, origin, floorY);
+    }
+
+    /** Creates a world-bound body with block-shape and rigid-body collision sampling. */
+    public int spawn(ServerLevel world, String preset, Vec3 origin, double floorY) {
+        if (world == null) throw new IllegalArgumentException("world must not be null");
+        return spawnInternal(world, preset, origin, floorY);
+    }
+
+    private static int spawnInternal(ServerLevel world, String preset, Vec3 origin, double floorY) {
         if (preset == null || !PRESETS.contains(preset)) throw new IllegalArgumentException("preset must be one of " + PRESETS);
         if (origin == null || !Double.isFinite(origin.x) || !Double.isFinite(origin.y) || !Double.isFinite(origin.z)) {
             throw new IllegalArgumentException("origin must be a finite vector");
         }
         if (!Double.isFinite(floorY)) throw new IllegalArgumentException("floorY must be finite");
-        return SoftBodies.spawn(preset, origin.x, origin.y, origin.z, floorY).get("id").getAsInt();
+        return SoftBodies.spawn(world, preset, origin.x, origin.y, origin.z, floorY).get("id").getAsInt();
     }
 
     /** Ids of all soft bodies. */

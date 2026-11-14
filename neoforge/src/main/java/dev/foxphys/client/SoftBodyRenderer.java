@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.foxphys.net.FoxPhysNetwork.SoftMesh;
 import dev.foxphys.net.FoxPhysNetwork.SoftMeshes;
+import dev.foxphys.api.client.SoftBodyFrame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,6 +81,20 @@ public final class SoftBodyRenderer {
         }
         previous = current;
         current = new Frame(System.nanoTime(), byId);
+    }
+
+    /** Defensive, interpolated client snapshots for the public client API. */
+    public static List<SoftBodyFrame> frames(float alpha) {
+        Frame now = current;
+        if (now == null || now.byId().isEmpty()) return List.of();
+        Frame before = previous;
+        float t = Float.isFinite(alpha) ? Math.max(0f, Math.min(1f, alpha)) : 1f;
+        List<SoftBodyFrame> result = new ArrayList<>(now.byId().size());
+        for (SoftMesh mesh : now.byId().values()) {
+            SoftMesh old = before == null ? null : before.byId().get(mesh.id());
+            result.add(new SoftBodyFrame(mesh.id(), mesh.preset(), interpolate(mesh, old, t), mesh.triangles()));
+        }
+        return List.copyOf(result);
     }
 
     /** Stage hook: draws after the solid blocks so the soft bodies sit in the world. */

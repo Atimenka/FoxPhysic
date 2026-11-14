@@ -17,8 +17,6 @@ use rapier3d::{
 use std::collections::{BTreeMap, BTreeSet};
 
 const SNAP_TOLERANCE: f32 = 5e-3;
-const MAX_PARTS_PER_BODY: usize = 64;
-const MAX_PARTS_TOTAL: usize = 256;
 const MAX_CELLS_PER_COMMAND: usize = 4096;
 const MAX_DISASSEMBLED_CELLS: usize = 16384;
 const ALIGN_TOLERANCE: f32 = 1e-3;
@@ -261,8 +259,8 @@ impl World {
             ));
         }
         let total: usize = self.entries.values().map(|e| e.spec.parts.len()).sum();
-        if total + pieces.len() > MAX_PARTS_TOTAL {
-            return Err(format!("world collider limit {MAX_PARTS_TOTAL} would be exceeded"));
+        if total + pieces.len() > MAX_PARTS_PER_WORLD {
+            return Err(format!("world collider limit {MAX_PARTS_PER_WORLD} would be exceeded"));
         }
         let new_parts: Vec<Part> = pieces
             .iter()
@@ -485,11 +483,11 @@ mod tests {
     }
 
     #[test]
-    fn checkerboard_exceeding_collider_budget_is_rejected() {
+    fn checkerboard_over_512_colliders_is_rejected() {
         let mut cells = Vec::new();
-        for x in 0..6 {
-            for y in 0..6 {
-                for z in 0..6 {
+        for x in 0..12 {
+            for y in 0..12 {
+                for z in 0..12 {
                     if (x + y + z) % 2 == 0 {
                         cells.push(cell([x, 10 + y, z], 900.0));
                     }
@@ -499,8 +497,26 @@ mod tests {
         let mut w = World::new(Config::default()).unwrap();
         let s = run(&mut w, 0.0, vec![Command::AssembleBody { id: 7, cells }]);
         assert!(!s.results[0].ok);
+        assert!(s.results[0].message.contains("512"));
         assert!(s.results[0].message.contains("colliders"));
         assert!(s.bodies.is_empty());
+    }
+
+    #[test]
+    fn assembly_accepts_512_distinct_colliders() {
+        let mut cells = Vec::new();
+        for x in (0..16).step_by(2) {
+            for y in (0..16).step_by(2) {
+                for z in (0..16).step_by(2) {
+                    cells.push(cell([x, 10 + y, z], 900.0));
+                }
+            }
+        }
+        assert_eq!(cells.len(), MAX_PARTS_PER_BODY);
+        let mut w = World::new(Config::default()).unwrap();
+        let s = run(&mut w, 0.0, vec![Command::AssembleBody { id: 70, cells }]);
+        assert!(s.results[0].ok, "{}", s.results[0].message);
+        assert_eq!(s.bodies[0].parts.len(), MAX_PARTS_PER_BODY);
     }
 
     #[test]

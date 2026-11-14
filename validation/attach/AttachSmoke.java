@@ -7,8 +7,8 @@ import net.minecraft.world.phys.Vec3;
 /**
  * Smoke test for soft-body attachments and wind, run without a server.
  * Covers the quaternion maths of SoftAttachments and the Rust side of anchor, anchor_targets,
- * release and wind. The rigid-body side (Lab.bodyById, toWorld) needs a running server and is
- * not covered here.
+ * release and wind, stepping the native world directly without a server. The rigid-body side
+ * (Lab.bodyById, toWorld) and Minecraft collider sampling need a running server and are not covered.
  */
 public final class AttachSmoke {
     private static void check(boolean ok, String what) {
@@ -65,7 +65,10 @@ public final class AttachSmoke {
             tr.add("targets", targets);
             SoftBodies.call("anchor_targets", tr);
             SoftBodies.setWind(new Vec3(4, 0, 0));
-            SoftBodies.tick();
+            JsonObject step = new JsonObject();
+            step.addProperty("dt", 0.05);
+            step.addProperty("substeps", 8);
+            SoftBodies.call("step", step);
         }
         JsonObject pos = SoftBodies.withId("positions", id1);
         double px = pos.getAsJsonArray("pos").get(3 * idx).getAsDouble();

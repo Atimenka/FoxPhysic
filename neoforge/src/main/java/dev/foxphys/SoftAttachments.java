@@ -77,6 +77,7 @@ public final class SoftAttachments {
                 double[] off = rotateInverse(body.rotation(), rel);
                 offsets[k] = off;
             }
+            SoftBodies.bindWorld(softId, lab.world());
             ATTACHED.put(softId, new Attachment(softId, lab, body.id(), indices, offsets));
             return "Слой (" + side + ", частиц " + n + ") закреплён к телу #" + body.id() + ".";
         } catch (RuntimeException e) {

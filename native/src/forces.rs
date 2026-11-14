@@ -6,7 +6,7 @@ use rapier3d::{
     na::{Point3, Vector3},
     prelude::RigidBody,
 };
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 
 pub type Vec3 = Vector3<f32>;
 pub fn v(a: [f32; 3]) -> Vec3 {
@@ -99,7 +99,30 @@ pub struct Surface {
     pub tangent_b: Vec3,
     pub area: f32,
 }
+fn face_bin(coordinate: f32) -> i64 {
+    (coordinate as f64 * 10_000.0).round() as i64
+}
+
 pub fn exposed_surfaces(parts: &[Part]) -> Vec<Surface> {
+    // Index opposing faces by axis and quantized plane. Searching the plane's adjacent bins
+    // preserves the existing 0.1 mm tolerance while avoiding a full parts×parts scan for every
+    // face of a high-part-count assembly.
+    let mut negative_faces: [HashMap<i64, Vec<usize>>; 3] = std::array::from_fn(|_| HashMap::new());
+    let mut positive_faces: [HashMap<i64, Vec<usize>>; 3] = std::array::from_fn(|_| HashMap::new());
+    for (i, p) in parts.iter().enumerate() {
+        for axis in 0..3 {
+            let half = p.size[axis] * 0.5;
+            negative_faces[axis]
+                .entry(face_bin(p.offset[axis] - half))
+                .or_default()
+                .push(i);
+            positive_faces[axis]
+                .entry(face_bin(p.offset[axis] + half))
+                .or_default()
+                .push(i);
+        }
+    }
+
     let mut out = Vec::new();
     for (i, p) in parts.iter().enumerate() {
         for axis in 0..3 {
@@ -109,15 +132,31 @@ pub fn exposed_surfaces(parts: &[Part]) -> Vec<Surface> {
                 let center = v(p.offset) + n * (p.size[axis] * 0.5);
                 let a = (axis + 1) % 3;
                 let b = (axis + 2) % 3;
-                let covered = parts.iter().enumerate().any(|(j, q)| {
-                    i != j
-                        && (center[axis] - (q.offset[axis] - sign * q.size[axis] * 0.5)).abs()
-                            < 1e-4
-                        && (q.offset[a] - p.offset[a]).abs() + p.size[a] * 0.5
-                            <= q.size[a] * 0.5 + 1e-4
-                        && (q.offset[b] - p.offset[b]).abs() + p.size[b] * 0.5
-                            <= q.size[b] * 0.5 + 1e-4
-                });
+                let key = face_bin(center[axis]);
+                let candidates = if sign > 0.0 {
+                    &negative_faces[axis]
+                } else {
+                    &positive_faces[axis]
+                };
+                let mut covered = false;
+                for neighbour_bin in [key - 1, key, key + 1] {
+                    let Some(indices) = candidates.get(&neighbour_bin) else {
+                        continue;
+                    };
+                    if indices.iter().any(|&j| {
+                        let q = &parts[j];
+                        i != j
+                            && (center[axis] - (q.offset[axis] - sign * q.size[axis] * 0.5)).abs()
+                                < 1e-4
+                            && (q.offset[a] - p.offset[a]).abs() + p.size[a] * 0.5
+                                <= q.size[a] * 0.5 + 1e-4
+                            && (q.offset[b] - p.offset[b]).abs() + p.size[b] * 0.5
+                                <= q.size[b] * 0.5 + 1e-4
+                    }) {
+                        covered = true;
+                        break;
+                    }
+                }
                 if covered {
                     continue;
                 }
@@ -348,13 +387,75 @@ pub fn body_forces(
 mod tests {
     use super::*;
     fn part(offset: [f32; 3]) -> Part {
+        part_size(offset, [1.0; 3])
+    }
+    fn part_size(offset: [f32; 3], size: [f32; 3]) -> Part {
         Part {
             offset,
-            size: [1.0; 3],
+            size,
             density: 550.0,
             friction: 0.6,
             restitution: 0.05,
             block: "minecraft:oak_planks".into(),
+        }
+    }
+    fn brute_force_surfaces(parts: &[Part]) -> Vec<Surface> {
+        let mut out = Vec::new();
+        for (i, p) in parts.iter().enumerate() {
+            for axis in 0..3 {
+                for sign in [-1.0, 1.0] {
+                    let mut n = Vec3::zeros();
+                    n[axis] = sign;
+                    let center = v(p.offset) + n * (p.size[axis] * 0.5);
+                    let a = (axis + 1) % 3;
+                    let b = (axis + 2) % 3;
+                    let covered = parts.iter().enumerate().any(|(j, q)| {
+                        i != j
+                            && (center[axis] - (q.offset[axis] - sign * q.size[axis] * 0.5)).abs()
+                                < 1e-4
+                            && (q.offset[a] - p.offset[a]).abs() + p.size[a] * 0.5
+                                <= q.size[a] * 0.5 + 1e-4
+                            && (q.offset[b] - p.offset[b]).abs() + p.size[b] * 0.5
+                                <= q.size[b] * 0.5 + 1e-4
+                    });
+                    if covered {
+                        continue;
+                    }
+                    let mut ta = Vec3::zeros();
+                    ta[a] = p.size[a] * 0.5;
+                    let mut tb = Vec3::zeros();
+                    tb[b] = p.size[b] * 0.5;
+                    out.push(Surface {
+                        center,
+                        normal: n,
+                        tangent_a: ta,
+                        tangent_b: tb,
+                        area: p.size[a] * p.size[b],
+                    });
+                }
+            }
+        }
+        out
+    }
+    #[test]
+    fn indexed_surface_search_matches_brute_force_with_tolerance() {
+        let parts = vec![
+            part([0.0, 0.0, 0.0]),
+            part([1.00002, 0.0, 0.0]),
+            part_size([4.0, 0.0, 0.0], [2.0, 2.0, 2.0]),
+            part_size([5.5, 0.0, 0.0], [1.0, 1.0, 1.0]),
+            part_size([0.0, 3.0, 1.5], [1.0, 3.0, 2.0]),
+            part_size([-2.0, 0.0, 0.0], [1.0, 2.0, 3.0]),
+        ];
+        let indexed = exposed_surfaces(&parts);
+        let reference = brute_force_surfaces(&parts);
+        assert_eq!(indexed.len(), reference.len());
+        for (a, b) in indexed.iter().zip(&reference) {
+            assert_eq!(a.center, b.center);
+            assert_eq!(a.normal, b.normal);
+            assert_eq!(a.tangent_a, b.tangent_a);
+            assert_eq!(a.tangent_b, b.tangent_b);
+            assert_eq!(a.area, b.area);
         }
     }
     #[test]

@@ -13,7 +13,7 @@ Game values (taken from the running game, not estimated):
   hardness  = BlockState.getDestroySpeed (-1 = unbreakable)
   blast     = Block.getExplosionResistance (Java Edition values)
 
-Estimated values (NOT game data, labelled 'оценка' in the output):
+Estimated values (NOT game data, labelled 'estimate' in the output):
   density   = bulk material density in kg/m^3, assigned by material rule
   fragility = score 0..1 (1 = shatters on impact), assigned by material class
 """
@@ -22,64 +22,64 @@ import csv
 import re
 from collections import Counter
 
-# material key -> (density kg/m^3, fragility class, label RU)
+# material key -> (density kg/m^3, fragility class, English label)
 # Densities are typical bulk values of the real-world material; fragility
 # classes are qualitative. See docs/BLOCK_PHYSICS.md for the rationale.
 MATERIALS = {
-    "air":        (1.225, "none",     "воздух"),
-    "water":      (1000,  "fluid",    "вода"),
-    "lava":       (3100,  "fluid",    "лава (значение ТЗ 3100; в старом файле 2800, не проверено)"),
-    "stone":      (2650,  "stone",    "камень / магматическая порода"),
-    "deepslate":  (2850,  "stone",    "глубинный сланец"),
-    "basalt":     (2900,  "stone",    "базальт / блэкстоун"),
-    "sandstone":  (2200,  "stone",    "песчаник"),
-    "endstone":   (2700,  "stone",    "камень Края"),
-    "netherrack": (2600,  "stone",    "адский камень"),
-    "brick":      (1900,  "stone",    "кирпич"),
-    "concrete":   (2400,  "stone",    "бетон"),
-    "terracotta": (2000,  "stone",    "терракота"),
-    "prismarine": (2700,  "stone",    "призмарин"),
-    "quartz":     (2650,  "stone",    "кварц"),
-    "clay":       (1700,  "granular", "глина"),
-    "ore":        (3000,  "stone",    "руда (смесь с породой)"),
-    "coal_ore":   (1350,  "stone",    "угольный блок / уголь"),
-    "glass":      (2500,  "brittle",  "стекло"),
-    "amethyst":   (2650,  "brittle",  "аметист"),
-    "obsidian":   (2450,  "brittle",  "обсидиан"),
-    "ice":        (917,   "brittle",  "лёд"),
-    "blue_ice":   (950,   "brittle",  "синий лёд"),
-    "snow_powder":(100,   "granular", "снег (порошок)"),
-    "snow_block": (500,   "granular", "снежный блок"),
-    "sand":       (1600,  "granular", "песок"),
-    "gravel":     (1800,  "granular", "гравий"),
-    "soul_sand":  (1500,  "granular", "песок душ"),
-    "dirt":       (1500,  "granular", "земля"),
-    "concrete_powder": (1500, "granular", "бетонный порошок"),
-    "wood":       (700,   "wood",     "древесина"),
-    "wood_light": (450,   "wood",     "светлая древесина (ель/джунгли)"),
-    "wood_hard":  (750,   "wood",     "твёрдая древесина"),
-    "nether_wood":(600,   "wood",     "адская древесина"),
-    "leaves":     (200,   "organic",  "листва"),
-    "plant":      (150,   "organic",  "растение"),
-    "wool":       (350,   "elastic",  "шерсть"),
-    "sponge":     (150,   "elastic",  "губка"),
-    "slime":      (1200,  "elastic",  "слизь"),
-    "honey":      (1400,  "elastic",  "мёд"),
-    "honeycomb":  (600,   "elastic",  "соты"),
-    "composite":  (1100,  "wood",     "композит (шалкер, сборные блоки)"),
-    "cobweb":     (100,   "elastic",  "паутина"),
-    "iron":       (7874,  "metal",    "железо"),
-    "gold":       (19300, "metal",    "золото"),
-    "copper":     (8960,  "metal",    "медь"),
-    "netherite":  (8000,  "metal",    "древний металл (netherite)"),
-    "lead_metal": (11340, "metal",    "свинец-подобный (ancient)"),
-    "diamond":    (3515,  "brittle",  "алмаз"),
-    "emerald":    (2760,  "brittle",  "изумруд"),
-    "lapis":      (2800,  "brittle",  "ляпис"),
-    "redstone":   (2400,  "brittle",  "редстоун"),
+    "air":        (1.225, "none",     "air"),
+    "water":      (1000,  "fluid",    "water"),
+    "lava":       (3100,  "fluid",    "lava"),
+    "stone":      (2650,  "stone",    "stone / igneous rock"),
+    "deepslate":  (2850,  "stone",    "deepslate"),
+    "basalt":     (2900,  "stone",    "basalt / blackstone"),
+    "sandstone":  (2200,  "stone",    "sandstone"),
+    "endstone":   (2700,  "stone",    "End stone"),
+    "netherrack": (2600,  "stone",    "netherrack"),
+    "brick":      (1900,  "stone",    "brick"),
+    "concrete":   (2400,  "stone",    "concrete"),
+    "terracotta": (2000,  "stone",    "terracotta"),
+    "prismarine": (2700,  "stone",    "prismarine"),
+    "quartz":     (2650,  "stone",    "quartz"),
+    "clay":       (1700,  "granular", "clay"),
+    "ore":        (3000,  "stone",    "ore (mixed with host rock)"),
+    "coal_ore":   (1350,  "stone",    "coal block / coal"),
+    "glass":      (2500,  "brittle",  "glass"),
+    "amethyst":   (2650,  "brittle",  "amethyst"),
+    "obsidian":   (2450,  "brittle",  "obsidian"),
+    "ice":        (917,   "brittle",  "ice"),
+    "blue_ice":   (950,   "brittle",  "blue ice"),
+    "snow_powder":(100,   "granular", "snow (powder)"),
+    "snow_block": (500,   "granular", "snow block"),
+    "sand":       (1600,  "granular", "sand"),
+    "gravel":     (1800,  "granular", "gravel"),
+    "soul_sand":  (1500,  "granular", "soul sand"),
+    "dirt":       (1500,  "granular", "dirt"),
+    "concrete_powder": (1500, "granular", "concrete powder"),
+    "wood":       (700,   "wood",     "wood"),
+    "wood_light": (450,   "wood",     "light wood (spruce/jungle)"),
+    "wood_hard":  (750,   "wood",     "hard wood"),
+    "nether_wood":(600,   "wood",     "nether wood"),
+    "leaves":     (200,   "organic",  "leaves"),
+    "plant":      (150,   "organic",  "plant"),
+    "wool":       (350,   "elastic",  "wool"),
+    "sponge":     (150,   "elastic",  "sponge"),
+    "slime":      (1200,  "elastic",  "slime"),
+    "honey":      (1400,  "elastic",  "honey"),
+    "honeycomb":  (600,   "elastic",  "honeycomb"),
+    "composite":  (1100,  "wood",     "composite (shulker, composite blocks)"),
+    "cobweb":     (100,   "elastic",  "cobweb"),
+    "iron":       (7874,  "metal",    "iron"),
+    "gold":       (19300, "metal",    "gold"),
+    "copper":     (8960,  "metal",    "copper"),
+    "netherite":  (8000,  "metal",    "netherite (ancient metal)"),
+    "lead_metal": (11340, "metal",    "lead-like (ancient)"),
+    "diamond":    (3515,  "brittle",  "diamond"),
+    "emerald":    (2760,  "brittle",  "emerald"),
+    "lapis":      (2800,  "brittle",  "lapis lazuli"),
+    "redstone":   (2400,  "brittle",  "redstone"),
     "tnt":        (1600,  "granular", "TNT"),
-    "bedrock":    (2650,  "stone",    "бедрок (неразрушим; в моде масса задаётся отдельно)"),
-    "unknown":    (1000,  "stone",    "не классифицировано (заглушка 1000)"),
+    "bedrock":    (2650,  "stone",    "bedrock (indestructible; the mass is set separately in the mod)"),
+    "unknown":    (1000,  "stone",    "unclassified (placeholder 1000)"),
 }
 
 FRAGILITY_SCORE = {
@@ -87,9 +87,9 @@ FRAGILITY_SCORE = {
     "granular": 0.2, "wood": 0.3, "organic": 0.3, "elastic": 0.05, "metal": 0.1,
 }
 FRAGILITY_LABEL = {
-    "none": "нет", "fluid": "жидкость", "brittle": "хрупкий", "stone": "каменный",
-    "granular": "сыпучий", "wood": "волокнистый", "organic": "мягкий органический",
-    "elastic": "упругий", "metal": "пластичный",
+    "none": "none", "fluid": "fluid", "brittle": "brittle", "stone": "stone-like",
+    "granular": "granular", "wood": "fibrous", "organic": "soft organic",
+    "elastic": "elastic", "metal": "ductile metal",
 }
 
 WOOD_SPECIES = {
@@ -346,9 +346,9 @@ def build(dump_path: str):
             key, src = classify(block_id, hardness, blast, is_air, is_fluid, is_solid)
             density, frag_cls, label = MATERIALS[key]
             if block_id in ("minecraft:bedrock",):
-                density_note = "условно (игровое значение не физическое)"
+                density_note = "nominal (the game value is not physical)"
             else:
-                density_note = "оценка"
+                density_note = "estimate"
             frag = FRAGILITY_SCORE[frag_cls]
             if key == "unknown":
                 frag_cls = "stone"
@@ -376,7 +376,7 @@ def build(dump_path: str):
 
 def write_csv(rows, path):
     with open(path, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 
@@ -395,9 +395,9 @@ def write_json(rows, path):
             "blast": r["blast_game"],
         }
     doc = {
-        "_about": ("Свойства всех 1060 блоков Minecraft 1.21.1 (состояние по умолчанию). hardness и blast — "
-                   "значения игры. density (кг/м^3) и fragility (0..1) — оценки по материалу; см. docs/BLOCK_PHYSICS.md. "
-                   "Генератор: scripts/blocks/build_block_table.py."),
+        "_about": ("Properties of all 1060 Minecraft 1.21.1 blocks (default state). hardness and blast are "
+                   "game values. density (kg/m^3) and fragility (0..1) are per-material estimates; see docs/BLOCK_PHYSICS.md. "
+                   "Generator: scripts/blocks/build_block_table.py."),
         "blocks": blocks,
     }
     with open(path, "w", encoding="utf-8") as f:
@@ -417,33 +417,33 @@ def write_md(rows, path):
     by_mat = Counter(r["material"] for r in rows)
     unknown = [r["id"] for r in rows if r["material_key"] == "unknown"]
     lines = []
-    lines.append("# Физические свойства блоков Minecraft 1.21.1\n")
-    lines.append("Источник твёрдости (`hardness`) и взрывоустойчивости (`blast`) — игра: "
-                 "`BlockState.getDestroySpeed` и `Block.getExplosionResistance` для состояния по умолчанию, "
-                 "дамп 1060 блоков (`scripts/blocks/blocks-dump.tsv`, харнесс `BlockDump`, Minecraft 1.21.1 Mojang-имена).\n")
-    lines.append("**Плотность и хрупкость — оценки, а не игровые данные.** В Minecraft нет свойства плотности, "
-                 "поэтому плотность назначена по материалу (типичные объёмные значения реальных веществ), "
-                 "а хрупкость — по классу материала (шкала 0…1, 1 = разлетается при ударе). "
-                 "Игровых данных для этих двух колонок не существует; датапак с ними найти не удалось.\n")
-    lines.append(f"Всего блоков: **{total}**. Назначено по правилам: {by_src.get('rule',0)}, "
-                 f"по переопределению: {by_src.get('override',0)}, по запасному варианту: {by_src.get('fallback',0)}. "
-                 f"Не классифицировано: {len(unknown)}.\n")
-    lines.append("## Классы материалов (плотность — оценка)\n")
-    lines.append("| Ключ | Материал | Плотность, кг/м³ | Класс хрупкости | Балл хрупкости |")
+    lines.append("# Physical properties of Minecraft 1.21.1 blocks\n")
+    lines.append("The source of hardness (`hardness`) and blast resistance (`blast`) is the game: "
+                 "`BlockState.getDestroySpeed` and `Block.getExplosionResistance` for the default state, "
+                 "a dump of 1060 blocks (`scripts/blocks/blocks-dump.tsv`, harness `BlockDump`, Minecraft 1.21.1 Mojang names).\n")
+    lines.append("**Density and fragility are estimates, not game data.** Minecraft has no density or fragility property. "
+                 "Density is assigned per material using typical bulk values of real substances; "
+                 "fragility is assigned per material class (scale 0…1, where 1 means highly brittle). "
+                 "Treat both as tuning estimates, not canonical values.\n")
+    lines.append(f"Total blocks: **{total}**. Assigned by rule: {by_src.get('rule',0)}, "
+                 f"by override: {by_src.get('override',0)}, by fallback: {by_src.get('fallback',0)}. "
+                 f"Unclassified: {len(unknown)}.\n")
+    lines.append("## Material classes (density is an estimate)\n")
+    lines.append("| Key | Material | Density, kg/m³ | Fragility class | Fragility score |")
     lines.append("|---|---|---|---|---|")
     for k, (d, fc, lab) in MATERIALS.items():
         lines.append(f"| {k} | {lab} | {fmt_density(d)} | {FRAGILITY_LABEL[fc]} | {FRAGILITY_SCORE[fc]} |")
-    lines.append("\n## Таблица по блокам\n")
-    lines.append("| Блок | Твёрдость (игра) | Взрывоустойчивость (игра) | Плотность, кг/м³ (оценка) | Материал | Хрупкость (класс) | Балл | Жидкость | Полный куб | Тип |")
+    lines.append("\n## Table by block\n")
+    lines.append("| Block | Hardness (game) | Blast resistance (game) | Density, kg/m³ (estimate) | Material | Fragility (class) | Score | Fluid | Full cube | Type |")
     lines.append("|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
         lines.append("| {id} | {h:g} | {b:g} | {d} | {m} | {fc} | {fs} | {fl} | {fu} | {rule} |".format(
             id=r["id"], h=r["hardness_game"], b=r["blast_game"],
             d=fmt_density(r["density_kg_m3"]), m=r["material"], fc=r["fragility_class"],
-            fs=r["fragility_score"], fl="да" if r["fluid"] else "", fu="да" if r["full_cube"] else "",
+            fs=r["fragility_score"], fl="yes" if r["fluid"] else "", fu="yes" if r["full_cube"] else "",
             rule=r["rule"]))
     if unknown:
-        lines.append("\n## Не классифицированные блоки (заглушка плотности 1000)\n")
+        lines.append("\n## Unclassified blocks (density placeholder 1000)\n")
         lines.append(", ".join(unknown))
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")

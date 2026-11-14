@@ -8,6 +8,7 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ChunkEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -83,6 +84,18 @@ public final class FoxPhysMod {
         NeoForge.EVENT_BUS.addListener(LevelTickEvent.Post.class, e -> {
             if (e.getLevel() instanceof ServerLevel world) manager.tick(world);
         });
+        NeoForge.EVENT_BUS.addListener(ExplosionEvent.Detonate.class, e -> {
+            if (e.getLevel() instanceof ServerLevel world) {
+                Lab lab = manager.labFor(world);
+                if (lab != null) {
+                    try {
+                        lab.applyExplosion(e.getExplosion().center(), e.getExplosion().radius());
+                    } catch (RuntimeException | LinkageError error) {
+                        LOGGER.warn("FoxPhys could not apply explosion impulses", error);
+                    }
+                }
+            }
+        });
         // Physics blocks belong to a body, not to the terrain: players cannot break them.
         NeoForge.EVENT_BUS.addListener(BlockEvent.BreakEvent.class, e -> {
             if (e.getState().is(FoxPhysBlocks.PHYSICS_BLOCK.get())) e.setCanceled(true);
@@ -100,7 +113,7 @@ public final class FoxPhysMod {
             // Soft bodies follow their rigid bodies first, then step, then the shapes go to clients.
             SoftAttachments.tick();
             SoftBodies.setWind(Wind.at(e.getServer().overworld()));
-            SoftBodies.tick();
+            SoftBodies.tick(e.getServer());
             SoftBodies.publish();
             // SPH water pools: step the pools with a nearby player, then publish their particles.
             dev.foxphys.fluid.FluidWater.tick(e.getServer());

@@ -1,0 +1,5 @@
+75190ea653227a7cc96f8c7a070b89a1418df6b76ea070b3da5e42f1d16ba420  foxphys-fabric-0.1.0-alpha.7-sources.jar
+e4893df1d3aa7ea94a0ccdcf9472bcec96c4f6406f51f1a883f213798c84b1d1  foxphys-fabric-0.1.0-alpha.7.jar
+2dc499e30d7a4b7084817976b88e5186aa3eb090f8acad5db4a98ea1652001fc  foxphys-icon-512.png
+6ba756f79509bb29ecd918e294f78666bb44b270b9849186165423de54760668  foxphys-neoforge-0.1.0-alpha.7-sources.jar
+0f2c9f5b1b8a7011e6d8482706c2ee38349d52ee490e64f0898b47037d8db0d4  foxphys-neoforge-0.1.0-alpha.7.jar

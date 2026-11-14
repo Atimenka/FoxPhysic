@@ -1,49 +1,47 @@
-# Windows-сервер для игрового теста FoxPhys 0.1.0-alpha.5
+# Windows dedicated server setup (Fabric)
 
-Требования: Windows 10/11 x64, Java 21 (`java -version` показывает 21), 8 ГБ ОЗУ и больше. Клиент Minecraft нужен только для входа игрока на сервер.
+This guide and `start-server.bat` are for **Fabric on Minecraft 1.21.1**. NeoForge requires a NeoForge server installation and is not launched by this script.
 
-## 1. Папка сервера
+## Requirements
 
-Создайте папку, например `C:\foxphys-server\`, и положите туда:
+- Windows 10/11 x64.
+- Java 21 (`java -version` should report 21).
+- Fabric Loader 0.16.14+ server launcher for Minecraft 1.21.1.
+- Fabric API 0.116.6+1.21.1 and the FoxPhys Fabric jar.
+- 8 GB RAM recommended for a small local test server. `start-server.bat` requests 2 GB initial and 4 GB maximum heap; change those values only if the host has enough memory available.
+- A Minecraft client with the same Minecraft version, Fabric Loader, Fabric API, and FoxPhys jar. The mod is required on both sides for custom network payloads and rendering.
 
-1. `fabric-server-launch.jar` — серверный лаунчер Fabric Loader 0.16.14 для Minecraft 1.21.1 (скачать на https://fabricmc.net/use/server/ и переименовать в `fabric-server-launch.jar`, либо поправить имя в `start-server.bat`).
-2. Папку `mods\` с двумя jar:
-   - `fabric-api-0.116.6+1.21.1.jar` (Fabric API 0.116.6+1.21.1, Modrinth, проект fabric-api);
-   - `foxphys-0.1.0-alpha.5-windows-x64.jar` (из `/home/user/foxphys-release/`, проверьте SHA256 по `SHA256SUMS.txt`).
-3. `start-server.bat` из `scripts\windows\` этого репозитория.
+## Prepare a local server
 
-Первый запуск создаст `eula.txt`. Откройте его, прочитайте Minecraft EULA и поставьте `eula=true`, только если вы принимаете его.
+1. Create a separate directory such as `C:\foxphys-server\`.
+2. Put `fabric-server-launch.jar` in that directory. Download the Fabric server launcher for Minecraft 1.21.1 from the official Fabric site; rename it to match the batch file or edit the command.
+3. Create `mods\` and place `fabric-api-0.116.6+1.21.1.jar` plus `foxphys-fabric-0.1.1-beta-release.jar` inside.
+4. Copy `start-server.bat` into the server directory.
+5. Start once to generate `eula.txt`. Read the EULA and set `eula=true` only if you accept it.
+6. For a private local test, configure `server.properties` accordingly. Never expose a server with `online-mode=false` publicly; use authenticated online mode for a public server.
 
-В `server.properties` для теста достаточно: `online-mode=false` (только для локального теста без аккаунта), `enable-rcon=false`, `view-distance=6`. Для публичного сервера `online-mode` должен быть `true`.
+Start with `start-server.bat`. Wait for the server-ready message, then join from the matching client. Grant operator rights from the console with `op <player_name>`. FoxPhys commands require operator permission level 2.
 
-## 2. Запуск и вход
+## Recommended first checks
 
-1. Запустите `start-server.bat`. В логе должна быть строка `FoxPhys alpha ready`.
-2. Зайдите клиентом Minecraft 1.21.1 с Fabric Loader 0.16.14 и Fabric API 0.116.6+1.21.1. На клиент ставится только Fabric API, мод FoxPhys клиенту не нужен.
-3. Дайте себе права оператора: в консоли сервера `op <ваш_ник>`.
-4. Проверьте команды по `alpha.5-ingame-report-TEMPLATE.txt`.
+Use the [in-game checklist](../../docs/IN_GAME_TEST_CHECKLIST.md) and a disposable Creative world. Start with:
 
-## 3. Замеры
+```text
+/foxphys status
+/foxphys spawn wood
+/foxphys spawn stone
+/foxphys soft spawn jelly
+/foxphys soft status
+```
 
-- TPS и MSPT: `/tick query`. Снимайте до `demo`, во время теста (2 минуты) и после.
-- Время нативного шага и ошибка объёма воды: `/foxphys status`.
-- Важно: физика работает только при игроке рядом со стендом (в пределах 64 блоков от центра). Без игрока стенд на паузе, это штатное поведение. Для теста остаётесь рядом.
+For the 2.5D reservoir try `/foxphys water still`; for a debug 3D particle pool try `/foxphys water sph still`. The physics water bucket is a debug item. Keep the player near the physics world; simulation may pause when no player is nearby.
 
-## 4. Логи для отчёта
+## Logs and measurements
 
-- `logs\latest.log` сервера;
-- папка `crash-reports\`, если она появилась;
-- вывод `/tick query` и `/foxphys status`, скопируйте в шаблон отчёта.
+- Server log: `logs\latest.log`.
+- Client log: the instance's `logs\latest.log`.
+- Crash reports: `crash-reports\`, if generated.
+- TPS/MSPT: use `/tick query` if available, or record the server's tick metrics before and during a short test.
+- Physics details: `/foxphys status`.
 
-Шаблон отчёта: `validation/alpha.5-ingame-report-TEMPLATE.txt`. Заполненный отчёт сохраните как `validation/alpha.5-ingame-<дата>.txt` и пришлите в чат вместе с логами.
-
-## 5. Проверки alpha.5 в игре (за пользователем)
-
-Агент проверил на Linux-сервере контакт тела с полом, перекрытие игрока с телом (без разгона тела), `assemble` и `disassemble`. Эти пункты нужно повторить живым клиентом на Windows:
-
-1. Стояние сверху: встать на тело на полу (тело под вами, вы сверху). Ожидается: вы стоите на верхней грани, тело не уезжает и не разгоняется. Если вас кикает с «multiplayer.disconnect.flying», запишите время и текст.
-2. Удар пустой рукой по телу на полу: `item replace entity @s weapon.mainhand with minecraft:air`, затем ЛКМ по телу. Ожидается сообщение «Удар: тело #…» и откидывание тела.
-3. Один взмах гравипушкой: взять пушку, навести на тело, ПКМ (захват), затем один ЛКМ. Ожидается одно сообщение «запуск», без «Удар».
-4. Предмет assembler: `/foxphys assembler give`, затем поставить блок и выполнить `/foxphys assembler run <позиция>`. Ожидается сборка тела из блоков.
-
-Результаты пишите в `validation/alpha.5-ingame-<дата>.txt` по шаблону `validation/alpha.4-ingame-report-TEMPLATE.txt`. Логи сервера — из `logs\latest.log`.
+Record the exact mod JAR filename and SHA256 from the beta release checksum file after building it; the `release/alpha.7/SHA256SUMS.txt` applies only to alpha.7. Attach the completed checklist and relevant client/server logs when reporting a defect. Do not share a world save containing private or valuable data.

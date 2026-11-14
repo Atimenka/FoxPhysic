@@ -46,7 +46,8 @@ public final class FluidWater {
         while (it.hasNext()) {
             FluidPool pool = it.next();
             try {
-                pool.advance(anyPlayerNear(server, pool, NEAR_DISTANCE));
+                dev.foxphys.Lab lab = dev.foxphys.FoxPhysMod.manager().labFor(pool.level());
+                pool.advance(anyPlayerNear(server, pool, NEAR_DISTANCE), lab);
             } catch (RuntimeException e) {
                 dev.foxphys.FoxPhysMod.LOGGER.error("FoxPhys water pool {} disabled after an error", pool.id(), e);
                 pool.close();

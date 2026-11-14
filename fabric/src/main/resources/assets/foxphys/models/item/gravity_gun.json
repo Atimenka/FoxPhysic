@@ -1,0 +1,200 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "foxphys:item/gravity_gun"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        6,
+        5.5
+      ],
+      "to": [
+        11,
+        10,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    },
+    {
+      "from": [
+        10.5,
+        6.5,
+        6.5
+      ],
+      "to": [
+        15,
+        9.5,
+        9.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    },
+    {
+      "from": [
+        14.5,
+        5.5,
+        5
+      ],
+      "to": [
+        15.5,
+        10.5,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        1.5,
+        6
+      ],
+      "to": [
+        6.5,
+        6,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    },
+    {
+      "from": [
+        9,
+        5.8,
+        5.8
+      ],
+      "to": [
+        9.8,
+        10.2,
+        10.2
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        10,
+        6
+      ],
+      "to": [
+        10,
+        11.5,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "south": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "east": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "west": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "up": {
+          "texture": "foxphys:item/gravity_gun"
+        },
+        "down": {
+          "texture": "foxphys:item/gravity_gun"
+        }
+      }
+    }
+  ]
+}

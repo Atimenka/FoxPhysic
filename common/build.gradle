@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Protocol JSON and no platform classes; both loader builds receive the same mapped-neutral code.
+    api 'com.google.code.gson:gson:2.10.1'
+}

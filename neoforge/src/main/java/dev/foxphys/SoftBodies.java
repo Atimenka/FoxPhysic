@@ -7,18 +7,28 @@ import com.google.gson.JsonParser;
 import dev.foxphys.api.event.SoftBodyRemovedEvent;
 import dev.foxphys.api.event.SoftBodySpawnedEvent;
 import dev.foxphys.net.FoxPhysNetwork;
-import net.neoforged.neoforge.common.NeoForge;
 import dev.foxphys.nativecore.NativeBridge;
 import dev.foxphys.nativecore.NativeLoader;
+import dev.foxphys.Protocol.BodyState;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.server.MinecraftServer;
+import net.neoforged.neoforge.common.NeoForge;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * Java side of the soft bodies (XPBD in Rust). Rust owns all state; Java sends JSON requests,
- * steps the registry once per server tick (1/20 s, 8 substeps) while bodies exist, and reports results.
- * Soft bodies do not collide with blocks; the only contact is a flat floor plane given at spawn.
+ * steps the registry once per server tick (1/20 s, 8 substeps) while bodies exist, samples nearby
+ * Minecraft collision shapes and rigid AABBs, queues reaction impulses, and reports results.
  */
 public final class SoftBodies {
     private SoftBodies() {}
@@ -37,6 +47,33 @@ public final class SoftBodies {
     /** Bodies whose surface reached the clients in the last full send. */
     private static Set<Integer> trisSent = Set.of();
     static final int TRIS_EVERY_TICKS = 20;
+    /** True after the native library refused the wind op (no wind for soft bodies). */
+    private static volatile boolean windUnsupported = false;
+    private static final double SAMPLE_RADIUS = 1.0;
+    private static final double CELL = 0.05;
+    private static final int MAX_EXTERNAL_BOXES = 512;
+    private static final int MAX_COUPLED_BODIES = 64;
+    /** The native soft world is global to the JVM; this map supplies the owning dimension and last bounds. */
+    private static final Map<Integer, SoftMeta> META = new HashMap<>();
+
+    private static final class SoftMeta {
+        ServerLevel world;
+        double[] min;
+        double[] max;
+
+        SoftMeta(ServerLevel world, double x, double y, double z, String preset) {
+            this.world = world;
+            double[] size = switch (preset) {
+                case "rubber" -> new double[] {4 * CELL, 4 * CELL, 4 * CELL};
+                case "jelly" -> new double[] {6 * CELL, 6 * CELL, 6 * CELL};
+                case "cloth" -> new double[] {16 * CELL, CELL, 16 * CELL};
+                case "rope" -> new double[] {24 * CELL, CELL, CELL};
+                default -> new double[] {CELL, CELL, CELL};
+            };
+            this.min = new double[] {x, y, z};
+            this.max = new double[] {x + size[0], y + size[1], z + size[2]};
+        }
+    }
 
     /** One JSON round trip. Throws IllegalStateException with the Rust message on error. */
     public static JsonObject call(String op, JsonObject args) {
@@ -50,23 +87,45 @@ public final class SoftBodies {
         return out;
     }
 
+    /** Compatibility entry point without a world owner; such bodies have no Minecraft collider sampling. */
     public static JsonObject spawn(String preset, double x, double y, double z, double floorY) {
+        return spawn(null, preset, x, y, z, floorY);
+    }
+
+    public static JsonObject spawn(ServerLevel world, String preset, double x, double y, double z, double floorY) {
         JsonObject a = new JsonObject();
         a.addProperty("preset", preset);
-        var origin = new com.google.gson.JsonArray();
+        JsonArray origin = new JsonArray();
         origin.add(x); origin.add(y); origin.add(z);
         a.add("origin", origin);
         a.addProperty("floor", floorY);
         JsonObject out = call("spawn", a);
+        int id = out.get("id").getAsInt();
+        META.put(id, new SoftMeta(world, x, y, z, preset));
         count++;
-        NeoForge.EVENT_BUS.post(new SoftBodySpawnedEvent(out.get("id").getAsInt(), preset));
+        NeoForge.EVENT_BUS.post(new SoftBodySpawnedEvent(id, preset));
         return out;
+    }
+
+    /** Binds a world-less API body to the dimension of a rigid-body attachment. */
+    static void bindWorld(int id, ServerLevel world) {
+        SoftMeta meta = META.get(id);
+        if (meta == null) {
+            JsonObject status = withId("status", id);
+            JsonArray center = status.getAsJsonArray("center");
+            meta = new SoftMeta(world, center.get(0).getAsDouble(), center.get(1).getAsDouble(), center.get(2).getAsDouble(), status.get("preset").getAsString());
+            META.put(id, meta);
+        } else if (meta.world == null) {
+            meta.world = world;
+        }
     }
 
     /** Removes one soft body and fires {@link SoftBodyRemovedEvent}. Throws IllegalStateException if Rust refuses. */
     public static void remove(int id) {
         SoftAttachments.forget(id);
         withId("remove", id);
+        META.remove(id);
+        count = Math.max(0, count - 1);
         NeoForge.EVENT_BUS.post(new SoftBodyRemovedEvent(id));
     }
 
@@ -77,7 +136,7 @@ public final class SoftBodies {
     }
 
     /** Sets the air wind (m/s, world axes) for all soft bodies. Ignored while no body exists. */
-    public static void setWind(net.minecraft.world.phys.Vec3 velocity) {
+    public static void setWind(Vec3 velocity) {
         if (count <= 0 || broken || windUnsupported) return;
         try {
             JsonObject a = new JsonObject();
@@ -90,21 +149,168 @@ public final class SoftBodies {
         }
     }
 
-    /** True after the native library refused the wind op (no wind for soft bodies). */
-    private static volatile boolean windUnsupported = false;
-
-    /** Advances all bodies by one server tick. Errors stop stepping and are logged once. */
-    public static void tick() {
+    /** Advances all bodies by one server tick, sampling colliders in each body's owning dimension. */
+    public static void tick(MinecraftServer server) {
         if (count <= 0 || broken) return;
         try {
-            JsonObject a = new JsonObject();
-            a.addProperty("dt", TICK_DT);
-            a.addProperty("substeps", SUBSTEPS);
-            call("step", a);
+            JsonObject request = new JsonObject();
+            request.addProperty("dt", TICK_DT);
+            request.addProperty("substeps", SUBSTEPS);
+            JsonArray environments = new JsonArray();
+            for (Map.Entry<Integer, SoftMeta> entry : META.entrySet()) {
+                SoftMeta meta = entry.getValue();
+                if (meta.world == null || meta.world.getServer() != server) continue;
+                JsonObject environment = new JsonObject();
+                environment.addProperty("id", entry.getKey());
+                environment.add("obstacles", nearbyBlockColliders(meta.world, meta.min, meta.max));
+                environment.add("bodies", nearbyRigidBodies(meta.world, meta.min, meta.max));
+                environments.add(environment);
+            }
+            request.add("environments", environments);
+            JsonObject result = call("step", request);
+            updateBounds(result.getAsJsonArray("bounds"));
+            if (result.has("torn_constraints") && result.get("torn_constraints").getAsInt() > 0) {
+                ticksSinceFullTris = TRIS_EVERY_TICKS;
+            }
+            queueCouplingImpulses(result.getAsJsonArray("body_impulses"));
         } catch (RuntimeException e) {
             broken = true;
             FoxPhysMod.LOGGER.error("FoxPhys soft bodies stopped after an error: {}", e.getMessage());
         }
+    }
+
+    private static JsonArray nearbyBlockColliders(ServerLevel world, double[] boundsMin, double[] boundsMax) {
+        JsonArray out = new JsonArray();
+        int minX = (int) Math.floor(boundsMin[0] - SAMPLE_RADIUS);
+        int minY = (int) Math.floor(boundsMin[1] - SAMPLE_RADIUS);
+        int minZ = (int) Math.floor(boundsMin[2] - SAMPLE_RADIUS);
+        int maxX = (int) Math.floor(boundsMax[0] + SAMPLE_RADIUS);
+        int maxY = (int) Math.floor(boundsMax[1] + SAMPLE_RADIUS);
+        int maxZ = (int) Math.floor(boundsMax[2] + SAMPLE_RADIUS);
+        scan:
+        for (int x = minX; x <= maxX; x++) {
+            for (int y = minY; y <= maxY; y++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if (world.isOutsideBuildHeight(pos) || !world.hasChunk(x >> 4, z >> 4)) continue;
+                    BlockState state = world.getBlockState(pos);
+                    if (state.is(FoxPhysBlocks.PHYSICS_BLOCK.get())) continue;
+                    for (AABB box : state.getCollisionShape(world, pos).toAabbs()) {
+                        if (out.size() >= MAX_EXTERNAL_BOXES) break scan;
+                        double[] min = {x + box.minX, y + box.minY, z + box.minZ};
+                        double[] max = {x + box.maxX, y + box.maxY, z + box.maxZ};
+                        if (!nearBounds(min, max, boundsMin, boundsMax)) continue;
+                        JsonObject obstacle = new JsonObject();
+                        obstacle.add("min", Protocol.vector(min));
+                        obstacle.add("max", Protocol.vector(max));
+                        out.add(obstacle);
+                    }
+                }
+            }
+        }
+        return out;
+    }
+
+    private record RigidCandidate(BodyState body, double[] min, double[] max, double distanceSquared) {}
+
+    private static JsonArray nearbyRigidBodies(ServerLevel world, double[] boundsMin, double[] boundsMax) {
+        JsonArray out = new JsonArray();
+        Lab lab = FoxPhysMod.manager().labFor(world);
+        if (lab == null || lab.failed() || lab.snapshot() == null || lab.snapshot().bodies() == null) return out;
+        List<RigidCandidate> candidates = new ArrayList<>();
+        double cx = (boundsMin[0] + boundsMax[0]) * 0.5;
+        double cy = (boundsMin[1] + boundsMax[1]) * 0.5;
+        double cz = (boundsMin[2] + boundsMax[2]) * 0.5;
+        for (BodyState body : lab.snapshot().bodies()) {
+            float[] min = body.aabbMin(), max = body.aabbMax(), velocity = body.velocity();
+            if (!valid3(min) || !valid3(max) || !valid3(velocity) || !(Float.isFinite(body.mass()) && body.mass() > 0.0f)) continue;
+            double[] worldMin = {lab.origin().getX() + min[0], lab.origin().getY() + min[1], lab.origin().getZ() + min[2]};
+            double[] worldMax = {lab.origin().getX() + max[0], lab.origin().getY() + max[1], lab.origin().getZ() + max[2]};
+            if (!nearBounds(worldMin, worldMax, boundsMin, boundsMax)) continue;
+            double dx = (worldMin[0] + worldMax[0]) * 0.5 - cx;
+            double dy = (worldMin[1] + worldMax[1]) * 0.5 - cy;
+            double dz = (worldMin[2] + worldMax[2]) * 0.5 - cz;
+            candidates.add(new RigidCandidate(body, worldMin, worldMax, dx * dx + dy * dy + dz * dz));
+        }
+        candidates.sort(Comparator.comparingDouble(RigidCandidate::distanceSquared));
+        for (int i = 0; i < Math.min(MAX_COUPLED_BODIES, candidates.size()); i++) {
+            RigidCandidate candidate = candidates.get(i);
+            BodyState body = candidate.body();
+            float[] velocity = body.velocity();
+            JsonObject rigid = new JsonObject();
+            rigid.addProperty("id", body.id());
+            rigid.add("min", Protocol.vector(candidate.min()));
+            rigid.add("max", Protocol.vector(candidate.max()));
+            rigid.add("velocity", Protocol.vector(velocity[0], velocity[1], velocity[2]));
+            rigid.addProperty("mass", body.mass());
+            out.add(rigid);
+        }
+        return out;
+    }
+
+    private static boolean valid3(float[] vector) {
+        return vector != null && vector.length >= 3
+                && Float.isFinite(vector[0]) && Float.isFinite(vector[1]) && Float.isFinite(vector[2]);
+    }
+
+    private static boolean nearBounds(double[] min, double[] max, double[] bodyMin, double[] bodyMax) {
+        for (int k = 0; k < 3; k++) {
+            if (max[k] < bodyMin[k] - SAMPLE_RADIUS || min[k] > bodyMax[k] + SAMPLE_RADIUS) return false;
+        }
+        return true;
+    }
+
+    private static void updateBounds(JsonArray bounds) {
+        if (bounds == null) return;
+        for (JsonElement element : bounds) {
+            if (!element.isJsonObject()) continue;
+            JsonObject row = element.getAsJsonObject();
+            SoftMeta meta = META.get(row.get("id").getAsInt());
+            if (meta == null) continue;
+            double[] min = vector3(row.getAsJsonArray("min"));
+            double[] max = vector3(row.getAsJsonArray("max"));
+            if (min != null && max != null) {
+                meta.min = min;
+                meta.max = max;
+            }
+        }
+    }
+
+    private static double[] vector3(JsonArray array) {
+        if (array == null || array.size() != 3) return null;
+        double[] out = new double[3];
+        for (int i = 0; i < 3; i++) {
+            out[i] = array.get(i).getAsDouble();
+            if (!Double.isFinite(out[i])) return null;
+        }
+        return out;
+    }
+
+    private static void queueCouplingImpulses(JsonArray impulses) {
+        if (impulses == null || impulses.isEmpty()) return;
+        Map<Lab, JsonArray> batches = new HashMap<>();
+        for (JsonElement element : impulses) {
+            if (!element.isJsonObject()) continue;
+            JsonObject response = element.getAsJsonObject();
+            SoftMeta meta = META.get(response.get("soft_id").getAsInt());
+            if (meta == null || meta.world == null) continue;
+            Lab lab = FoxPhysMod.manager().labFor(meta.world);
+            if (lab == null || lab.failed()) continue;
+            JsonArray impulse = response.getAsJsonArray("impulse");
+            JsonArray point = response.getAsJsonArray("point");
+            if (impulse == null || point == null || impulse.size() != 3 || point.size() != 3) continue;
+            double ix = impulse.get(0).getAsDouble(), iy = impulse.get(1).getAsDouble(), iz = impulse.get(2).getAsDouble();
+            double px = point.get(0).getAsDouble(), py = point.get(1).getAsDouble(), pz = point.get(2).getAsDouble();
+            if (!Double.isFinite(ix) || !Double.isFinite(iy) || !Double.isFinite(iz)
+                    || !Double.isFinite(px) || !Double.isFinite(py) || !Double.isFinite(pz)) continue;
+            JsonObject command = Protocol.op("impulse");
+            command.addProperty("id", response.get("id").getAsLong());
+            command.add("impulse", Protocol.vector(ix, iy, iz));
+            Vec3 localPoint = lab.toLocal(new Vec3(px, py, pz));
+            command.add("point", Protocol.vector(localPoint.x, localPoint.y, localPoint.z));
+            batches.computeIfAbsent(lab, ignored -> new JsonArray()).add(command);
+        }
+        batches.forEach(Lab::queueCouplingImpulses);
     }
 
     /**
@@ -162,6 +368,7 @@ public final class SoftBodies {
         }
     }
 
+
     private static float[] floats(JsonArray array) {
         float[] out = new float[array.size()];
         for (int i = 0; i < out.length; i++) out[i] = array.get(i).getAsFloat();
@@ -180,7 +387,9 @@ public final class SoftBodies {
 
     public static void clearAll() {
         SoftAttachments.clear();
+        META.clear();
         count = 0;
+        ticksSinceFullTris = 0;
         trisSent = Set.of();
     }
 }

@@ -1,10 +1,15 @@
 import dev.foxphys.DensityTable;
 import dev.foxphys.api.FoxPhysApi;
+import dev.foxphys.api.IForceProvider;
+import dev.foxphys.api.PhysicsWorld;
 import dev.foxphys.api.SoftBodyApi;
+import dev.foxphys.api.client.ClientPhysicsApi;
 import dev.foxphys.api.SoftBodyInfo;
 import dev.foxphys.api.event.AssembleRequestedEvent;
 import dev.foxphys.api.event.SoftBodyRemovedEvent;
 import dev.foxphys.api.event.SoftBodySpawnedEvent;
+import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.Vec3d;
 import dev.foxphys.api.event.FoxPhysEvents;
 import java.util.ArrayList;
@@ -36,10 +41,30 @@ public class ApiSmokeFabric {
         }
     }
 
+    static boolean hasMethod(Class<?> owner, String name, Class<?>... parameters) {
+        try {
+            owner.getMethod(name, parameters);
+            return true;
+        } catch (ReflectiveOperationException e) {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         check("API_VERSION == 1", FoxPhysApi.API_VERSION == 1);
         check("isCompatible(1)", FoxPhysApi.isCompatible(1));
         check("isCompatible(2) is false", !FoxPhysApi.isCompatible(2));
+        check("applyForce API", hasMethod(PhysicsWorld.class, "applyForce", long.class, Vec3d.class));
+        check("point/duration force API", hasMethod(PhysicsWorld.class, "applyForce", long.class, Vec3d.class, Vec3d.class, double.class));
+        check("applyTorque API", hasMethod(PhysicsWorld.class, "applyTorque", long.class, Vec3d.class));
+        check("angular velocity setter API", hasMethod(PhysicsWorld.class, "setAngularVelocity", long.class, Vec3d.class));
+        check("assembled block-state API", hasMethod(PhysicsWorld.class, "getBlockStates", long.class));
+        check("block density registration API", hasMethod(FoxPhysApi.class, "registerBlock", Block.class, double.class));
+        check("block force-provider API", hasMethod(FoxPhysApi.class, "registerBlock", Block.class, IForceProvider.class));
+        check("block-entity provider API", hasMethod(FoxPhysApi.class, "registerBlockEntity", BlockEntityType.class, IForceProvider.class));
+        check("client soft-body snapshots", hasMethod(ClientPhysicsApi.class, "softBodies", float.class));
+        check("client fluid snapshots", hasMethod(ClientPhysicsApi.class, "fluidPools", float.class));
+        check("client rigid-block snapshots", hasMethod(ClientPhysicsApi.class, "physicsBlocks", float.class));
         check("native loads", FoxPhysApi.isNativeLoaded());
         System.out.println("describe: " + FoxPhysApi.describe());
 

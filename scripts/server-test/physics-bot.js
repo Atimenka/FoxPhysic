@@ -1,4 +1,4 @@
-// Alpha.5 interaction check: a real client connection that looks at bodies, swings and right-clicks.
+// Optional Mineflayer test client for observing and exercising body interactions.
 // Usage: NODE_PATH=<dir with mineflayer> node physics-bot.js <scenario> [name]
 // Scenarios: gun (grab, then launch by swing), hit (hand hits, empty hand), stand (idle, logs height).
 const mineflayer = require('mineflayer');

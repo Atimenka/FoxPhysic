@@ -4,5 +4,11 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
+    plugins {
+        id 'net.neoforged.moddev' version '2.0.148'
+    }
 }
+
 rootProject.name = 'foxphys-neoforge'
+include 'common'
+project(':common').projectDir = file('../common')

@@ -1,0 +1,177 @@
+plugins {
+    id 'fabric-loom'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+base { archivesName = 'foxphys-fabric' }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':common')
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.10.2"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+tasks.withType(JavaCompile).configureEach { options.release = 21 }
+
+// Physics is implemented in Rust. Normal Gradle builds use the agent-built, checked-in fallback
+// libraries and do not require Rust/Visual Studio on a player's laptop. Use -PcompileNative to
+// rebuild the current host library from ../native/ before packaging.
+def hostOs = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+def nativePlatform = hostOs.contains('win') ? 'windows-x86_64' :
+        (hostOs.contains('linux') ? 'linux-x86_64' : 'unsupported')
+def nativeFile = hostOs.contains('win') ? 'foxphys_core.dll' : 'libfoxphys_core.so'
+def nativeOutput = layout.buildDirectory.dir('generated/natives')
+
+tasks.register('buildNative', Exec) {
+    group = 'build'
+    description = 'Builds the Rust cdylib for the current host when -PcompileNative is supplied.'
+    workingDir file('../native')
+    commandLine 'cargo', 'build', '--locked', '--release'
+    onlyIf { project.hasProperty('compileNative') && !project.hasProperty('skipNative') }
+    doFirst {
+        if (nativePlatform == 'unsupported') {
+            throw new GradleException('Supported native targets: Windows/Linux x64.')
+        }
+    }
+}
+
+def nativeCandidate = { List<String> candidates, String displayName ->
+    def source = candidates.collect { file(it) }.find { it.isFile() }
+    if (source == null) {
+        throw new GradleException("Missing ${displayName}; tried ${candidates}. Restore the agent-built fallback or build native/ first.")
+    }
+    source
+}
+
+tasks.register('copyLinuxNative', Copy) {
+    dependsOn 'buildNative'
+    inputs.files(['../native/target/release/libfoxphys_core.so', '../neoforge/prebuilt/natives/linux-x86_64/libfoxphys_core.so'].collect { file(it) })
+    outputs.dir(nativeOutput.map { it.dir('natives/linux-x86_64') })
+    from({ nativeCandidate(['../native/target/release/libfoxphys_core.so', '../neoforge/prebuilt/natives/linux-x86_64/libfoxphys_core.so'], 'Linux x64 native') })
+    into(nativeOutput.map { it.dir('natives/linux-x86_64') })
+    onlyIf { !project.hasProperty('skipNative') }
+}
+
+tasks.register('copyWindowsNative', Copy) {
+    dependsOn 'buildNative'
+    inputs.files([
+            '../native/target/x86_64-pc-windows-msvc/release/foxphys_core.dll',
+            '../native/target/x86_64-pc-windows-gnu/release/foxphys_core.dll',
+            '../native/target/release/foxphys_core.dll',
+            '../neoforge/prebuilt/natives/windows-x86_64/foxphys_core.dll'
+    ].collect { file(it) })
+    outputs.dir(nativeOutput.map { it.dir('natives/windows-x86_64') })
+    from({ nativeCandidate([
+            '../native/target/x86_64-pc-windows-msvc/release/foxphys_core.dll',
+            '../native/target/x86_64-pc-windows-gnu/release/foxphys_core.dll',
+            '../native/target/release/foxphys_core.dll',
+            '../neoforge/prebuilt/natives/windows-x86_64/foxphys_core.dll'
+    ], 'Windows x64 native') })
+    into(nativeOutput.map { it.dir('natives/windows-x86_64') })
+    onlyIf { !project.hasProperty('skipNative') }
+}
+
+tasks.register('copyNative') {
+    group = 'build'
+    description = 'Stages both supported native libraries into Fabric resources.'
+    dependsOn 'copyLinuxNative', 'copyWindowsNative'
+    onlyIf { !project.hasProperty('skipNative') }
+}
+sourceSets.main.resources.srcDir(nativeOutput)
+tasks.named('sourcesJar') {
+    dependsOn 'copyNative', project(':common').tasks.named('classes')
+    from(project(':common').sourceSets.main.allSource)
+}
+processResources {
+    dependsOn 'copyNative'
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand 'version': project.version }
+}
+
+jar {
+    // :common is a compile/runtime project dependency, not automatically shaded by Loom.
+    // Package its platform-neutral classes in the distributable mod jar.
+    dependsOn project(':common').tasks.named('classes')
+    from(project(':common').sourceSets.main.output)
+    // Fabric Loader's nested-jar mechanism (Jar-in-Jar) bundles the MIT Sable Companion library.
+    from('../libs/sable-companion-fabric-1.21.1-1.6.0.jar') { into 'META-INF/jars' }
+    from('../LICENSE') { rename { 'LICENSE_foxphys' } }
+    from('../THIRD_PARTY_NOTICES.md')
+    from('../licenses') { into 'licenses' }
+}
+
+// Plain JVM harnesses use the exact protocol classes shipped in :common.
+sourceSets.test.java.srcDir('../tests')
+tasks.register('jniSmoke', JavaExec) {
+    dependsOn 'copyNative', 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'NativeSmoke'
+    jvmArgs '-ea', '-Xcheck:jni'
+    args layout.buildDirectory.file("generated/natives/natives/${nativePlatform}/${nativeFile}").get().asFile.absolutePath
+    onlyIf { !project.hasProperty('skipNative') && nativePlatform != 'unsupported' }
+}
+tasks.register('protocolSmoke', JavaExec) {
+    dependsOn 'copyNative', 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'ProtocolSmoke'
+    jvmArgs '-ea', '-Xcheck:jni'
+    args layout.buildDirectory.file("generated/natives/natives/${nativePlatform}/${nativeFile}").get().asFile.absolutePath
+    onlyIf { !project.hasProperty('skipNative') && nativePlatform != 'unsupported' }
+}
+tasks.register('verifyBundledCommonClasses') {
+    group = 'verification'
+    description = 'Fails the Fabric check if platform-neutral runtime classes are missing from the distributable jar.'
+    dependsOn 'remapJar'
+    doLast {
+        def artifact = tasks.named('remapJar').get().archiveFile.get().asFile
+        def required = [
+                'dev/foxphys/GridAlign.class',
+                'dev/foxphys/Protocol.class',
+                'dev/foxphys/nativecore/NativeBridge.class',
+                'dev/foxphys/nativecore/NativeLoader.class',
+                'dev/foxphys/api/BodyKind.class',
+                'dev/foxphys/api/WorldStats.class',
+                'dev/foxphys/api/client/FluidPoolFrame.class',
+                'dev/foxphys/api/client/SoftBodyFrame.class'
+        ]
+        def zip = new java.util.zip.ZipFile(artifact)
+        try {
+            required.each { entry ->
+                if (zip.getEntry(entry) == null) throw new GradleException("${artifact.name} is missing common runtime class ${entry}")
+            }
+        } finally {
+            zip.close()
+        }
+        def payloadLoader = new java.net.URLClassLoader(
+                [artifact.toURI().toURL()] as java.net.URL[], ClassLoader.getPlatformClassLoader())
+        try {
+            ['dev.foxphys.nativecore.NativeLoader', 'dev.foxphys.nativecore.NativeBridge'].each { name ->
+                def loaded = Class.forName(name, false, payloadLoader)
+                if (loaded.classLoader != payloadLoader) throw new GradleException("${name} was not loaded from ${artifact.name}")
+            }
+        } finally {
+            payloadLoader.close()
+        }
+    }
+}
+
+tasks.named('check') { dependsOn 'jniSmoke', 'protocolSmoke', 'verifyBundledCommonClasses' }

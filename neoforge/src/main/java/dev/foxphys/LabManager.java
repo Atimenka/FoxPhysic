@@ -71,6 +71,7 @@ public final class LabManager {
         Lab lab = labs.get(world.dimension());
         if (lab == null) return;
         lab.setWind(Wind.at(world));
+        PhysicsProviderRegistry.apply(world, lab);
         lab.tick();
         NeoForge.EVENT_BUS.post(new PhysicsWorldTickEvent(world));
         int count = sinceAutosave.merge(world.dimension(), 1, Integer::sum);

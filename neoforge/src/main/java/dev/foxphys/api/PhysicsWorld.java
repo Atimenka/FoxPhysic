@@ -63,6 +63,42 @@ public final class PhysicsWorld {
         lab().impulse(bodyId, impulse, worldPoint);
     }
 
+    /** Applies force in newtons for one game tick (50 ms), at the body's centre of mass. */
+    public void applyForce(long bodyId, Vec3 force) {
+        applyForce(bodyId, force, null, 0.05);
+    }
+
+    /** Applies force in newtons for one game tick (50 ms), at a world-space point. */
+    public void applyForce(long bodyId, Vec3 force, Vec3 worldPoint) {
+        applyForce(bodyId, force, worldPoint, 0.05);
+    }
+
+    /** Applies force in newtons for a finite duration in seconds; a null point means the centre of mass. */
+    public void applyForce(long bodyId, Vec3 force, Vec3 worldPoint, double durationSeconds) {
+        requireFinite(force, "force");
+        if (worldPoint != null) requireFinite(worldPoint, "worldPoint");
+        requireDuration(durationSeconds);
+        lab().applyForce(bodyId, force, worldPoint, durationSeconds);
+    }
+
+    /** Applies torque in newton-metres for one game tick (50 ms). */
+    public void applyTorque(long bodyId, Vec3 torque) {
+        applyTorque(bodyId, torque, 0.05);
+    }
+
+    /** Applies torque in newton-metres for a finite duration in seconds. */
+    public void applyTorque(long bodyId, Vec3 torque, double durationSeconds) {
+        requireFinite(torque, "torque");
+        requireDuration(durationSeconds);
+        lab().applyTorque(bodyId, torque, durationSeconds);
+    }
+
+    /** Sets angular velocity in radians per second, in world axes. */
+    public void setAngularVelocity(long bodyId, Vec3 angularVelocity) {
+        requireFinite(angularVelocity, "angularVelocity");
+        lab().setAngularVelocity(bodyId, angularVelocity);
+    }
+
     /**
      * Moves a body to a pose and stops it. Synchronous.
      *
@@ -163,6 +199,11 @@ public final class PhysicsWorld {
         lab().disassemble(bodyId);
     }
 
+    /** Original block states of an assembled body, in unspecified order; empty for non-assemblies. */
+    public List<net.minecraft.world.level.block.state.BlockState> getBlockStates(long bodyId) {
+        return lab().blockStates(bodyId);
+    }
+
     /** Freezes or resumes the simulation. Bodies keep their poses while paused. */
     public void setPaused(boolean paused) {
         lab().setPaused(paused);
@@ -210,6 +251,12 @@ public final class PhysicsWorld {
         double[] rotation = {b.rotation()[0], b.rotation()[1], b.rotation()[2], b.rotation()[3]};
         return new BodyInfo(b.id(), centre, rotation, b.mass(), velocity, angular, bounds, b.parts().size(),
                 lab.isAssembly(b.id()));
+    }
+
+    private static void requireDuration(double seconds) {
+        if (!Double.isFinite(seconds) || seconds < 0.001 || seconds > 10.0) {
+            throw new IllegalArgumentException("durationSeconds must be finite and in [0.001, 10]");
+        }
     }
 
     private static void requireFinite(Vec3 v, String name) {

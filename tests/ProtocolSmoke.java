@@ -37,6 +37,22 @@ public final class ProtocolSmoke {
                 var setup = new JsonObject(); setup.add("terrain", terrain);
                 JsonArray cmds = new JsonArray(); cmds.add(add); setup.add("commands", cmds);
                 NativeBridge.exchange(world, setup.toString());
+                var force = Protocol.op("apply_force"); force.addProperty("id", 1); force.add("force", Protocol.vector(1000, 0, 0)); force.addProperty("duration", 0.05);
+                var torque = Protocol.op("apply_torque"); torque.addProperty("id", 1); torque.add("torque", Protocol.vector(0, 0, 1000)); torque.addProperty("duration", 0.05);
+                var forceRequest = new JsonObject(); forceRequest.addProperty("dt", 0.05);
+                var forceCommands = new JsonArray(); forceCommands.add(force); forceCommands.add(torque);
+                forceRequest.add("commands", forceCommands);
+                var forced = Protocol.GSON.fromJson(NativeBridge.exchange(world, forceRequest.toString()), Protocol.Snapshot.class);
+                if (forced.results() == null || forced.results().size() != 2 || forced.results().stream().anyMatch(r -> !r.ok()))
+                    throw new AssertionError("force/torque commands rejected: " + forced.results());
+                var angular = Protocol.op("set_angular_velocity"); angular.addProperty("id", 1); angular.add("velocity", Protocol.vector(0, 1, 0));
+                var angularRequest = new JsonObject(); angularRequest.addProperty("dt", 0);
+                var angularCommands = new JsonArray(); angularCommands.add(angular); angularRequest.add("commands", angularCommands);
+                var set = Protocol.GSON.fromJson(NativeBridge.exchange(world, angularRequest.toString()), Protocol.Snapshot.class);
+                if (set.results() == null || set.results().size() != 1 || !set.results().getFirst().ok())
+                    throw new AssertionError("angular velocity command rejected: " + set.results());
+                if (set.bodies().getFirst().angularVelocity() == null || Math.abs(set.bodies().getFirst().angularVelocity()[1] - 1.0f) > 1e-4f)
+                    throw new AssertionError("angular velocity setter did not reach the rigid snapshot: " + java.util.Arrays.toString(set.bodies().getFirst().angularVelocity()));
                 var actor = new JsonObject(); actor.addProperty("key", 7); actor.add("center", Protocol.vector(0, 1.85, 0));
                 actor.add("half", Protocol.vector(0.3, 0.9, 0.3)); actor.addProperty("mass", 80);
                 var actors = new JsonArray(); actors.add(actor);

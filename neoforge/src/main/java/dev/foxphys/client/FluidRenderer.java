@@ -4,7 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.foxphys.net.FoxPhysNetwork.FluidFrame;
 import dev.foxphys.net.FoxPhysNetwork.FluidPoolFrame;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -36,6 +38,21 @@ public final class FluidRenderer {
         for (FluidPoolFrame f : payload.pools()) byId.put(f.id(), f);
         previous = current;
         current = new Frame(System.nanoTime(), byId);
+    }
+
+    /** Defensive, interpolated client snapshots for the public client API. */
+    public static List<dev.foxphys.api.client.FluidPoolFrame> frames(float alpha) {
+        Frame now = current;
+        if (now == null || now.byId().isEmpty()) return List.of();
+        Frame before = previous;
+        float t = Float.isFinite(alpha) ? Math.max(0f, Math.min(1f, alpha)) : 1f;
+        List<dev.foxphys.api.client.FluidPoolFrame> result = new ArrayList<>(now.byId().size());
+        for (FluidPoolFrame pool : now.byId().values()) {
+            FluidPoolFrame old = before == null ? null : before.byId().get(pool.id());
+            result.add(new dev.foxphys.api.client.FluidPoolFrame(pool.id(), pool.x(), pool.y(), pool.z(), pool.dx(),
+                    interpolate(pool, old, t)));
+        }
+        return List.copyOf(result);
     }
 
     /** Stage hook: after the solid blocks, so the water sits in the world. */

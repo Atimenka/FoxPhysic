@@ -1,16 +1,41 @@
 plugins {
-    id 'java'
-    id 'net.neoforged.moddev' version '2.0.148'
+    id 'java-library'
+    id 'net.neoforged.moddev'
 }
 
 version = project.mod_version
 group = project.maven_group
-base { archivesName = 'foxphys' }
+base { archivesName = 'foxphys-neoforge' }
 
-repositories { mavenCentral() }
+repositories {
+    mavenCentral()
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'SableCompanion'
+                url = uri('https://maven.ryanhcode.dev/releases')
+            }
+        }
+        filter {
+            includeGroup('dev.ryanhcode.sable-companion')
+        }
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    // NeoForge Jar-in-Jar: use the NeoForge-compatible Common artifact and publish a compatible
+    // version range so FML can negotiate a shared copy when another mod embeds Companion too.
+    jarJar(implementation("dev.ryanhcode.sable-companion:sable-companion-common-1.21.1:[${project.sable_companion_version},)")) {
+        version {
+            strictly "[${project.sable_companion_version},)"
+            prefer project.sable_companion_version
+        }
+    }
+}
 
 neoForge {
-    // Skip NeoForm decompile/recompile (MDG 2.0.124+): fits 2 GB RAM hosts, avoids createMinecraftArtifacts OOM.
+    // Disabling NeoForm recompilation keeps memory use practical on a 10 GB development laptop.
     enable {
         version = project.neoforge_version
         disableRecompilation = true
@@ -34,35 +59,83 @@ java {
 }
 tasks.withType(JavaCompile).configureEach { options.release = 21 }
 
-// Each library is taken from the Rust build output when it exists, otherwise from neoforge/prebuilt/
-// (MSVC DLL and Linux .so built from the same sources). Windows users need no Rust toolchain.
+// Prefer agent-built Cargo outputs, otherwise use the committed Linux .so and Windows DLL. A normal
+// NeoForge build therefore needs only JDK 21 + Gradle; no Rust toolchain or Visual Studio.
 def natives = [
     'natives/linux-x86_64/libfoxphys_core.so': ['../native/target/release/libfoxphys_core.so', 'prebuilt/natives/linux-x86_64/libfoxphys_core.so'],
-    'natives/windows-x86_64/foxphys_core.dll': ['../native/target/x86_64-pc-windows-msvc/release/foxphys_core.dll', 'prebuilt/natives/windows-x86_64/foxphys_core.dll']
+    'natives/windows-x86_64/foxphys_core.dll': ['../native/target/x86_64-pc-windows-msvc/release/foxphys_core.dll', '../native/target/x86_64-pc-windows-gnu/release/foxphys_core.dll', '../native/target/release/foxphys_core.dll', 'prebuilt/natives/windows-x86_64/foxphys_core.dll']
 ]
 tasks.register('copyNeoNatives') {
-    // Declare every candidate as an input, so a rebuilt library is copied (missing candidates are fine).
     inputs.files(natives.values().flatten().collect { file(it) })
     outputs.dir(layout.buildDirectory.dir('generated/neonatives'))
     doLast {
         natives.each { dest, candidates ->
             def target = layout.buildDirectory.file("generated/neonatives/${dest}").get().asFile
             target.parentFile.mkdirs()
-            def source = candidates.collect { file(it) }.find { it.exists() }
-            if (source == null) throw new GradleException("Native library missing, tried: ${candidates}. Build it first or restore neoforge/prebuilt/.")
+            def source = candidates.collect { file(it) }.find { it.isFile() }
+            if (source == null) {
+                throw new GradleException("Native library missing, tried: ${candidates}. Build it first or restore prebuilt/natives/.")
+            }
             source.withInputStream { i -> target.withOutputStream { o -> o << i } }
         }
     }
 }
 sourceSets.main.resources.srcDir(layout.buildDirectory.dir('generated/neonatives'))
 processResources.dependsOn copyNeoNatives
-tasks.named('sourcesJar') { dependsOn copyNeoNatives }
+tasks.named('sourcesJar') {
+    dependsOn copyNeoNatives
+    from(project(':common').sourceSets.main.allSource)
+}
 processResources {
     inputs.property 'version', project.version
     filesMatching('META-INF/neoforge.mods.toml') { expand 'version': project.version }
 }
 
 jar {
+    // :common is a compile/runtime project dependency, not automatically shaded by ModDevGradle.
+    // Package its platform-neutral classes in the distributable mod jar.
+    dependsOn project(':common').tasks.named('classes')
+    from(project(':common').sourceSets.main.output)
     from('../LICENSE') { rename { 'LICENSE_foxphys' } }
+    from('../THIRD_PARTY_NOTICES.md')
+    from('../licenses') { into 'licenses' }
 }
 
+tasks.register('verifyBundledCommonClasses') {
+    group = 'verification'
+    description = 'Fails the NeoForge check if platform-neutral runtime classes are missing from the distributable jar.'
+    dependsOn 'jar'
+    doLast {
+        def artifact = tasks.named('jar').get().archiveFile.get().asFile
+        def required = [
+                'dev/foxphys/GridAlign.class',
+                'dev/foxphys/Protocol.class',
+                'dev/foxphys/nativecore/NativeBridge.class',
+                'dev/foxphys/nativecore/NativeLoader.class',
+                'dev/foxphys/api/BodyKind.class',
+                'dev/foxphys/api/WorldStats.class',
+                'dev/foxphys/api/client/FluidPoolFrame.class',
+                'dev/foxphys/api/client/SoftBodyFrame.class'
+        ]
+        def zip = new java.util.zip.ZipFile(artifact)
+        try {
+            required.each { entry ->
+                if (zip.getEntry(entry) == null) throw new GradleException("${artifact.name} is missing common runtime class ${entry}")
+            }
+        } finally {
+            zip.close()
+        }
+        def payloadLoader = new java.net.URLClassLoader(
+                [artifact.toURI().toURL()] as java.net.URL[], ClassLoader.getPlatformClassLoader())
+        try {
+            ['dev.foxphys.nativecore.NativeLoader', 'dev.foxphys.nativecore.NativeBridge'].each { name ->
+                def loaded = Class.forName(name, false, payloadLoader)
+                if (loaded.classLoader != payloadLoader) throw new GradleException("${name} was not loaded from ${artifact.name}")
+            }
+        } finally {
+            payloadLoader.close()
+        }
+    }
+}
+
+tasks.named('check') { dependsOn 'verifyBundledCommonClasses' }

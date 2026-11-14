@@ -1,108 +1,100 @@
-# Мягкие тела (этап 8, XPBD) — состояние
+# Soft bodies
 
-Солвер: `native/src/soft.rs` (XPBD, тетраэдры, f64). Протокол и реестр: `native/src/soft_world.rs`.
-JNI: `NativeBridge.softExchange(String json) -> String` (одна точка входа, JSON-запросы).
-Java: `dev/foxphys/SoftBodies.java`, команды в `Commands.java`, шаг на каждом тике сервера.
+Soft bodies are simulated in Rust with XPBD tetrahedral constraints. Java creates bodies, applies pins/anchors and wind, samples nearby Minecraft/rigid colliders, and sends positions and surface triangles to clients. Cloth and rope presets can tear; tearing removes overloaded constraints and refreshes the exported surface topology.
 
-## Команды (после переименования — `/foxphys soft ...`, алиасы `/fox soft ...`)
+> **Stability warning:** soft bodies are extremely unstable experimental features and must be treated as unstable in gameplay. Headless tests cover selected numerical cases only; they do not establish reliable long-running behaviour, attachments under arbitrary motion, correct live rendering, or predictable server load. Expect solver/render artifacts and test only in a disposable world.
 
-| Команда | Действие |
+## Commands
+
+The commands work on both loaders. `/fox` is an alias for `/foxphys`.
+
+| Command | Behaviour |
 |---|---|
-| `soft spawn rubber\|jelly\|cloth\|rope` | Создать тело в 2.5 блока на восток от игрока, на уровне пола ног |
-| `soft status [id]` | Список тел или состояние тела: центр, vmax, диапазон отношения объёма |
-| `soft pin <id> top\|bottom\|start\|end` | Закрепить слой частиц (по y или по x) |
-| `soft stiffness <id> <k>` | Жёсткость k 0.05…100: податливость = базовая / k (1.0 = пресет) |
-| `soft damping <id> <d>` | Демпфирование 0…50 1/с |
-| `soft attach <id> top\|bottom\|start\|end [bodyId]` | Закрепить слой мягкого тела за ближайшее физическое тело (в радиусе 3 м от слоя) или за тело с указанным id |
-| `soft detach <id>` | Снять крепление слоя |
-| `soft remove <id>` | Удалить тело |
+| `/foxphys soft spawn rubber|jelly|cloth|rope` | Create a preset about 2.5 blocks east of the player, at foot level. |
+| `/foxphys soft status [id]` | List bodies or report one body's centre, maximum particle speed, and volume-ratio range. |
+| `/foxphys soft pin <id> top|bottom|start|end` | Pin the particles on a side; returns the number pinned. |
+| `/foxphys soft stiffness <id> <k>` | Scale distance/volume compliance. `k` is 0.05–100; 1.0 is the preset value. |
+| `/foxphys soft damping <id> <d>` | Set damping in 1/s; range 0–50. |
+| `/foxphys soft attach <id> <side> [bodyId]` | Attach one particle layer to a nearby rigid body, or to `bodyId`. |
+| `/foxphys soft detach <id>` | Release the attached layer. |
+| `/foxphys soft remove <id>` | Remove the body. |
 
-## Крепление к физическим телам (ход 27)
+`<side>` is `top`, `bottom`, `start`, or `end`. Bodies can also be manipulated through `SoftBodyApi`; see [API reference](API.md).
 
-Слой частиц мягкого тела можно закрепить за жёсткое физическое тело: флаг на древке, парус на мачте, конец
-верёвки в сборке. Каждая закреплённая частица держит своё смещение в системе координат тела. Каждый серверный тик
-(перед шагом мягких тел) её цель вычисляется как поза тела плюс это смещение (`SoftAttachments.tick`), а Rust
-удерживает частицу в цели (`anchor_targets`). Поворот тела учитывается, потому что смещение хранится в его системе.
+## Presets and limits
 
-- Связь **односторонняя**: мягкое тело следует за жёстким, но не давит на него.
-- Для тел, которые ломаются или разбираются, крепление снимается автоматически.
-- Закрепление не требует нового пакета: состояние мягкого тела уходит клиентам как и раньше.
-- Проверено без сервера: `validation/attach/run-attach-smoke.sh` → `ATTACH_SMOKE_OK` (повороты, цикл anchor → anchor_targets → release в Rust, ветер).
-  Сам захват тела через `Lab.bodyNear` и игровой цикл не проверены (нужен сервер).
+Nominal particle spacing is 5 cm. Grid counts include the boundary nodes used to construct the tetrahedral mesh.
 
-## Ветер (ход 27)
+| Preset | Grid | Particles | Density (kg/m³) | Distance / volume compliance |
+|---|---:|---:|---:|---:|
+| rubber | 4×4×4 | 125 | 1100 | 5×10⁻⁶ m/N / 1×10⁻⁹ m³/N |
+| jelly | 6×6×6 | 343 | 1000 | 5×10⁻⁶ m/N / 1×10⁻⁹ m³/N |
+| cloth | 16×1×16 | 578 | 800 | 1×10⁻³ m/N / 1×10⁻⁶ m³/N; a 5 cm sheet, not a fabric constitutive model |
+| rope | 24×1×1 | 100 | 1100 | 1×10⁻⁴ m/N / 1×10⁻⁷ m³/N |
 
-Ветер одинаков для жёстких и мягких тел и меняется во времени (`Wind.java`):
-- базовая скорость по погоде: штиль ≈ 1.5 м/с, дождь ≈ 5.5 м/с, гроза ≈ 13.5 м/с (по уровням дождя и грозы мира);
-- направление медленно дрейфует, порывы — сумма синусов по игровому времени (сильнее в грозу);
-- мягкие тела получают аэродинамическое сопротивление: сила = `drag * |u| * u`, `u = ветер - скорость`,
-  `drag = 0.5 * 1.2 * 1.0 * (0.05 м)²` на частицу. Жёсткие тела получают ветер через существующий `set_wind`.
+Limits: 16 active bodies, 5,000 particles per body, 512 static AABB boxes and 64 nearby rigid-body AABBs per soft-body environment. The server advances once per game tick using 8 substeps and 4 constraint iterations. Density is preset data, not derived from the block-density table.
 
-Ограничение: ветер не зависит от высоты, укрытий и блоков мира (как и раньше, блоки на воздушный поток не влияют).
+## Solver and collisions
 
-## Пресеты (ячейка 5 см)
+- XPBD distance constraints and tetrahedral-volume constraints use compliance scaled by the squared substep duration. Damping is applied to particle velocities.
+- Each particle is represented by a 2.5 cm-radius sphere for external and self contacts.
+- Nearby Minecraft `VoxelShape`s are sampled into AABBs each tick (within a 1 m margin); moving FoxPhys rigid bodies contribute dynamic AABBs with their current velocity and mass. Contacts are projected between XPBD iterations so the structural solve does not immediately restore penetration.
+- Dynamic rigid contacts return equal-and-opposite impulses to the rigid-body worker. This is an AABB approximation, not a unified deformable/rigid solver.
+- Self-collision uses a spatial grid and inelastic particle response. Active structural-edge neighbours are excluded so the mesh does not fight its own constraints. The broadphase buffers are reused; an exact unchanged, collision-free configuration can reuse the prior no-contact result.
+- An optional floor plane is also available. `pin` is an immovable solver constraint, not an anchor to a Minecraft block.
 
-| Пресет | Сетка | Частиц | Плотность кг/м³ | Податливость расст. / объёма, м/Н |
-|---|---|---|---|---|
-| rubber | 4×4×4 | 125 | 1100 | 5e-6 / 1e-9 |
-| jelly | 6×6×6 | 343 | 1000 | 5e-6 / 1e-9 |
-| cloth | 16×1×16 | 578 | 800 | 1e-3 / 1e-6 (толщина 5 см, это не ткань) |
-| rope | 24×1×1 | 100 | 1100 | 1e-4 / 1e-7 |
+`status` reports finite-state information, centre, maximum speed, stiffness, damping, particle/constraint counts, tearing count and minimum/maximum volume ratio. A volume ratio below 1 means compression; it is not a measure of visual quality.
 
-Лимиты: до 16 тел, до 5000 частиц на тело. Шаг сервера: dt = 1/20 с, 8 подшагов, 4 итерации.
+## Tearing
 
-## Что проверено
+Only cloth and rope presets have strain thresholds (cloth `1.8`, rope `2.0`). When an edge length reaches its threshold relative to its rest length, the solver removes that structural edge and the volume constraints that depend on it. The boundary-triangle surface is then rebuilt, and the next publish forces a fresh topology to clients.
 
-- `cargo test --locked`: все тесты soft и soft_world проходят (включая: все пресеты падают и остаются конечными,
-  закреплённый конец верёвки не сдвигается, более жёсткое тело проседает меньше, ограничения ввода).
-- `tests/NativeSmoke.java` через JNI: spawn, step, status, pin, stiffness, remove, ошибки JSON. Exit 0.
-- Замеры (release, 1 тело, 8 подшагов, 4 итерации, на тик): rubber 0.8 мс (125 частиц), rope 0.4 мс (100),
-  cloth 3.5 мс (578), сетка 8×8×8 — 6.5 мс (729). Пресет jelly 6×6×6 отдельно не замерялся.
-- Цели этапа 8 из ТЗ: 1000 частиц < 1 мс на шаг. Не достигнуто (ранее 1.2 мс на одну итерацию, f64).
+This is intentionally a simple constraint-tearing model: it does not duplicate vertices, create fracture energy, model fibers, or guarantee a physically realistic tear path. Rubber and jelly do not tear in alpha.7.
 
-## Инверсия при ударе (alpha.7, после хода 23)
+## Attachment to rigid bodies
 
-Причина найдена измерением (`native/examples/soft_drop.rs`), а не предположением:
+An attached particle layer follows a rigid body as a flag follows a pole or a rope end follows an assembly:
 
-- Одиночный тетраэдр на полу не инвертируется, значит, дело в коллективном сжатии куба.
-- Число итераций: при 4 итерациях на тик (8 подшагов) куб инвертирует уже при падении с 0.3 м (минимум −0.79).
-  16 итераций убирают инверсию при 0.3 м (0.80), но дороже в 4 раза.
-- Податливость: пресет rubber (2e-4 м/Н на ребро с ячейкой 5 см) соответствует жёсткости ~5000 Н/м на ребро, то есть
-  материал мягче резины. Объёмная податливость 1e-7 при 4 итерациях недостаточна для удара с 1 м.
-- Неупругий контакт на полу (нормальная скорость узла обнуляется при касании, `inelastic_floor`) вкладом в инверсию
-  не оказался; оставлен, потому что без него поправка на пол даёт скачок скорости вверх.
+1. Java records each selected particle's offset in the rigid body's local frame.
+2. Before each soft-body step, Java transforms those offsets by the body's current position and rotation and submits target coordinates.
+3. Rust holds the anchored particles at those targets and restores their saved inverse mass when anchors are released.
 
-Принято: rubber/jelly 5e-6 / 1e-9 с 4 итерациями. Минимум отношения объёма 0.56 при 0.3 м, 0.02 при 1 м (без инверсии).
-Цена: около 0.6 мс на тик для 125 частиц, как и раньше. Регрессионный тест:
-`soft::tests::rubber_cube_dropped_on_floor_never_inverts`.
+This **attachment constraint remains one-way**: the chosen layer follows the rigid body but does not push it through the anchor. Separately, physical soft-particle contacts with nearby dynamic rigid AABBs do return reaction impulses. Attachments are removed when their rigid body disappears or is disassembled. The headless attachment smoke covers rotation, target updates, release and wind; it does not test the in-game interaction loop.
 
-## Производительность
+## Wind
 
-1000 частиц, 4 подшага: 0.88 мс на шаг с 1 итерацией, 3.34 мс с 4 итерациями (`soft_budget_1000_particles`).
-Цель ТЗ «1000 частиц < 1 мс» достигнута только для одной итерации, которая для стабильности недостаточна.
+Soft particles receive a per-particle drag approximation based on `u = wind − particleVelocity`. The nominal particle diameter is 0.05 m and the force coefficient is `0.5 × 1.2 × 1.0 × diameter²`. Rigid bodies receive weather-derived wind through the rigid-body force system.
 
-## Известные ограничения (честно)
+Weather changes the approximate base speed (calm ≈ 1.5 m/s, rain ≈ 5.5 m/s, thunderstorm ≈ 13.5 m/s); direction drifts slowly and gusts vary with game time. Height, shelter and terrain do not modify airflow. The manual `/foxphys wind` vector may be replaced by automatic weather on a later tick.
 
-1. **Удар с высоты инвертировал тетраэдры (исправлено частично, см. «Инверсия при ударе» ниже).**
-   Для rubber/jelly после исправления удар с 1 м даёт минимальное отношение объёма 0.02 (сильное сжатие, но без
-   инверсии), с 0.3 м — 0.56. Тонкие тела (cloth, rope) при 2 м стабильны. Тела всё ещё спавнятся на высоте 10 см.
-   При ударах с 2 м и выше проверка не делалась.
-2. **Нет коллизий с блоками и физическими телами.** Только плоскость пола на уровне ног игрока. Мягкое тело не
-   толкает жёсткие тела; закрепление (см. выше) — только в одну сторону.
-3. **Видимость мягких тел в игре не подтверждена (alpha.7).** Рендер — `SoftBodyRenderer` в обеих сборках (треугольники
-   поверхности, оба направления, интерполяция за 50 мс). Путь данных проверен по коду: сервер публикует позиции в мировых
-   координатах каждый тик, пакет `soft_meshes` уходит всем игрокам. Причина «невидимости» из хода 14 и 27 не найдена без клиента.
-   Клиент пишет в лог `FoxPhys soft body #id (...)`: число частиц, число треугольников и габариты. По этим строкам
-   видно, доходит ли состояние до клиента и где находится тело.
-   Проверено (ход 29): физика тел на полу в мировых координатах с теми же параметрами спавна, что в игре; пакет и регистрация клиента корректны; рендер-тип и стадия совпадают с Fabric. Ошибка, если она есть, — в клиентском рендере, и без клиента её не поймать.
-   Изменение (ход 30): ошибка отправки форм больше не отключает отправку навсегда. Сбой пишется в лог с трассой один раз на серию, попытка повторяется на следующем тике, при восстановлении выводится строка «view recovered». Если тело всё ещё невидимо, искать строки `soft body view failed` в логе.
-4. **Разрыв (`tear`) не реализован.**
-5. **Замер 1000 частиц < 1 мс не достигнут**; в игре пресеты дают 0.4–6.5 мс на тело за тик.
+## Network and rendering
 
-## Оптимизация и рендер (ход 30)
+- The server updates particle positions every tick and sends a `soft_meshes` payload to clients.
+- The surface triangles are generated from the tetrahedral topology and cached. Full topology is sent when a body appears and periodically (every 20 ticks); after tearing it is sent again immediately. Intervening packets can omit the indices while sending new positions.
+- The client interpolates between server updates and draws cached triangles. Both loaders exempt FoxPhys display entities from stale frustum culling; Fabric has optional Sodium-specific render mixins.
+- If a body is not visible, look for `FoxPhys soft body #<id>` in the client log. It reports particles, triangle indices and bounds. `soft body view failed` on the server indicates a send failure; recovery is retried and logged.
 
-- Поверхность мягкого тела считается один раз при спавне (топология не меняется). Тест `surface_is_cached_and_can_be_omitted` проверяет, что поверхность не меняется после шагов и что `"tris": false` её не возвращает.
-- Для тика без полной поверхности Java запрашивает `positions` с `"tris": false`. Замер на `jelly` (343 частицы): вызов 50 → 32 мкс, ответ 9.3 → 4.6 КБ. Отдельно замерить старый пересчёт поверхности на каждом вызове не удалось: старый код удалён.
-- Поверхность в пакете идёт полностью при появлении тела и раз в 20 тиков (раз в секунду), чтобы игрок, зашедший позже, получил её быстро.
-- Рендер: треугольник рисуется одной копией. Тип `debugQuads` (NeoForge и Fabric, проверено по байткоду) отключает отсечение граней, вторая намотка давала только лишние вершины.
-- Миксин `EntityRenderDispatcherMixin` (обе ветки, клиент): блоки-дисплеи лаборатории пропускают проверку рамки видимости и сохраняют проверку дистанции. Сигнатуры методов проверены `javap` в jar Minecraft 1.21.1 (Mojang и Yarn). В игре не проверено.
+The rendering path compiles and has headless protocol checks, but actual visibility/interpolation has **not** been confirmed in a launched Minecraft client. See the [in-game checklist](IN_GAME_TEST_CHECKLIST.md).
+
+## Performance reference
+
+The ignored native benchmarks can be run with:
+
+```bash
+cd native
+cargo test --locked --release --lib soft_budget_1000_particles -- --ignored --nocapture
+cargo test --locked --release --lib soft_active_budget_1000_particles -- --ignored --nocapture
+```
+
+Both use 1,000 particles, 4 XPBD iterations and a single 1/120-second substep per measured frame. The stationary rest-shape workload reported **0.305 ms/frame** with self-collision enabled. The active workload warms for 25 frames, then measures 500 frames after either a 1 cm local particle displacement or a small distributed deformation; a repeat run reported **0.748 ms/frame** (local) and **0.805 ms/frame** (distributed), with self-collision enabled. It includes no external block/rigid colliders. The solver uses compact 16-bit mesh indices, a rescaled squared-distance constraint, and a sub-micrometre residual cutoff for converged XPBD corrections.
+
+These are native CPU-harness measurements, not complete game-tick budgets: Minecraft, networking, rendering, collider sampling, other bodies and the game's 8 substeps per tick are excluded. Costs grow with active bodies and contacts. A more pathological deformation can cost more; use the tests as reference points, not an end-to-end TPS guarantee.
+
+## Limitations
+
+- Soft bodies and water are extremely unstable experimental features; use a disposable world.
+- Contacts use AABBs derived from block collision shapes and rigid-body bounds. Thin/complex shapes, many colliders, and fast motions can still produce artifacts.
+- The self-collision model is vertex-based and inelastic; it is not triangle/triangle collision and can allow surface-level overlap.
+- Attachments are one-way kinematic constraints; only physical particle contacts send reaction impulses to rigid bodies.
+- Tearing is a simple threshold-based constraint removal and topology refresh, not realistic fracture.
+- Visual behaviour and performance in a live client/server remain unverified.

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Material densities from {@code assets/foxphys/density-table.json} (source: docs/density-table-alpha.6.json).
+ * Fallback material densities from {@code assets/foxphys/density-table.json}; primary per-block values are documented in {@code docs/BLOCK_PHYSICS.md}.
  * Keys are block paths ("oak_planks"); values are kg/m^3. A missing or broken file is logged once and
  * leaves the table empty, so the name heuristics in {@link Lab} keep working.
  */

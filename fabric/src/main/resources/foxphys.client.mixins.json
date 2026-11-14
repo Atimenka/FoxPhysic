@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "package": "dev.foxphys.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "dev.foxphys.mixin.client.FoxPhysMixinPlugin",
+  "client": [
+    "SodiumWorldRendererMixin",
+    "SodiumPhysicsBlockMixin",
+    "EntityRenderDispatcherMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

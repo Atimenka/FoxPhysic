@@ -1,4 +1,4 @@
-# JNI ABI v1
+# Native JNI API and JSON protocol (ABI 1)
 
 Java class: `dev.foxphys.nativecore.NativeBridge`. Four static exports:
 
@@ -9,7 +9,7 @@ String exchange(long handle, String requestJson);
 void destroy(long handle);
 ```
 
-`handle` is a monotonically allocated integer in a mutex-protected Rust registry. It is **not a raw pointer**. Closed/unknown handles and malformed requests raise Java `IllegalStateException`. Destruction releases the entire Rapier/fluid world. Up to 8 simultaneous native worlds; 8 MiB maximum JSON request.
+`handle` is a monotonically allocated integer in a mutex-protected Rust registry. It is **not a raw pointer**. Closed or unknown handles and malformed requests raise a Java `IllegalStateException`. Destruction releases the entire Rapier/fluid world. Up to 8 simultaneous native worlds; 8 MiB maximum JSON request.
 
 Configuration (other fields get explicit defaults):
 
@@ -17,7 +17,7 @@ Configuration (other fields get explicit defaults):
 {"gravity":9.81,"air_density":1.225,"water_density":998.2,"step_hz":120,"max_bodies":0}
 ```
 
-An exchange may contain environment replacement, commands and logical time:
+An exchange may contain an environment replacement, commands, and logical time:
 
 ```json
 {
@@ -35,14 +35,14 @@ An exchange may contain environment replacement, commands and logical time:
 ```
 
 - All coordinates are relative to the Java world's fixed integer lab origin.
-- `dt` is 0..0.1 seconds; `dt=0` applies commands without advancing physics.
-- Omit `terrain` / `water_cells` to retain previous data. Empty arrays clear them.
+- `dt` is 0..0.1 seconds; `dt=0` applies commands without advancing the physics.
+- Omit `terrain` / `water_cells` to keep the previous data. Empty arrays clear them.
 - `terrain` contains axis-aligned collision boxes sampled from the block shapes.
-- `water_cells`: `{"cell":[x,y,z],"height":1,"velocity":[0,0,0]}`. These are sampled vanilla water columns, NOT the dynamic tank state.
-- `parts` offsets refer to the rigid body's model origin. Mass/COM/inertia come from all attached colliders; parts cannot overlap.
-- ID is a positive 64-bit signed integer. Body count: `max_bodies` (0 = no limit, 1..10000 otherwise, default 64). The engine itself has no body cap. 64 parts/body and 256 parts/world.
-- Unknown JSON fields are rejected instead of silently ignored.
-- Environment sections validate before replacement. Commands are individually validated and applied **in order**, not as an all-or-nothing transaction. Check every `results[i].ok`.
+- `water_cells`: `{"cell":[x,y,z],"height":1,"velocity":[0,0,0]}`. These are sampled vanilla water columns, NOT the dynamic reservoir state.
+- `parts` offsets refer to the rigid body's model origin. Mass, centre of mass, and inertia come from all attached colliders; parts cannot overlap.
+- The ID is a positive 64-bit signed integer. Body count limit: `max_bodies` (0 = no limit, 1..10000 otherwise; the config default is 64). The engine itself has no body cap. An assembled body may contain up to 512 parts/colliders; the native world also caps the aggregate at 512 parts.
+- Unknown JSON fields are rejected instead of being silently ignored.
+- Environment sections are validated before replacement. Commands are validated individually and applied **in order**, not as an all-or-nothing transaction. Check every `results[i].ok`.
 
 Additional commands:
 
@@ -57,132 +57,132 @@ Additional commands:
 {"op":"remove_spring","id":1}
 ```
 
-The optional impulse `point` is in **lab coordinates**, while a spring's `anchor_b` is body-local and `anchor_a` is local to A or lab-space if `a=null`.
+The optional impulse `point` is in **lab coordinates**, while a spring's `anchor_b` is body-local and `anchor_a` is local to A, or lab-space if `a=null`.
 
-Snapshot fields match `Protocol.java`: ABI, logical seconds/fixed steps, bodies (pose, velocities, parts, mass, buoyancy/air-force diagnostics), tank depths/volume error, wind, native exchange time, number of static colliders and per-command results. Depths use row-major indexing `z*nx+x`. Timing excludes most Java sampling/render/network time and must not be presented as total frame time.
+The snapshot fields match `Protocol.java`: ABI, logical seconds and fixed steps, bodies (pose, velocities, parts, mass, buoyancy and air-force diagnostics), reservoir depths and volume error, wind, native exchange time, number of static colliders, and per-command results. Depths use row-major indexing `z*nx+x`. The timing excludes most Java sampling, rendering, and network time, and must not be presented as the total frame time.
 
-JSON is intentionally a debuggable **prototype** transport. For large moving worlds, replace it with versioned direct buffers/batched commands after a measured profile, preserving input validation and ownership. JNI should exchange snapshots, not make a call per force sample.
+JSON is deliberately a debuggable **prototype** transport. For large moving worlds, replace it with versioned direct buffers or batched commands after a measured profile, preserving input validation and ownership. JNI should exchange snapshots, not make a call per force sample.
 
-## Дополнение v1.1 (аддитивно, ABI не меняется)
+## Block assembly, attachment, and terrain snapshots
 
-Старые клиенты продолжают работать: новые поля необязательны, а неизвестные поля в ответе просто игнорируются.
+Optional fields use their documented defaults. Unknown request fields are rejected; response consumers should ignore fields they do not use.
 
-**Блок-сборщик.** Ячейка блока: `{"cell":[x,y,z],"density":800,"friction":0.6,"restitution":0,"block":"minecraft:stone"}`; `cell` — целочисленная координата, блок занимает `[c, c+1]³`.
+**Block assembler.** A block cell: `{"cell":[x,y,z],"density":800,"friction":0.6,"restitution":0,"block":"minecraft:stone"}`; `cell` is an integer coordinate, and the block occupies `[c, c+1]³`.
 
 ```json
-{"op":"assemble_body","id":10,"cells":[ ...ячейки... ]}
-{"op":"attach_cells","id":10,"cells":[ ...ячейки... ]}
+{"op":"assemble_body","id":10,"cells":[ ...cells... ]}
+{"op":"attach_cells","id":10,"cells":[ ...cells... ]}
 {"op":"disassemble_body","id":10}
 ```
 
-- `assemble_body` создаёт одно тело из уникальных ячеек. Дубликаты (даже с разными материалами) отвергаются.
-- `attach_cells` требует выровненного по сетке тела (кратно 90°).
-- `disassemble_body` удаляет тело и возвращает ячейки в **результате команды**: `results[i].cells = [[x,y,z], ...]`. Поле `cells` присутствует только при успехе разборки.
-- Все команды не атомарны: проверяйте `results[i].ok`. Отказ не меняет состояние тела.
+- `assemble_body` creates one body from unique cells. Duplicates (even with different materials) are rejected.
+- `attach_cells` requires a body aligned to the grid (a multiple of 90°).
+- `disassemble_body` removes the body and returns the cells in the **command result**: `results[i].cells = [[x,y,z], ...]`. The field `cells` is present only when the disassembly succeeds.
+- Commands are not atomic: check `results[i].ok`. A refusal does not change the state of the body.
 
-**Резервуар.** Новое поле `roughness` (коэффициент Маннинга `n`, `0..0.2`, по умолчанию `0`) включает трение о дно.
+**Reservoir roughness.** The field `roughness` (Manning coefficient `n`, `0..0.2`, default `0`) enables friction on the bottom.
 
-**Снимок тел.** Каждое тело содержит `aabb_min` и `aabb_max`: точные мировые границы всех коллайдеров, включая поворот (`|R|·половина размера`). Это хитбокс для presentation и взаимодействия; сами коллайдеры остаются точными боксами.
+**Body snapshot.** Each body contains `aabb_min` and `aabb_max`: the exact world bounds of all colliders, including rotation (`|R|·half-size`). This is the hitbox for presentation and interaction; the colliders themselves remain exact boxes.
 
-**Ошибки.** Недопустимые ячейки, дубликаты, превышение лимитов коллайдеров, наклонённое тело и неверная плотность возвращаются как `ok:false` с сообщением. Ошибки JSON верхнего уровня по-прежнему приводят к `IllegalStateException`.
+**Errors.** Invalid cells, duplicates, exceeding collider limits, a tilted body, and an invalid density are returned as `ok:false` with a message. Top-level JSON errors still lead to `IllegalStateException`.
 
-## Дополнение v1.2 (аддитивно, ABI не меняется)
+## Incremental terrain and grid-aligned disassembly
 
-**Инкрементальный терраин.** `{"op":"patch_terrain","add":[{"key":K,"center":[..],"size":[..]}],"remove":[K,...]}`.
-- `add` вставляет коробку под ключом `key` (u64, выбирает Java) или заменяет коробку с тем же ключом. `remove` удаляет ключи; неизвестный ключ игнорируется, поэтому патч можно безопасно повторить.
-- Команда проверяется целиком до изменения. Дубликат ключа в `add`, некорректная коробка или превышение 16384 коробок отвергают команду; терраин остаётся прежним.
-- Java присылает только разницу со своей картой ключей. Полная замена через поле `terrain` работает как раньше (ключи 0..n).
+**Incremental terrain.** `{"op":"patch_terrain","add":[{"key":K,"center":[..],"size":[..]}],"remove":[K,...]}`.
+- `add` inserts a box under the key `key` (u64, chosen by Java) or replaces the box with the same key. `remove` deletes keys; an unknown key is ignored, so a patch can be safely repeated.
+- The command is validated as a whole before any change. A duplicate key in `add`, an invalid box, or exceeding 16384 boxes rejects the command; the terrain stays as it was.
+- Java normally sends only the difference using its own key map. A full replacement through the `terrain` field is also accepted (keys 0..n).
 
-**Разборка с привязкой к сетке.** `{"op":"disassemble_body","id":N,"snap":true}`. Тело, которое лежит не на сетке из-за целого или дробного сдвига, округляется до целых блоков. Поворот по-прежнему обязан быть кратным 90°. Команда отказывает (тело не удаляется), если части тела имеют разные дробные сдвиги (нежёсткий сдвиг) или сдвиг ровно в полблока. Без `snap` поведение прежнее.
+**Disassembly with grid snapping.** `{"op":"disassemble_body","id":N,"snap":true}`. A body that is off the grid because of an integer or fractional shift is rounded to whole blocks. The rotation must still be a multiple of 90°. The command refuses (the body is not removed) if the body's parts have different fractional shifts (a non-rigid shift) or a shift of exactly half a block. If `snap` is omitted, the body must already satisfy the grid-alignment checks.
 
-**Записи сборки в сохранении.** В `<мир>/foxphys/<измерение>.json` рядом с `state` появляется `assemblies`: `[{"id":N,"cells":[{"pos":[x,y,z],"block":"minecraft:..."}]}]`. Координаты относительно origin стенда. Состояние блока сохраняется только идентификатором (без свойств вроде ориентации ступеней). Файлы без `assemblies` читаются как раньше.
+**Assembly records in saves.** In `<world>/foxphys/<dimension>.json`, next to `state`, `assemblies` stores `[{"id":N,"cells":[{"pos":[x,y,z],"block":"minecraft:..."}]}]`. Positions are integer cells in the lab coordinate frame. A block state is saved by its identifier; state properties such as stair orientation are not preserved by this record.
 
-**Результат разборки.** `results[i].cells` содержит клетки, которые Rust занял после округления. Java сопоставляет их с записанной формой сдвигом по минимальному углу и проверяет совпадение всех клеток.
+**Disassembly result.** `results[i].cells` contains the cells that Rust occupied after rounding. Java matches them against the recorded shape by a shift of the minimum corner and checks that all cells match.
 
-## Суставы, сохранение и настройка солвера (ABI 1, дополнение)
+## Joints, persistence, and solver settings
 
-Все поля добавлены с значениями по умолчанию: старые запросы работают без изменений.
+Optional fields use the defaults listed below. Check each command result before assuming the state changed.
 
-**Суставы.** `add_joint` / `remove_joint`. Тип `kind`:
+**Joints.** `add_joint` / `remove_joint`. The type is `kind`:
 
-| kind | Свободная степень | `limits` | Примечание |
+| kind | Free degree of freedom | `limits` | Note |
 | --- | --- | --- | --- |
-| `hinge` | поворот вокруг `axis` | углы в радианах, `[lo, hi]` | шарнир |
-| `slider` | перемещение вдоль `axis` | смещение в метрах, `[lo, hi]` | скользящее соединение |
-| `cone_twist` | поворот в конусе | `[0, θ]`, используется `θ = limits[1]` | ограничения по AngY и AngZ, приближённо |
-| `rope` | расстояние ≤ `max_length` | не используется | верёвка; цепь — набор верёвок |
+| `hinge` | rotation about `axis` | angles in radians, `[lo, hi]` | hinge |
+| `slider` | translation along `axis` | offset in metres, `[lo, hi]` | sliding connection |
+| `cone_twist` | rotation within a cone | `[0, θ]`, uses `θ = limits[1]` | limits on AngY and AngZ, approximate |
+| `rope` | distance ≤ `max_length` | not used | rope; a chain is a set of ropes |
 
-- `a: null` — сустав привязан к миру (фиксированная точка `anchor_a` в мировых координатах).
-- `axis` задаётся в локальной системе обоих тел и должен совпадать физически при создании.
-- `break_force` (Н, `1..10 000 000`): сустав разрывается, если сила превышает значение. Разрыв приходит в снимке как `broken_joints: [id, ...]` один раз, в том же ответе, где произошёл.
-- Снимок содержит `joint_count`.
-- Тела, на которые ссылается сустав или пружина, при удалении тела удаляют и связи.
+- `a: null` — the joint is attached to the world (a fixed point `anchor_a` in world coordinates).
+- `axis` is given in the local frame of both bodies and must physically match at creation.
+- `break_force` (N, `1..10 000 000`): the joint breaks if the force exceeds the value. The break appears in the snapshot as `broken_joints: [id, ...]` once, in the same response in which it happened.
+- The snapshot contains `joint_count`.
+- Bodies referenced by a joint or spring remove those links when the body is removed.
 
-**Сохранение.** `export_state` возвращает `results[i].state` (версия формата `format: 1`): тела с позицией, поворотом, линейной и угловой скоростями, пружины, суставы, ветер. Окружение (терраин, вода, резервуар) **не** сохраняется: Java передаёт его при каждом скане.
-`import_state` заменяет тела, пружины и суставы. Проверка выполняется до изменений. Если применение не удалось, мир откатывается к состоянию до вызова. Неизвестный `format` отвергается.
+**Saving.** `export_state` returns `results[i].state` (format version `format: 1`): bodies with position, rotation, linear and angular velocities, springs, joints, and wind. The environment (terrain, water, reservoir) is **not** saved: Java passes it on every scan.
+`import_state` replaces the bodies, springs, and joints. Validation is done before any change. If the application fails, the world is rolled back to the state before the call. An unknown `format` is rejected.
 
-**Солвер.** В `config`: `solver_iterations` (1..8, по умолчанию 4), `ccd_substeps` (1..8, по умолчанию 4). Значения по умолчанию получены замерами (см. ROADMAP).
+**Solver.** In `config`: `solver_iterations` (1..8, default 4) and `ccd_substeps` (1..8, default 4). Increasing them can improve contact robustness at additional CPU cost; profile a representative scene before changing them.
 
-**Тела.** Угловая скорость тела хранится в `SavedState` отдельно от `Body` (в `AddBody` её нет и не требуется).
+**Bodies.** The angular velocity of a body is stored in `SavedState` separately from `Body` (`AddBody` does not have it and does not need it).
 
-## Физический поток (JNI, ABI 1, дополнение)
+## Asynchronous physics worker
 
-Лаборатория работает через поток `foxphys-physics` (один на стенд). Мир шагает по реальному времени и не зависит от тиков сервера.
+Each native physics world runs on a worker thread named `foxphys-physics`. The world steps in real time and does not depend on server ticks.
 
-| Функция | Поведение |
+| Function | Behaviour |
 | --- | --- |
-| `workerCreate(config)` | создаёт поток, возвращает дескриптор |
-| `workerPush(h, request)` | ставит вход в очередь и не ждёт; вход применяется между шагами, время не продвигает |
-| `workerCall(h, request)` | то же, но ждёт результата до 2 с; для команд, экспорта и импорта |
-| `workerLatest(h)` | последний опубликованный снимок (JSON) или `null` до первого шага; не блокирует |
-| `workerTakeError(h)` | `""`, `"F:..."` (фатально: шаг не удался, стенд остановлен) или `"R:..."` (вход отклонён, мир работает); каждая ошибка сообщается один раз |
-| `workerSetIdle(h, idle)` | простой: 10 Гц, шаг до 0.1 с. Java ставит стенд на паузу (`pause`), когда рядом нет игроков, поэтому в простое тела не движутся |
-| `workerDestroy(h)` | останавливает поток и ждёт его завершения |
+| `workerCreate(config)` | creates the thread, returns a handle |
+| `workerPush(h, request)` | queues the input and does not wait; the input is applied between steps and does not advance time |
+| `workerCall(h, request)` | the same, but waits for the result up to 2 s; for commands, export, and import |
+| `workerLatest(h)` | the last published snapshot (JSON) or `null` before the first step; does not block |
+| `workerTakeError(h)` | `""`, `"F:..."` (fatal: a step failed, the stand is stopped) or `"R:..."` (input rejected, the world keeps running); each error is reported once |
+| `workerSetIdle(h, idle)` | idle: 10 Hz, steps up to 0.1 s. Java pauses the stand when no players are nearby, so bodies do not move while idle |
+| `workerDestroy(h)` | stops the thread and waits for it to finish |
 
-Догонка: в активном режиме не более 4 фиксированных шагов за цикл, поэтому при перегрузке симуляция замедляется, а не накапливает долг.
+Catch-up: in active mode, at most 4 fixed steps per cycle, so under overload the simulation slows down instead of accumulating debt.
 
-## Мягкие тела, крепление, ветер и SPH-пулы (ABI 1, дополнение alpha.7)
+## Soft bodies, attachment, wind, and SPH pools
 
-ABI не меняется. Добавлены два JSON-входа: `NativeBridge.softExchange(String) -> String` (мягкие тела, `soft_world.rs`) и `NativeBridge.fluidExchange(String) -> String` (SPH-пулы, `fluid_world.rs`). Каждый запрос — объект с полем `op`. Ошибка разбора, неизвестная операция (`unknown soft op 'x'`) или отказ мира не возвращают JSON: JNI выбрасывает исключение Java (`fail`), а вызывающий код (`SoftBodies`, `FluidWater`) перехватывает его и пишет в лог.
+Two JSON entry points complement the rigid-body exchange: `NativeBridge.softExchange(String) -> String` (soft bodies, `soft_world.rs`) and `NativeBridge.fluidExchange(String) -> String` (SPH pools, `fluid_world.rs`). Each request is an object with an `op` field. A parse error, an unknown operation (`unknown soft op 'x'`), or a world refusal does not return JSON: JNI throws a Java exception (`fail`), and the calling code (`SoftBodies`, `FluidWater`) catches it and writes to the log.
 
-### Мягкие тела (`softExchange`)
+### Soft bodies (`softExchange`)
 
-| `op` | Поля запроса | Ответ |
+| `op` | Request fields | Response |
 |---|---|---|
-| `spawn` | `preset` (rubber, jelly, cloth, rope), `origin` [x,y,z], `floor` (высота пола) | `id`, `particles` |
-| `step` | `dt`, `substeps` | — |
-| `status` | `id` | центр, `vmax`, `volume_ratio_min/max`, `stiffness`, `damping`, `preset` |
-| `positions` | `id`, `tris` (по умолчанию `true`; `false` — без поверхности) | `pos` (x,y,z на частицу, метры, округление до 1 мм; в мировых координатах, как `origin` при `spawn`), `tris` (индексы поверхностных треугольников, замкнутая поверхность; поверхность считается один раз при спавне), `preset` |
-| `list` | — | `bodies` (id) |
+| `spawn` | `preset` (rubber, jelly, cloth, rope), `origin` [x,y,z], `floor` (floor height) | `id`, `particles` |
+| `step` | `dt`, `substeps` (default 8), optional global `obstacles`/`bodies`, or per-body `environments` entries `{id, obstacles, bodies}` | elapsed `ms`, bounds, torn-constraint count/tear events, and accumulated `body_impulses` |
+| `status` | `id` | centre, `vmax`, `volume_ratio_min/max`, `stiffness`, `damping`, `preset` |
+| `positions` | `id`, `tris` (default `true`; `false` — without the surface) | `pos` (x,y,z per particle, metres, rounded to 1 mm; in world coordinates, like `origin` in `spawn`), `tris` (indices of the cached boundary triangles; refreshed after tearing), `preset` |
+| `list` | — | `bodies` (ids) |
 | `pin` | `id`, `side` (top, bottom, start, end) | `pinned` |
-| `anchor` | `id`, `side` | `indices` закреплённых частиц (мягкая фиксация с запоминанием массы) |
-| `anchor_targets` | `id`, `targets`: массив `[index, x, y, z]` | — (отказ, если частица не закреплена) |
-| `release` | `id` | `released` (число частиц; масса возвращается) |
-| `wind` | `velocity` [x,y,z] | `wind` (компоненты ±60 м/с) |
+| `anchor` | `id`, `side` | `indices` of the anchored particles (soft fixing that remembers the mass) |
+| `anchor_targets` | `id`, `targets`: array of `[index, x, y, z]` | — (refused if a particle is not anchored) |
+| `release` | `id` | `released` (number of particles; the mass is restored) |
+| `wind` | `velocity` [x,y,z] | `wind` (components ±60 m/s) |
 | `stiffness`, `damping` | `id`, `value` | — |
 | `remove` | `id` | — |
 
-Ветер применяется ко всем телам как аэродинамическое сопротивление на частицу. Крепление держит частицы в целях, которые Java вычисляет из позы жёсткого тела (`SoftAttachments`).
+Wind is applied to all bodies as an aerodynamic drag per particle. Static boxes use `{min:[x,y,z], max:[x,y,z]}`; dynamic bodies additionally carry `{id, velocity:[x,y,z], mass}`. A step projects particle contacts, runs self-collision, and returns reaction impulses for rigid contacts. Per-body `environments` override the global `obstacles`/`bodies` lists for that soft-body ID. Cloth/rope tearing rebuilds the cached surface when constraints break. Attachment holds particles at targets that Java computes from the pose of the rigid body (`SoftAttachments`); this kinematic anchor itself is one-way.
 
-### SPH-пулы (`fluidExchange`)
+### SPH pools (`fluidExchange`)
 
-| `op` | Поля запроса | Ответ |
+| `op` | Request fields | Response |
 |---|---|---|
 | `create` | `size` [x,y,z], `fill_height`, `dx`, `shape` (`still`, `dam`) | `id`, `particles` |
-| `step` | `id`, `seconds`, `max_steps` (до 400) | `steps`, `advanced`, `requested`, `sim_time` |
-| `positions` | `id` | `n` (число частиц), `xyz` (координаты относительно якоря, плоский список) |
+| `step` | `id`, `seconds`, `max_steps` (up to 400), optional `obstacles` AABBs and `bodies` (`{id,min,max,velocity,mass}`) | `steps`, `advanced`, `requested`, `sim_time`, accumulated `body_impulses` (including contact and hydrostatic buoyancy impulses) |
+| `positions` | `id` | `n` (number of particles), `xyz` (coordinates relative to the anchor, flat list) |
 | `status` | `id` | `particles`, `size`, `dx`, `fill_height`, `shape`, `mass`, `mean_density`, `kinetic_energy`, `top`, `sim_time` |
 | `remove` | `id` | — |
-| `list` | — | `pools` (id) |
+| `list` | — | `pools` (ids) |
 
-Шаг по времени выбирает решатель (`stable_dt`, условие CFL и силы). Поле `seconds` — физическое время, `max_steps` ограничивает число подшагов за вызов.
+The time step is chosen by the solver (`stable_dt`, the CFL and force conditions). The `seconds` field is physical time; `max_steps` limits the number of substeps per call. Each request accepts at most 512 static boxes and 64 dynamic bodies; distant AABBs are discarded relative to the pool. Static/dynamic contacts project SPH particles; dynamic contacts return reaction impulses, and an additional AABB-based Archimedes estimate supplies buoyancy. The in-game integration caps at 60 substeps/tick and 8 active pools; the native registry itself supports 16 pools.
 
-### Сетевые пакеты (Java, канал `foxphys:...`)
+### Network packets (Java, channel `foxphys:...`)
 
-| Пакет | Направление | Содержимое |
+| Packet | Direction | Contents |
 |---|---|---|
-| `soft_meshes` (`SoftMeshes`) | сервер → клиент, раз в тик | для каждого мягкого тела: id, пресет, позиции и треугольники. Треугольники приходят полностью при появлении тела и раз в 20 тиков; в остальные тики список пустой, и клиент берёт поверхность из своего кэша по id |
-| `fluid_frame` (`FluidFrame`) | сервер → клиент, раз в тик | для каждого пула рядом с игроком: id, якорь, `dx`, позиции |
-| `align_request` (`AlignRequest`) | клиент → сервер | нажата клавиша R с гравипушкой в руке (без данных) |
+| `soft_meshes` (`SoftMeshes`) | server → client, every tick | for each soft body: id, preset, positions and triangles. The triangles are sent in full when a body appears and every 20 ticks; on other ticks the list is empty, and the client takes the surface from its cache by id |
+| `fluid_frame` (`FluidFrame`) | server → client, every tick | for each pool near a player: id, anchor, `dx`, positions |
+| `align_request` (`AlignRequest`) | client → server | the R key pressed with the gravity gun in hand (no data) |
 
-Пакеты кодируются одинаково в обеих сборках (`FriendlyByteBuf` и `RegistryByteBuf`/`PacketCodec`). Регистрация: NeoForge `RegisterPayloadHandlersEvent`, Fabric `PayloadTypeRegistry`.
+Packets are encoded the same way in both builds (`FriendlyByteBuf` and `RegistryByteBuf`/`PacketCodec`). Registration: NeoForge `RegisterPayloadHandlersEvent`, Fabric `PayloadTypeRegistry`.

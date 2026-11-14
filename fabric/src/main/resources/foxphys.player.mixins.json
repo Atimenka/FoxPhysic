@@ -1,0 +1,11 @@
+{
+  "required": false,
+  "package": "dev.foxphys.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

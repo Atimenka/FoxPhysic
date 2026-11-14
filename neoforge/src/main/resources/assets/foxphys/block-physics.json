@@ -1,5 +1,5 @@
 {
-"_about": "Свойства всех 1060 блоков Minecraft 1.21.1 (состояние по умолчанию). hardness и blast — значения игры. density (кг/м^3) и fragility (0..1) — оценки по материалу; см. docs/BLOCK_PHYSICS.md. Генератор: scripts/blocks/build_block_table.py.",
+"_about": "Properties of all 1060 Minecraft 1.21.1 blocks (default state). hardness and blast are game values. density (kg/m^3) and fragility (0..1) are per-material estimates; see docs/BLOCK_PHYSICS.md. Generator: scripts/blocks/build_block_table.py.",
 "blocks": {
 "minecraft:acacia_button": {
 "blast": 0.5,

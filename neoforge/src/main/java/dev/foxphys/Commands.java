@@ -47,8 +47,8 @@ public final class Commands {
                     if (!java.util.Arrays.asList(PRESET_NAMES).contains(kind)) throw new IllegalArgumentException("Неизвестный вид: "+kind+" (rubber|jelly|cloth|rope)");
                     BlockPos feet=BlockPos.containing(s.getPosition());
                     // 2 blocks east of the command position, 10 cm above the floor plane at feet level.
-                    var out=SoftBodies.spawn(kind,feet.getX()+2.5,feet.getY()+0.1,feet.getZ()+0.5,feet.getY());
-                    return "Мягкое тело #"+out.get("id").getAsInt()+" ("+kind+", частиц "+out.get("particles").getAsInt()+"). Пол на уровне ног. Блоки мира не сталкиваются с телом.";
+                    var out=SoftBodies.spawn(s.getLevel(),kind,feet.getX()+2.5,feet.getY()+0.1,feet.getZ()+0.5,feet.getY());
+                    return "Мягкое тело #"+out.get("id").getAsInt()+" ("+kind+", частиц "+out.get("particles").getAsInt()+"). Пол на уровне ног; блоки и физические тела сталкиваются с ним. Вода и мягкая физика крайне нестабильны.";
                 }))))
             .then(literal("status").executes(ctx->run(ctx,s->SoftBodies.call("list",new com.google.gson.JsonObject()).toString()))
                 .then(argument("id",IntegerArgumentType.integer(1)).executes(ctx->run(ctx,s->{

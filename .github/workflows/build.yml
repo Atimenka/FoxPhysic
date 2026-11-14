@@ -29,21 +29,16 @@ jobs:
       - name: Rust lint
         working-directory: native
         run: cargo clippy --locked --all-targets -- -D warnings
-      - name: Fabric + platform library (Linux)
+      - name: Build Fabric and NeoForge jars
+        run: ./gradlew build --no-daemon --max-workers=1
         if: runner.os != 'Windows'
-        run: ./gradlew build --no-daemon
-      - name: Fabric + platform library (Windows)
+      - name: Build Fabric and NeoForge jars
+        run: ./gradlew.bat build --no-daemon --max-workers=1
         if: runner.os == 'Windows'
-        run: .\gradlew.bat build --no-daemon
-      - name: Compile JNI smoke harness
-        run: javac -d tests/classes src/main/java/dev/foxphys/nativecore/NativeBridge.java tests/NativeSmoke.java
-      - name: JNI smoke (Linux)
-        if: runner.os != 'Windows'
-        run: java -ea -cp tests/classes NativeSmoke native/target/release/libfoxphys_core.so
-      - name: JNI smoke (Windows)
-        if: runner.os == 'Windows'
-        run: java -ea -cp tests/classes NativeSmoke native/target/release/foxphys_core.dll
       - uses: actions/upload-artifact@v4
         with:
           name: foxphys-${{ runner.os }}-x64
-          path: build/libs/foxphys-0.1.0-alpha.3.jar
+          path: |
+            fabric/build/libs/foxphys-fabric-0.1.1-beta-release*.jar
+            neoforge/build/libs/foxphys-neoforge-0.1.1-beta-release*.jar
+          if-no-files-found: error
